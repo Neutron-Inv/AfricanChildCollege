@@ -71,6 +71,7 @@ Route::middleware('auth')->group(function () {
 
         Route::middleware('role:ADMIN,REGISTRAR,PLATFORM_OWNER')->prefix('academics')->name('academics.')->group(function () {
             Route::post('/sessions', [SessionController::class, 'store'])->name('sessions.store');
+            Route::put('/sessions/{session}', [SessionController::class, 'update'])->name('sessions.update');
             Route::post('/sessions/{session}/current', [SessionController::class, 'current'])->name('sessions.current');
             Route::post('/terms', [SessionController::class, 'storeTerm'])->name('terms.store');
 

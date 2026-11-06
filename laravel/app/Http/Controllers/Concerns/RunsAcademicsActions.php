@@ -12,10 +12,11 @@ trait RunsAcademicsActions
     /**
      * Run a service call; turn rule violations (DomainException) into an error toast / JSON message.
      *
+     * @param  string|Closure  $success  message, or a closure of the service result
      * @param  array<string, mixed>|Closure|null  $to  academics query params (or a closure of the result returning them); null = back
      * @param  Closure|null  $json  when the client expects JSON, build the payload from the service result
      */
-    protected function attempt(Closure $action, string $success, array|Closure|null $to = null, ?Closure $json = null): RedirectResponse|JsonResponse
+    protected function attempt(Closure $action, string|Closure $success, array|Closure|null $to = null, ?Closure $json = null): RedirectResponse|JsonResponse
     {
         try {
             $result = $action();
@@ -27,10 +28,12 @@ trait RunsAcademicsActions
             return back()->withInput()->with('error', $e->getMessage());
         }
 
+        $message = $success instanceof Closure ? $success($result) : $success;
+
         if (request()->expectsJson()) {
             $payload = $json ? $json($result) : [];
 
-            return response()->json(['message' => $success] + $payload);
+            return response()->json(['message' => $message] + $payload);
         }
 
         if ($to instanceof Closure) {
@@ -39,6 +42,6 @@ trait RunsAcademicsActions
 
         $redirect = $to === null ? back() : redirect()->route('academics', $to);
 
-        return $redirect->with('success', $success);
+        return $redirect->with('success', $message);
     }
 }

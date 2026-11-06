@@ -16,6 +16,7 @@ use App\Models\SchoolClass;
 use App\Models\Staff;
 use App\Models\Student;
 use App\Models\Subject;
+use App\Models\Term;
 use App\Models\User;
 use App\Support\Tenant;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -218,6 +219,47 @@ class AcademicsTest extends TestCase
             ->assertDontSee('JSS1 A');
     }
 
+    public function test_a_new_session_copies_classes_from_the_previous_one(): void
+    {
+        $this->tenant(function () {
+            $this->class->update(['form_teacher_id' => $this->teacher->id, 'admission_fee' => 1500]);
+            ClassSubject::create([
+                'class_id' => $this->class->id,
+                'subject_id' => $this->subject->id,
+                'teacher_id' => $this->teacher->id,
+                'kind' => 'COMPULSORY',
+            ]);
+        });
+
+        $this->as(Role::REGISTRAR)->post(self::HOST.'/academics/sessions', [
+            'start_year' => 2027,
+            'end_year' => 2028,
+        ])->assertRedirect()->assertSessionHas('success');
+
+        $this->tenant(function () {
+            $new = AcademicSession::where('name', '2027/2028')->firstOrFail();
+            $copy = SchoolClass::where('session_id', $new->id)->firstOrFail();
+            $this->assertSame($this->class->level_id, $copy->level_id);
+            $this->assertSame($this->class->arm_id, $copy->arm_id);
+            $this->assertSame($this->teacher->id, $copy->form_teacher_id);
+            $this->assertEquals(1500, (float) $copy->admission_fee);
+            $offering = ClassSubject::where('class_id', $copy->id)->firstOrFail();
+            $this->assertSame($this->subject->id, $offering->subject_id);
+            $this->assertSame($this->teacher->id, $offering->teacher_id);
+            $this->assertSame('COMPULSORY', $offering->kind);
+            $this->assertSame(0, Enrolment::where('session_id', $new->id)->count());
+            $this->assertSame(1, Enrolment::where('class_id', $this->class->id)->count());
+        });
+
+        // A session dated before every existing one has no previous session to copy.
+        $this->post(self::HOST.'/academics/sessions', ['start_year' => 2020, 'end_year' => 2021, 'name' => '2020/2021'])
+            ->assertSessionHas('success');
+        $this->tenant(function () {
+            $older = AcademicSession::where('name', '2020/2021')->firstOrFail();
+            $this->assertSame(0, SchoolClass::where('session_id', $older->id)->count());
+        });
+    }
+
     public function test_session_and_term_creation_and_mark_current(): void
     {
         $this->as(Role::REGISTRAR)->post(self::HOST.'/academics/sessions', ['start_year' => 2027, 'end_year' => 2028, 'is_current' => 1])->assertRedirect();
@@ -236,6 +278,52 @@ class AcademicsTest extends TestCase
             $this->post(self::HOST.'/academics/terms', ['session_id' => $this->session->id, 'sequence' => 1])->assertSessionHas('error');
             $this->assertSame('First Term', $this->session->terms()->first()->name);
         });
+    }
+
+    public function test_a_session_and_its_terms_can_be_edited(): void
+    {
+        $term = $this->tenant(fn () => Term::create([
+            'session_id' => $this->session->id,
+            'sequence' => 1,
+            'name' => 'First Term',
+            'days_school_open' => 10,
+        ]));
+
+        $this->as(Role::REGISTRAR)
+            ->get(self::HOST.'/academics?tab=sessions')
+            ->assertOk()
+            ->assertSee('Edit');
+
+        $this->put(self::HOST.'/academics/sessions/'.$this->session->id, [
+            'editing_session' => $this->session->id,
+            'name' => '2026/2027 session',
+            'start_year' => 2026,
+            'end_year' => 2027,
+            'terms' => [[
+                'id' => $term->id,
+                'days_school_open' => 90,
+                'result_date' => '2026-12-15',
+            ]],
+        ])->assertRedirect()->assertSessionHas('success');
+
+        $this->tenant(function () use ($term) {
+            $this->assertSame('2026/2027 session', $this->session->fresh()->name);
+            $term->refresh();
+            $this->assertSame(90, $term->days_school_open);
+            $this->assertSame('2026-12-15', $term->result_date->toDateString());
+        });
+
+        $this->put(self::HOST.'/academics/sessions/'.$this->session->id, [
+            'name' => 'Backwards',
+            'start_year' => 2028,
+            'end_year' => 2027,
+        ])->assertSessionHas('error');
+
+        $this->as(Role::TEACHER)->put(self::HOST.'/academics/sessions/'.$this->session->id, [
+            'name' => 'Nope',
+            'start_year' => 2026,
+            'end_year' => 2027,
+        ])->assertForbidden();
     }
 
     public function test_class_subjects_attach_compulsory_to_active_enrolments_and_remove_cleans_up(): void

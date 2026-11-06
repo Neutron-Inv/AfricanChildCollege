@@ -90,17 +90,72 @@ class AcademicsService
                 AcademicSession::query()->update(['is_current' => false]);
             }
 
-            return AcademicSession::create([
+            $session = AcademicSession::create([
                 'name' => $name,
                 'start_year' => $start,
                 'end_year' => $end,
                 'is_current' => $isCurrent,
             ]);
+
+            [$copied, $from] = $this->copyClassesFromPreviousSession($session);
+            $session->setAttribute('copied_classes', $copied);
+            $session->setAttribute('copied_from', $from);
+
+            return $session;
         });
 
-        AuditService::record('create', 'AcademicSession', $session->getKey());
+        AuditService::record('create', 'AcademicSession', $session->getKey(), [
+            'copied_classes' => (int) $session->getAttribute('copied_classes'),
+        ]);
 
         return $session;
+    }
+
+    /**
+     * Classes (and their subject offerings) from the session immediately before this one.
+     * Students stay in the session they were enrolled in.
+     *
+     * @return array{0: int, 1: ?string}
+     */
+    private function copyClassesFromPreviousSession(AcademicSession $session): array
+    {
+        $previous = AcademicSession::query()
+            ->where('start_year', '<', $session->start_year)
+            ->orderByDesc('start_year')
+            ->orderByDesc('end_year')
+            ->first();
+
+        if (! $previous) {
+            return [0, null];
+        }
+
+        $classes = SchoolClass::query()
+            ->where('session_id', $previous->getKey())
+            ->with('classSubjects')
+            ->get();
+
+        foreach ($classes as $class) {
+            $copy = SchoolClass::create([
+                'session_id' => $session->getKey(),
+                'level_id' => $class->level_id,
+                'arm_id' => $class->arm_id,
+                'form_teacher_id' => $class->form_teacher_id,
+                'admission_fee' => $class->admission_fee,
+                'hall_charge' => $class->hall_charge,
+            ]);
+
+            foreach ($class->classSubjects as $offering) {
+                ClassSubject::create([
+                    'class_id' => $copy->getKey(),
+                    'subject_id' => $offering->subject_id,
+                    'teacher_id' => $offering->teacher_id,
+                    'kind' => $offering->kind,
+                    'fee' => $offering->fee,
+                ]);
+            }
+        }
+
+        return [$classes->count(), $previous->name];
     }
 
     public function markCurrent(string $sessionId): AcademicSession
@@ -113,6 +168,50 @@ class AcademicsService
         });
 
         AuditService::record('update', 'AcademicSession', $session->getKey(), ['is_current' => true]);
+
+        return $session->refresh();
+    }
+
+    /**
+     * Rename a session and update the days open / result date of its terms.
+     *
+     * @param  array{name?: string|null, start_year: int, end_year: int, terms?: array<int, array{id?: string, days_school_open?: int|null, result_date?: string|null}>}  $data
+     */
+    public function updateSession(string $sessionId, array $data): AcademicSession
+    {
+        $session = $this->findOrFail(AcademicSession::query(), $sessionId, 'Session not found.');
+        $start = (int) $data['start_year'];
+        $end = (int) $data['end_year'];
+        if ($end < $start) {
+            throw new DomainException('The end year cannot be before the start year.');
+        }
+
+        $name = trim((string) ($data['name'] ?? '')) ?: "{$start}/{$end}";
+        if (AcademicSession::query()->where('name', $name)->where('id', '!=', $session->getKey())->exists()) {
+            throw new DomainException("A session named {$name} already exists.");
+        }
+
+        DB::transaction(function () use ($session, $name, $start, $end, $data) {
+            $session->update([
+                'name' => $name,
+                'start_year' => $start,
+                'end_year' => $end,
+            ]);
+
+            foreach ($data['terms'] ?? [] as $row) {
+                $term = $session->terms()->whereKey($row['id'] ?? null)->first();
+                if (! $term) {
+                    continue;
+                }
+
+                $term->update([
+                    'days_school_open' => (int) ($row['days_school_open'] ?? 0),
+                    'result_date' => ($row['result_date'] ?? null) ?: null,
+                ]);
+            }
+        });
+
+        AuditService::record('update', 'AcademicSession', $session->getKey(), ['name' => $name]);
 
         return $session->refresh();
     }

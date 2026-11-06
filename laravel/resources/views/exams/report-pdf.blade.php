@@ -12,32 +12,33 @@
     <meta charset="utf-8">
     <title>Report card — {{ $student?->full_name }} — {{ $term->name }}</title>
     <style>
-        @page { margin: 12mm 12mm 16mm 12mm; }
+        @page { margin: 7mm 8mm 32mm 8mm; }
         * { box-sizing: border-box; }
         body {
             font-family: DejaVu Sans, sans-serif;
             font-size: 8.5pt;
+            line-height: 1.2;
             color: #1f2937;
             margin: 0;
             padding: 0;
         }
-        .header { border-bottom: 2.5px solid {{ $primary }}; padding-bottom: 6px; margin-bottom: 8px; }
+        .header { border-bottom: 2px solid {{ $primary }}; padding-bottom: 4px; margin-bottom: 6px; }
         .header-table { width: 100%; border-collapse: collapse; }
         .header-table td { vertical-align: middle; }
-        .logo { width: 48px; height: 48px; }
+        .logo { width: 40px; height: 40px; }
         .logo-fallback {
-            width: 56px; height: 56px;
-            border: 2px solid {{ $primary }};
-            border-radius: 6px;
+            width: 36px; height: 36px;
+            border: 1.5px solid {{ $primary }};
+            border-radius: 4px;
             text-align: center;
-            line-height: 52px;
-            font-size: 18pt;
+            line-height: 33px;
+            font-size: 13pt;
             font-weight: bold;
             color: {{ $primary }};
         }
-        .school-name { font-size: 14pt; font-weight: bold; color: {{ $primary }}; margin: 0 0 2px 0; }
-        .motto { font-style: italic; color: #6b7280; margin: 0 0 3px 0; }
-        .meta { color: #4b5563; margin: 0; line-height: 1.35; }
+        .school-name { font-size: 13pt; font-weight: bold; color: {{ $primary }}; margin: 0; line-height: 1.15; }
+        .motto { font-style: italic; color: #6b7280; margin: 0; font-size: 8pt; }
+        .meta { color: #4b5563; margin: 1px 0 0; line-height: 1.25; font-size: 8pt; }
         .doc-title { text-align: right; }
         .doc-title h1 {
             margin: 0;
@@ -46,64 +47,69 @@
             text-transform: uppercase;
             letter-spacing: 0.04em;
         }
-        .doc-title p { margin: 2px 0 0; color: #6b7280; }
-        .identity { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+        .doc-title p { margin: 1px 0 0; color: #6b7280; font-size: 8pt; }
+        .identity { width: 100%; border-collapse: collapse; margin-bottom: 5px; }
         .identity td { vertical-align: top; padding: 0; }
-        .student-name { font-size: 12pt; font-weight: bold; margin: 0 0 2px 0; }
+        .student-name { font-size: 12pt; font-weight: bold; margin: 0; line-height: 1.2; }
         img.star { width: 11px; height: 11px; vertical-align: middle; }
-        .muted { color: #6b7280; margin: 0; }
-        .summary { text-align: right; }
+        .muted { color: #6b7280; margin: 0; font-size: 8pt; }
+        .summary { text-align: right; font-size: 8.5pt; }
         .summary strong { font-size: 11pt; }
-        table.sheet { width: 100%; border-collapse: collapse; margin-top: 4px; }
+        table.sheet { width: 100%; border-collapse: collapse; margin-top: 8px; }
         table.sheet th {
             background: {{ $primary }};
             color: #ffffff;
-            padding: 3px 4px;
+            padding: 2px 3px;
             border: 1px solid {{ $primary }};
             font-weight: 600;
             text-align: center;
-            font-size: 8pt;
+            font-size: 7.5pt;
+            line-height: 1.2;
         }
-        table.sheet th.subject, table.sheet td.subject { text-align: left; }
+        table.sheet th.subject, table.sheet td.subject { text-align: left; white-space: nowrap; }
         table.sheet td {
             border: 1px solid #d1d5db;
-            padding: 2px 4px;
+            padding: 1px 3px;
             text-align: center;
+            font-size: 8pt;
+            line-height: 1.3;
         }
         table.sheet tbody tr:nth-child(even) td { background: #f9fafb; }
         table.sheet tfoot td {
             border: 1px solid #d1d5db;
-            padding: 5px 6px;
+            padding: 2px 3px;
             font-weight: 700;
             background: #f3f4f6;
+            font-size: 8pt;
         }
         .num { font-variant-numeric: tabular-nums; }
-        .section { margin-top: 8px; }
+        .section { margin-top: 6px; }
         .section h2 {
-            margin: 0 0 4px 0;
-            font-size: 9pt;
+            margin: 0 0 2px 0;
+            font-size: 8.5pt;
             text-transform: uppercase;
             letter-spacing: 0.04em;
             color: {{ $primary }};
         }
         table.facts { width: 100%; border-collapse: collapse; }
-        table.facts td { padding: 3px 8px 3px 0; }
-        table.facts td.label { color: #6b7280; width: 22%; }
+        table.facts td { padding: 0 8px 0 0; font-size: 8pt; }
+        table.facts td.label { color: #6b7280; width: 16%; }
+        table.comments { width: 100%; border-collapse: collapse; }
+        table.comments td { width: 50%; vertical-align: top; padding: 0; }
+        table.comments td + td { padding-left: 6px; }
         .comment {
             border: 1px solid #e5e7eb;
             padding: 4px 8px;
-            min-height: 28px;
-            margin-bottom: 6px;
         }
         .comment .label { color: #6b7280; font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.03em; }
-        .comment .body { margin-top: 3px; min-height: 16px; }
-        .grades { color: #4b5563; font-size: 7.5pt; margin-top: 6px; }
-        table.domains { width: 100%; border-collapse: separate; border-spacing: 8px 0; margin-top: 2px; }
+        .comment .body { margin-top: 2px; }
+        .grades { color: #4b5563; font-size: 7.5pt; margin: 4px 0 10px; line-height: 1.25; }
+        table.domains { width: 100%; border-collapse: separate; border-spacing: 6px 0; margin: 0; }
         table.domains > tbody > tr > td {
             width: 50%;
             vertical-align: top;
             border: 1px solid #e5e7eb;
-            padding: 6px 8px 4px;
+            padding: 3px 6px 2px;
             background: #fafafa;
         }
         .domain-title {
@@ -112,16 +118,16 @@
             color: {{ $primary }};
             text-transform: uppercase;
             letter-spacing: 0.04em;
-            margin: 0 0 4px 0;
+            margin: 0 0 2px 0;
         }
-        table.trait { width: 100%; border-collapse: collapse; margin-bottom: 3px; }
+        table.trait { width: 100%; border-collapse: collapse; }
         table.trait td { padding: 1px 0; vertical-align: middle; }
         table.trait td.trait-label { font-size: 8pt; }
         table.pips { border-collapse: separate; border-spacing: 2px 0; margin-left: auto; }
         table.pips td {
-            width: 12px;
-            height: 12px;
-            line-height: 12px;
+            width: 11px;
+            height: 11px;
+            line-height: 11px;
             text-align: center;
             font-size: 6.5pt;
             color: #9ca3af;
@@ -134,25 +140,31 @@
             color: #ffffff;
             font-weight: 700;
         }
-        .scale-note { margin: 2px 0 0; color: #6b7280; font-size: 7pt; }
-        .sign-block { margin-top: 12px; width: 42%; margin-left: auto; text-align: center; }
-        .sign-img { height: 42px; margin-bottom: 2px; }
+        .scale-note { margin: 2px 0 0; color: #6b7280; font-size: 7pt; line-height: 1.25; }
+        .sign-block {
+            position: fixed;
+            right: 0;
+            bottom: -20mm;
+            width: 62mm;
+            text-align: center;
+        }
+        .sign-img { height: 36px; margin-bottom: 1px; }
         .sign-line {
             border-top: 1px solid #9ca3af;
-            margin-top: 4px;
-            padding-top: 3px;
+            margin: 0 8mm;
+            padding-top: 2px;
             color: #4b5563;
-            font-size: 8pt;
+            font-size: 7.5pt;
         }
         .footer {
             position: fixed;
-            bottom: -8mm;
+            bottom: -28mm;
             left: 0;
             right: 0;
-            font-size: 7pt;
+            font-size: 6.5pt;
             color: #9ca3af;
             border-top: 1px solid #e5e7eb;
-            padding-top: 3px;
+            padding-top: 2px;
         }
         .footer-table { width: 100%; }
     </style>
@@ -161,14 +173,14 @@
     <div class="header">
         <table class="header-table">
             <tr>
-                <td style="width: 64px;">
+                <td style="width: 44px;">
                     @if ($logoDataUri)
                         <img class="logo" src="{{ $logoDataUri }}" alt="School logo">
                     @else
                         <div class="logo-fallback">{{ \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr($school->name, 0, 1)) }}</div>
                     @endif
                 </td>
-                <td style="padding-left: 10px;">
+                <td style="padding-left: 8px;">
                     <p class="school-name">{{ $school->name }}</p>
                     @if ($school->motto)
                         <p class="motto">“{{ $school->motto }}”</p>
@@ -210,6 +222,20 @@
             </td>
         </tr>
     </table>
+
+    <div class="section" style="margin-top: 4px; margin-bottom: 2px;">
+        <h2>Attendance</h2>
+        <table class="facts">
+            <tr>
+                <td class="label">Days present</td>
+                <td>{{ $report?->days_present ?? 0 }}</td>
+                <td class="label">Days absent</td>
+                <td>{{ $report?->days_absent ?? 0 }}</td>
+                <td class="label">School open</td>
+                <td>{{ (int) $term->days_school_open ?: '—' }}</td>
+            </tr>
+        </table>
+    </div>
 
     <table class="sheet">
         <thead>
@@ -273,7 +299,7 @@
     </table>
 
     @if ($cumulative)
-        <p class="scale-note">1st and 2nd are this session's earlier totals. Cumulative percentage is the average of the Session column, to two decimal places. A term with no score, or where the student was absent, is left out.</p>
+        {{-- <p class="scale-note">1st and 2nd are this session's earlier totals. Cumulative percentage is the average of the Session column, to two decimal places. A term with no score, or where the student was absent, is left out.</p> --}}
     @endif
 
     @if ($bands->isNotEmpty())
@@ -291,21 +317,7 @@
         </p>
     @endif
 
-    <div class="section">
-        <h2>Attendance</h2>
-        <table class="facts">
-            <tr>
-                <td class="label">Days present</td>
-                <td>{{ $report?->days_present ?? 0 }}</td>
-                <td class="label">Days absent</td>
-                <td>{{ $report?->days_absent ?? 0 }}</td>
-                <td class="label">School open</td>
-                <td>{{ (int) $term->days_school_open ?: '—' }}</td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="section">
+    <div class="section" style="margin-top: 8px;">
             <h2>Behaviour</h2>
             <table class="domains">
                 <tr>
@@ -338,14 +350,22 @@
 
     <div class="section">
         <h2>Comments</h2>
-        <div class="comment">
-            <div class="label">Teacher's comment</div>
-            <div class="body">{{ $report?->teacher_comment }}</div>
-        </div>
-        <div class="comment">
-            <div class="label">Principal's comment</div>
-            <div class="body">{{ $report?->principal_comment }}</div>
-        </div>
+        <table class="comments">
+            <tr>
+                <td>
+                    <div class="comment">
+                        <div class="label">Teacher's comment</div>
+                        <div class="body">{{ $report?->teacher_comment }}</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="comment">
+                        <div class="label">Principal's comment</div>
+                        <div class="body">{{ $report?->principal_comment }}</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <div class="sign-block">

@@ -30,6 +30,39 @@
             </div>
         </div>
 
+        @php $domains = \App\Enums\ReportTrait::grouped(); $canEdit = (bool) ($canEditReport ?? false); @endphp
+        @if ($canEdit)
+            <form method="POST" action="{{ route('exams.report.update') }}" class="space-y-5">
+                @csrf @method('PUT')
+                <input type="hidden" name="term_id" value="{{ $term->id }}">
+                <input type="hidden" name="enrolment_id" value="{{ $enrolment->id }}">
+                <input type="hidden" name="view" value="report">
+                <input type="hidden" name="class" value="{{ $card['class']?->id }}">
+        @endif
+
+        <div class="mb-6">
+            <h4 class="mb-2 text-sm font-semibold">Attendance</h4>
+            @if ($canEdit && $isOffice)
+                <div class="flex flex-wrap items-end gap-3">
+                    <div>
+                        <label for="days_present" class="text-xs text-gray-500">Days present</label>
+                        <input id="days_present" type="number" min="0" max="366" name="days_present" value="{{ old('days_present', $report?->days_present ?? 0) }}" class="form-input mt-1 !w-28">
+                    </div>
+                    <div>
+                        <label for="days_absent" class="text-xs text-gray-500">Days absent</label>
+                        <input id="days_absent" type="number" min="0" max="366" name="days_absent" value="{{ old('days_absent', $report?->days_absent ?? 0) }}" class="form-input mt-1 !w-28">
+                    </div>
+                    <div class="text-sm text-gray-500">School open: <span class="font-medium text-gray-800">{{ $open ?: '-' }}</span> days</div>
+                </div>
+            @else
+                <dl class="flex flex-wrap gap-6 text-sm">
+                    <div><dt class="text-xs text-gray-500">Days present</dt><dd class="font-semibold">{{ $report?->days_present ?? 0 }}</dd></div>
+                    <div><dt class="text-xs text-gray-500">Days absent</dt><dd class="font-semibold">{{ $report?->days_absent ?? 0 }}</dd></div>
+                    <div><dt class="text-xs text-gray-500">School open</dt><dd class="font-semibold">{{ $open ?: '-' }}</dd></div>
+                </dl>
+            @endif
+        </div>
+
         <div class="overflow-x-auto">
             <table class="w-full text-left text-sm">
                 <thead class="border-b border-black/10 text-xs uppercase tracking-wide text-gray-500">
@@ -93,41 +126,9 @@
             </table>
         </div>
         @if ($cumulative)
-            <p class="mt-2 text-xs text-gray-500">1st and 2nd are this session's earlier totals. Cumulative percentage is the average of the Session column, to two decimal places. A term with no score, or where the student was absent, is left out. Position uses that cumulative percentage.</p>
+        <br/>
+            {{-- <p class="mt-2 text-xs text-gray-500">1st and 2nd are this session's earlier totals. Cumulative percentage is the average of the Session column, to two decimal places. A term with no score, or where the student was absent, is left out. Position uses that cumulative percentage.</p> --}}
         @endif
-
-        @php $domains = \App\Enums\ReportTrait::grouped(); $canEdit = (bool) ($canEditReport ?? false); @endphp
-        @if ($canEdit)
-            <form method="POST" action="{{ route('exams.report.update') }}" class="mt-5 space-y-5 border-t border-black/5 pt-4">
-                @csrf @method('PUT')
-                <input type="hidden" name="term_id" value="{{ $term->id }}">
-                <input type="hidden" name="enrolment_id" value="{{ $enrolment->id }}">
-                <input type="hidden" name="view" value="report">
-                <input type="hidden" name="class" value="{{ $card['class']?->id }}">
-        @endif
-
-        <div class="{{ $canEdit ? '' : 'mt-5 border-t border-black/5 pt-4' }}">
-            <h4 class="mb-2 text-sm font-semibold">Attendance</h4>
-            @if ($canEdit && $isOffice)
-                <div class="flex flex-wrap items-end gap-3">
-                    <div>
-                        <label for="days_present" class="text-xs text-gray-500">Days present</label>
-                        <input id="days_present" type="number" min="0" max="366" name="days_present" value="{{ old('days_present', $report?->days_present ?? 0) }}" class="form-input mt-1 !w-28">
-                    </div>
-                    <div>
-                        <label for="days_absent" class="text-xs text-gray-500">Days absent</label>
-                        <input id="days_absent" type="number" min="0" max="366" name="days_absent" value="{{ old('days_absent', $report?->days_absent ?? 0) }}" class="form-input mt-1 !w-28">
-                    </div>
-                    <div class="text-sm text-gray-500">School open: <span class="font-medium text-gray-800">{{ $open ?: '-' }}</span> days</div>
-                </div>
-            @else
-                <dl class="flex flex-wrap gap-6 text-sm">
-                    <div><dt class="text-xs text-gray-500">Days present</dt><dd class="font-semibold">{{ $report?->days_present ?? 0 }}</dd></div>
-                    <div><dt class="text-xs text-gray-500">Days absent</dt><dd class="font-semibold">{{ $report?->days_absent ?? 0 }}</dd></div>
-                    <div><dt class="text-xs text-gray-500">School open</dt><dd class="font-semibold">{{ $open ?: '-' }}</dd></div>
-                </dl>
-            @endif
-        </div>
 
         <div class="{{ $canEdit ? '' : 'mt-5 border-t border-black/5 pt-4' }}">
             <h4 class="text-sm font-semibold">Behaviour</h4>
