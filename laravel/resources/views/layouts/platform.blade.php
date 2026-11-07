@@ -13,6 +13,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased text-gray-900" style="background: var(--canvas)">
+        <div class="flex min-h-screen flex-col">
         <header class="flex h-14 items-center justify-between px-4 text-white sm:px-6" style="background: var(--sidebar)">
             <div class="font-semibold">{{ config('app.name') }} <span class="ml-2 text-xs font-normal text-gray-400">Platform</span></div>
             <div class="flex items-center gap-4 text-sm">
@@ -27,8 +28,11 @@
 
         @include('partials.toasts')
 
-        <main class="mx-auto max-w-5xl p-4 sm:p-6">
+        <main class="mx-auto w-full max-w-5xl flex-1 p-4 sm:p-6">
             {{ $slot }}
         </main>
+
+        @include('partials.powered-by')
+        </div>
     </body>
 </html>

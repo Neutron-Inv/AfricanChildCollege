@@ -95,7 +95,7 @@
             </aside>
 
             {{-- Main --}}
-            <div class="lg:pl-64">
+            <div class="flex min-h-screen flex-col lg:pl-64">
                 <header class="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-black/5 bg-white px-4">
                     <div class="flex items-center gap-3">
                         <button type="button" class="lg:hidden" @click="sidebar = true" aria-label="Open menu">
@@ -128,9 +128,11 @@
                     </div>
                 @endif
 
-                <main class="p-4 sm:p-6">
+                <main class="flex-1 p-4 sm:p-6">
                     {{ $slot }}
                 </main>
+
+                @include('partials.powered-by')
             </div>
         </div>
     </body>

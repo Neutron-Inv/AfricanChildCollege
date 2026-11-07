@@ -20,7 +20,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased" style="background: var(--canvas)">
-        <div class="flex min-h-screen flex-col items-center justify-center px-4 py-8">
+        <div class="flex min-h-screen flex-col">
+        <div class="flex flex-1 flex-col items-center justify-center px-4 py-8">
             <div class="mb-6 text-center">
                 <div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full text-xl font-bold text-white" style="background: var(--primary)">
                     {{ strtoupper(substr($school?->name ?? config('app.name'), 0, 1)) }}
@@ -34,6 +35,9 @@
             <div class="w-full max-w-md rounded-lg border border-black/5 bg-white px-6 py-6 shadow-sm">
                 {{ $slot }}
             </div>
+        </div>
+
+        @include('partials.powered-by')
         </div>
 
         @include('partials.toasts')

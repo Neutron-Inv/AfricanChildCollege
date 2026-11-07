@@ -15,6 +15,9 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    // Shown as "Powered by …" in the page footer. Leave blank to hide it.
+    'powered_by' => env('POWERED_BY', 'Whizdom Engineering'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

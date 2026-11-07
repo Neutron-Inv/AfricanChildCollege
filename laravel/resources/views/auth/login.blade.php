@@ -23,7 +23,8 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased" style="background: var(--canvas)">
-        <div class="grid min-h-screen lg:grid-cols-2">
+        <div class="flex min-h-screen flex-col">
+        <div class="grid flex-1 lg:grid-cols-2">
             <aside class="relative overflow-hidden px-6 py-8 text-white sm:px-10 lg:flex lg:flex-col lg:justify-between lg:px-14 lg:py-12"
                    style="background-color: var(--primary); background-image: radial-gradient(rgba(255,255,255,.16) 1px, transparent 1px); background-size: 22px 22px;">
                 <div class="pointer-events-none absolute inset-0" style="background: linear-gradient(160deg, rgba(255,255,255,.14), transparent 42%, rgba(0,0,0,.28));"></div>
@@ -102,6 +103,9 @@
                     </form>
                 </div>
             </main>
+        </div>
+
+        @include('partials.powered-by')
         </div>
 
         @include('partials.toasts')
