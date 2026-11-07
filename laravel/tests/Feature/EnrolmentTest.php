@@ -364,11 +364,12 @@ class EnrolmentTest extends TestCase
 
         $this->as(Role::REGISTRAR);
 
-        // Mapping screen lists the source class.
+        // Mapping screen offers the next level (JSS2 A, same arm) and a Graduated choice.
         $this->get(self::HOST.'/enrolment/promote?from='.$this->s1->id.'&to='.$this->s2->id)
-            ->assertOk()->assertSee('JSS1 A')->assertSee('Promote students');
+            ->assertOk()->assertSee('JSS1 A')->assertSee('Graduated')->assertSee('Promote students')
+            ->assertSee('value="'.$this->c['2-jss2a']->id.'" selected', false);
 
-        // Auto mapping (no mapping posted): JSS1 A -> JSS1 A.
+        // Auto mapping (no mapping posted): JSS1 A -> JSS2 A.
         $this->post(self::HOST.'/enrolment/promote', ['from_session_id' => $this->s1->id, 'to_session_id' => $this->s2->id])
             ->assertRedirect(route('enrolment', ['session' => $this->s2->id], false))
             ->assertSessionHas('success')->assertSessionHas('promotion_skipped');
@@ -376,12 +377,13 @@ class EnrolmentTest extends TestCase
         $this->tenant(function () use ($a, $b, $c, $eLeft) {
             $next = Enrolment::where('student_id', $a->student_id)->where('session_id', $this->s2->id)->firstOrFail();
             $this->assertSame('ACTIVE', $next->status);
-            $this->assertSame($this->c['2-jss1a']->id, $next->class_id);
+            $this->assertSame($this->c['2-jss2a']->id, $next->class_id);
             $this->assertSame('LEFT', $a->fresh()->status);
+            $this->assertSame('ACTIVE', Student::find($a->student_id)->status);
             $this->assertSame('LEFT', $b->fresh()->status);
 
-            // Art stays elective -> kept; Music not offered in JSS1 A -> dropped.
-            $this->assertSame(['Art', 'Maths'], $this->subjectsOf($next));
+            // Music is compulsory in JSS2 A, so it is attached. Art is not offered there.
+            $this->assertSame(['Maths', 'Music'], $this->subjectsOf($next));
 
             // Already placed in target: left alone and still ACTIVE in the source.
             $this->assertSame('ACTIVE', $c->fresh()->status);
@@ -419,6 +421,43 @@ class EnrolmentTest extends TestCase
         $this->assertSame('LEFT', $e->fresh()->status);
     }
 
+    public function test_promote_defaults_a_final_class_to_graduated_and_records_how_they_left(): void
+    {
+        $e = $this->tenant(function () {
+            $ss3 = Level::create(['name' => 'SS3', 'sort_order' => 3]);
+            $class = $this->makeClass($this->s1, $ss3, $this->armA);
+
+            return $this->enrol($this->student('S9', 'Final Year'), $class);
+        });
+
+        $this->as(Role::REGISTRAR);
+        $this->get(self::HOST.'/enrolment/promote?from='.$this->s1->id.'&to='.$this->s2->id)
+            ->assertOk()
+            ->assertSee('value="graduated" selected', false);
+
+        $this->post(self::HOST.'/enrolment/promote', [
+            'from_session_id' => $this->s1->id,
+            'to_session_id' => $this->s2->id,
+            'mapping' => [$e->class_id => 'graduated'],
+        ])->assertRedirect(route('people', ['tab' => 'students', 'status' => 'GRADUATED'], false))
+            ->assertSessionHas('success');
+
+        $this->tenant(function () use ($e) {
+            $this->assertSame('LEFT', $e->fresh()->status);
+            $this->assertSame('GRADUATED', $e->fresh()->outcome);
+            $student = Student::find($e->student_id);
+            $this->assertSame('LEFT', $student->status);
+            $this->assertSame('GRADUATED', $student->departure);
+            $this->assertNull(Enrolment::where('student_id', $e->student_id)->where('session_id', $this->s2->id)->first());
+        });
+
+        $this->get(self::HOST.'/people?status=GRADUATED')->assertSee('Final Year');
+        $this->get(self::HOST.'/people?status=LEFT')->assertDontSee('Final Year');
+        $this->get(self::HOST.'/people')->assertDontSee('Final Year');
+        $this->get(self::HOST.'/enrolment?session='.$this->s1->id.'&status=GRADUATED')->assertSee('Final Year');
+        $this->get(self::HOST.'/enrolment?session='.$this->s1->id.'&status=LEFT')->assertDontSee('Final Year');
+    }
+
     public function test_promote_validates_sessions_and_target_classes(): void
     {
         $this->tenant(fn () => $this->enrol($this->student('S1', 'Valid'), $this->c['1-jss1a']));
@@ -443,6 +482,12 @@ class EnrolmentTest extends TestCase
 
         $this->as(Role::ADMIN)->post(self::HOST.'/enrolment/'.$e->id.'/leave')->assertSessionHas('success');
         $this->assertSame('LEFT', $e->fresh()->status);
+        $this->assertSame('LEFT', $e->fresh()->outcome);
+        $this->tenant(function () use ($e) {
+            $student = Student::find($e->student_id);
+            $this->assertSame('LEFT', $student->status);
+            $this->assertSame('LEFT', $student->departure);
+        });
         $this->post(self::HOST.'/enrolment/'.$e->id.'/leave')->assertSessionHas('error');
         $this->post(self::HOST.'/enrolment/missing/leave')->assertSessionHas('error');
     }

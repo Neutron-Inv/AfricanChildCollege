@@ -27,6 +27,7 @@ class Student extends Model
         'birth_date',
         'photo_file_id',
         'status',
+        'departure',
         'legacy_id',
     ];
 

@@ -38,7 +38,7 @@
 
     @if ($from && $to)
         <form method="POST" action="{{ route('enrolment.promote.store') }}" class="card space-y-4 !p-0"
-              onsubmit="return confirm('Promote students from {{ $from->name }} to {{ $to->name }}? Their {{ $from->name }} enrolments will be marked as left.')">
+              onsubmit="return confirm('Promote students from {{ $from->name }} to {{ $to->name }}? Their {{ $from->name }} enrolments will be marked as left. Classes set to Graduated are recorded as completed, not placed in a new class.')">
             @csrf
             <input type="hidden" name="from_session_id" value="{{ $from->id }}">
             <input type="hidden" name="to_session_id" value="{{ $to->id }}">
@@ -59,9 +59,11 @@
                                 <td class="px-4 py-2">{{ $row['students'] }}</td>
                                 <td class="px-4 py-2">
                                     <select name="mapping[{{ $row['class']->id }}]" class="form-input" aria-label="Target class for {{ $row['class']->display_name }}">
+                                        @php $chosen = old('mapping.'.$row['class']->id, $row['suggested']); @endphp
                                         <option value="">Do not promote</option>
+                                        <option value="graduated" @selected($chosen === 'graduated')>Graduated</option>
                                         @foreach ($targets as $target)
-                                            <option value="{{ $target->id }}" @selected(old('mapping.'.$row['class']->id, $row['suggested']) === $target->id)>{{ $target->display_name }}</option>
+                                            <option value="{{ $target->id }}" @selected($chosen === $target->id)>{{ $target->display_name }}</option>
                                         @endforeach
                                     </select>
                                 </td>
@@ -76,8 +78,9 @@
             @if ($plan)
                 <div class="flex items-center justify-between gap-3 px-4 pb-4">
                     <p class="text-xs text-gray-500">
+                        Each class is offered the next level, keeping the same arm when that class exists. Change any row before promoting.
+                        Graduated marks those students as left with a completed record, and they are not placed in {{ $to->name }}.
                         Compulsory subjects of each target class are attached, and electives are kept when the target class still offers them.
-                        Old enrolments are marked as left; students already placed in {{ $to->name }} are skipped.
                     </p>
                     <x-primary-button>Promote students</x-primary-button>
                 </div>

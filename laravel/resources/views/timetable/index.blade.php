@@ -13,7 +13,7 @@
     <div class="mb-5">
         <h2 class="text-xl font-semibold">Timetable</h2>
         <p class="text-sm text-gray-500">
-            Weekly periods by class.
+            Set the school day once, then choose a subject for each period.
             @unless ($canManage) You have view-only access. @endunless
         </p>
     </div>
@@ -41,6 +41,61 @@
         <noscript><button class="btn-secondary">Show</button></noscript>
     </form>
 
+    @if ($canManage)
+        @php
+            $weekCount = $layout['week']->where('kind', 'PERIOD')->count();
+            $breakCount = $layout['week']->where('kind', 'BREAK')->count();
+        @endphp
+        <details class="card mb-5" @if ($slots->isEmpty() || $errors->any()) open @endif>
+            <summary class="cursor-pointer text-sm font-semibold">
+                School day
+                @if ($slots->isNotEmpty())
+                    <span class="font-normal text-gray-500">· {{ $weekCount }} {{ str('period')->plural($weekCount) }}, {{ $breakCount }} {{ str('break')->plural($breakCount) }}{{ $layout['separate'] ? ', Friday is different' : ', including Friday' }}</span>
+                @endif
+            </summary>
+            <form method="POST" action="{{ route('timetable.structure') }}" class="mt-4 space-y-4" x-data="{ friday: {{ old('friday_different') ? 'true' : 'false' }} }">
+                @csrf
+                <input type="hidden" name="session" value="{{ $session?->id }}">
+                <input type="hidden" name="class" value="{{ $class?->id }}">
+                <p class="text-sm text-gray-500">Every class shares these times. A period is usually the same length, with a break or two in the day. Friday can use its own times.</p>
+
+                @include('timetable._day-fields', ['prefix' => '', 'start' => old('start', '08:00'), 'minutes' => old('period_minutes', 40), 'count' => old('periods', 6)])
+
+                <label class="flex items-center gap-2 text-sm">
+                    <input type="checkbox" name="friday_different" value="1" class="rounded border-gray-300" x-model="friday" @checked(old('friday_different'))>
+                    Friday has different times
+                </label>
+                <div x-show="friday" x-cloak class="rounded-md border border-black/10 p-3">
+                    <h3 class="mb-3 text-sm font-semibold">Friday</h3>
+                    @include('timetable._day-fields', ['prefix' => 'friday_', 'start' => old('friday_start', '08:00'), 'minutes' => old('friday_period_minutes', 40), 'count' => old('friday_periods', 5)])
+                </div>
+                <button class="btn-primary">Save school day</button>
+            </form>
+            @if ($slots->isNotEmpty())
+                <dl class="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                    <div>
+                        <dt class="text-xs font-medium uppercase tracking-wide text-gray-500">{{ $layout['separate'] ? 'Monday – Thursday' : 'Monday – Friday' }}</dt>
+                        <dd class="mt-1 text-gray-700">
+                            @foreach ($layout['week'] as $slot)
+                                <span class="mr-3 inline-block">{{ $slot->label }} {{ $slot->start_time }}–{{ $slot->end_time }}</span>
+                            @endforeach
+                        </dd>
+                    </div>
+                    @if ($layout['separate'])
+                        <div>
+                            <dt class="text-xs font-medium uppercase tracking-wide text-gray-500">Friday</dt>
+                            <dd class="mt-1 text-gray-700">
+                                @foreach ($layout['friday'] as $slot)
+                                    <span class="mr-3 inline-block">{{ $slot->label }} {{ $slot->start_time }}–{{ $slot->end_time }}</span>
+                                @endforeach
+                            </dd>
+                        </div>
+                    @endif
+                </dl>
+            @endif
+        </details>
+    @endif
+
     @if ($errors->any())
         <div class="mb-4 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
             <ul class="list-inside list-disc">
@@ -64,9 +119,9 @@
             edit(id) { this.editing = id; this.form = { ...this.periods[id] }; window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); },
             reset() { this.editing = null; this.form = { day: 'MONDAY', start_time: '08:00', end_time: '08:40', class_subject_id: '', room_id: '' }; },
          }"
-         class="grid gap-6 {{ $canManage && $class ? 'xl:grid-cols-3' : '' }}">
+         class="grid gap-6 {{ $canManage && $class && ! $useStructure ? 'xl:grid-cols-3' : '' }}">
 
-        <div class="card overflow-x-auto xl:col-span-2" id="timetable-grid">
+        <div class="card overflow-x-auto {{ $canManage && $class && ! $useStructure ? 'xl:col-span-2' : '' }}" id="timetable-grid">
             <h3 class="mb-3 text-base font-semibold">
                 @if ($showMine) My periods @elseif ($class) {{ $className($class) }} @else Timetable @endif
                 @if ($session)<span class="text-sm font-normal text-gray-500">· {{ $session->name }}</span>@endif
@@ -74,8 +129,10 @@
 
             @if (! $class && ! $showMine)
                 <p class="text-sm text-gray-500">No class to show for this session.</p>
+            @elseif ($useStructure)
+                @include('timetable._class-grid')
             @elseif ($slotCount === 0)
-                <p class="text-sm text-gray-500">No periods scheduled yet.</p>
+                <p class="text-sm text-gray-500">No periods scheduled yet. @if ($canManage) Set the school day above, then choose a subject for each period. @endif</p>
             @else
                 <table class="w-full min-w-[640px] table-fixed border-collapse text-left text-sm">
                     <thead class="text-xs uppercase tracking-wide text-gray-500">
@@ -124,7 +181,7 @@
             @endif
         </div>
 
-        @if ($canManage && $class)
+        @if ($canManage && $class && ! $useStructure)
             <form method="POST"
                   x-bind:action="editing ? '{{ url('/timetable/periods') }}/' + editing : '{{ route('timetable.periods.store') }}'"
                   class="card space-y-3 self-start" id="period-form">

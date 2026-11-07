@@ -4,17 +4,24 @@ namespace App\Services;
 
 use App\Models\AcademicSession;
 use App\Models\Arm;
+use App\Models\Assignment;
 use App\Models\ClassSubject;
 use App\Models\Department;
 use App\Models\Enrolment;
 use App\Models\EnrolmentSubject;
+use App\Models\FeeItem;
 use App\Models\GradingScale;
+use App\Models\Invoice;
+use App\Models\LessonPlan;
 use App\Models\Level;
+use App\Models\Period;
 use App\Models\Room;
 use App\Models\SchoolClass;
 use App\Models\Staff;
 use App\Models\Subject;
+use App\Models\SubjectScore;
 use App\Models\Term;
+use App\Models\TermReport;
 use DomainException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
@@ -62,6 +69,7 @@ class AcademicsService
     {
         return AcademicSession::query()
             ->with(['terms' => fn ($q) => $q->orderBy('sequence')])
+            ->withCount(['classes', 'enrolments'])
             ->orderByDesc('start_year')
             ->get();
     }
@@ -214,6 +222,81 @@ class AcademicsService
         AuditService::record('update', 'AcademicSession', $session->getKey(), ['name' => $name]);
 
         return $session->refresh();
+    }
+
+    /** Remove a session and the classes, terms, enrolments, and results that belong to it. */
+    public function deleteSession(string $sessionId): void
+    {
+        $session = $this->findOrFail(AcademicSession::query(), $sessionId, 'Session not found.');
+        $name = $session->name;
+
+        DB::transaction(function () use ($session) {
+            $termIds = $session->terms()->pluck('id');
+            $classIds = $session->classes()->pluck('id');
+            $enrolmentIds = $session->enrolments()->pluck('id');
+            $classSubjectIds = ClassSubject::query()->whereIn('class_id', $classIds)->pluck('id');
+
+            if ($termIds->isNotEmpty()) {
+                Invoice::query()->whereIn('term_id', $termIds)->delete();
+            }
+            if ($classIds->isNotEmpty()) {
+                Invoice::query()->whereIn('class_id', $classIds)->delete();
+            }
+
+            $this->deleteWhereAny(SubjectScore::query(), [
+                'enrolment_id' => $enrolmentIds,
+                'term_id' => $termIds,
+                'class_subject_id' => $classSubjectIds,
+            ]);
+            $this->deleteWhereAny(TermReport::query(), [
+                'enrolment_id' => $enrolmentIds,
+                'term_id' => $termIds,
+            ]);
+            $this->deleteWhereAny(LessonPlan::query(), [
+                'class_subject_id' => $classSubjectIds,
+                'term_id' => $termIds,
+            ]);
+            $this->deleteWhereAny(Assignment::query(), [
+                'class_subject_id' => $classSubjectIds,
+                'term_id' => $termIds,
+            ]);
+
+            if ($classSubjectIds->isNotEmpty()) {
+                Period::query()->whereIn('class_subject_id', $classSubjectIds)->delete();
+                ClassSubject::query()->whereIn('id', $classSubjectIds)->delete();
+            }
+            if ($enrolmentIds->isNotEmpty()) {
+                EnrolmentSubject::query()->whereIn('enrolment_id', $enrolmentIds)->delete();
+                Enrolment::query()->whereIn('id', $enrolmentIds)->delete();
+            }
+
+            FeeItem::query()->where('session_id', $session->getKey())->delete();
+            if ($classIds->isNotEmpty()) {
+                SchoolClass::query()->whereIn('id', $classIds)->delete();
+            }
+            if ($termIds->isNotEmpty()) {
+                Term::query()->whereIn('id', $termIds)->delete();
+            }
+
+            $session->delete();
+        });
+
+        AuditService::record('delete', 'AcademicSession', $sessionId, ['name' => $name]);
+    }
+
+    /** Delete rows matching any of the given id lists. Empty lists are skipped. */
+    private function deleteWhereAny($query, array $columns): void
+    {
+        $columns = array_filter($columns, fn ($ids) => $ids->isNotEmpty());
+        if ($columns === []) {
+            return;
+        }
+
+        $query->where(function ($inner) use ($columns) {
+            foreach ($columns as $column => $ids) {
+                $inner->orWhereIn($column, $ids);
+            }
+        })->delete();
     }
 
     public function createTerm(array $data): Term

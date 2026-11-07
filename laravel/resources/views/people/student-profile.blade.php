@@ -7,7 +7,7 @@
         'Email' => $student->email,
         'Address' => $student->address,
         'Birth date' => $student->birth_date?->format('j M Y'),
-        'Status' => $student->status === 'ACTIVE' ? 'Active' : 'Left',
+        'Status' => $student->departure === 'GRADUATED' ? 'Graduated' : ($student->status === 'ACTIVE' ? 'Active' : 'Left'),
     ];
     $className = optional($student->enrolments->first()?->class)->display_name;
 @endphp

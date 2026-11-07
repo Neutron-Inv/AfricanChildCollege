@@ -79,7 +79,7 @@
                         <label for="status" class="text-xs text-gray-500">Status</label>
                         <select id="status" name="status" class="form-input mt-1">
                             <option value="">All</option>
-                            @foreach (['ACTIVE' => 'Active', 'LEFT' => 'Left'] as $key => $label)
+                            @foreach (['ACTIVE' => 'Active', 'LEFT' => 'Left', 'GRADUATED' => 'Graduated'] as $key => $label)
                                 <option value="{{ $key }}" @selected($status === $key)>{{ $label }}</option>
                             @endforeach
                         </select>
@@ -126,7 +126,11 @@
                                     <td class="px-4 py-2 text-gray-600">{{ $row->class?->display_name }}</td>
                                     <td class="px-4 py-2 text-gray-600">{{ $row->subjects_count }}</td>
                                     <td class="px-4 py-2">
-                                        <span class="rounded-full px-2 py-0.5 text-xs font-medium {{ $row->status === 'ACTIVE' ? 'bg-green-100 text-green-800' : 'bg-gray-200 text-gray-700' }}">{{ $row->status === 'ACTIVE' ? 'Active' : 'Left' }}</span>
+                                        @php
+                                            $label = $row->outcome === 'GRADUATED' ? 'Graduated' : ($row->status === 'ACTIVE' ? 'Active' : 'Left');
+                                            $tone = $row->outcome === 'GRADUATED' ? 'bg-sky-100 text-sky-800' : ($row->status === 'ACTIVE' ? 'bg-green-100 text-green-800' : 'bg-gray-200 text-gray-700');
+                                        @endphp
+                                        <span class="rounded-full px-2 py-0.5 text-xs font-medium {{ $tone }}">{{ $label }}</span>
                                     </td>
                                 </tr>
                             @empty

@@ -13,14 +13,32 @@
                         @endif
                     </div>
                     @if ($canEdit)
-                        <div class="flex items-center gap-2">
-                            <button type="button" class="btn-secondary !px-3 !py-1" x-show="!editing" @click="editing = true">Edit</button>
+                        @php
+                            $warning = ($session->is_current ? $session->name.' is the current session. ' : '')
+                                .'Delete '.$session->name.'? This removes '
+                                .$session->terms->count().' '.str('term')->plural($session->terms->count()).', '
+                                .$session->classes_count.' '.str('class')->plural($session->classes_count).', and '
+                                .$session->enrolments_count.' '.str('enrolment')->plural($session->enrolments_count)
+                                .', including scores and report cards for that session. This cannot be undone.';
+                        @endphp
+                        <div class="flex items-center gap-1">
+                            <button type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-600 hover:bg-black/5" x-show="!editing" @click="editing = true" title="Edit" aria-label="Edit session">
+                                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            </button>
                             @if (! $session->is_current)
                                 <form method="POST" action="{{ route('academics.sessions.current', $session->id) }}" x-show="!editing">
                                     @csrf
-                                    <button class="btn-secondary !px-3 !py-1">Mark current</button>
+                                    <button class="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-600 hover:bg-black/5" title="Mark current" aria-label="Mark current">
+                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </button>
                                 </form>
                             @endif
+                            <form method="POST" action="{{ route('academics.sessions.destroy', $session->id) }}" x-show="!editing" onsubmit="return confirm(@js($warning))">
+                                @csrf @method('DELETE')
+                                <button class="inline-flex h-8 w-8 items-center justify-center rounded-md text-red-700 hover:bg-red-50" title="Delete" aria-label="Delete session">
+                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                </button>
+                            </form>
                         </div>
                     @endif
                 </header>

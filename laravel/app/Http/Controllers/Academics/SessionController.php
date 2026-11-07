@@ -59,6 +59,15 @@ class SessionController extends Controller
         );
     }
 
+    public function destroy(string $session): RedirectResponse
+    {
+        return $this->attempt(
+            fn () => $this->academics->deleteSession($session),
+            'Session deleted.',
+            ['tab' => 'sessions'],
+        );
+    }
+
     public function current(string $session): RedirectResponse
     {
         return $this->attempt(fn () => $this->academics->markCurrent($session), 'Current session updated.');

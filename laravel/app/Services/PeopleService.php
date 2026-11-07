@@ -26,7 +26,7 @@ use Illuminate\Validation\ValidationException;
  */
 class PeopleService
 {
-    public const STUDENT_STATUSES = ['ACTIVE', 'LEFT'];
+    public const STUDENT_STATUSES = ['ACTIVE', 'LEFT', 'GRADUATED'];
 
     /** Roles an admin may assign when creating a staff member. */
     public const STAFF_ROLES = [Role::TEACHER, Role::ADMIN, Role::REGISTRAR, Role::ACCOUNTANT];
@@ -76,9 +76,16 @@ class PeopleService
         $sessionId = $this->currentSession()?->getKey();
 
         $query = Student::query()
-            ->where('status', $teacherStaffId !== null ? 'ACTIVE' : $status)
             ->with(['enrolments' => fn ($q) => $q->where('session_id', $sessionId)->with(['class.level', 'class.arm'])])
             ->orderBy('full_name');
+
+        if ($teacherStaffId !== null || $status === 'ACTIVE') {
+            $query->where('status', 'ACTIVE');
+        } elseif ($status === 'GRADUATED') {
+            $query->where('departure', 'GRADUATED');
+        } else {
+            $query->where('status', 'LEFT')->where(fn (Builder $q) => $q->whereNull('departure')->orWhere('departure', 'LEFT'));
+        }
 
         if ($teacherStaffId !== null) {
             $this->applyTeacherScope($query, $teacherStaffId, $teacherScope === 'all' ? 'all' : 'class');

@@ -141,6 +141,7 @@ class PeopleTest extends TestCase
             Enrolment::create(['student_id' => $a->id, 'class_id' => $this->class->id, 'session_id' => $this->class->session_id, 'status' => 'ACTIVE']);
             Student::create(['index_number' => 'B2', 'full_name' => 'Bob Active', 'status' => 'ACTIVE']);
             Student::create(['index_number' => 'C3', 'full_name' => 'Carl Left', 'status' => 'LEFT']);
+            Student::create(['index_number' => 'D4', 'full_name' => 'Dora Graduated', 'status' => 'LEFT', 'departure' => 'GRADUATED']);
             $g = Guardian::create(['full_name' => 'Mrs Active', 'phone' => '0999']);
             StudentGuardian::create(['student_id' => $a->id, 'guardian_id' => $g->id, 'relationship' => 'mother']);
             $this->aid = $a->id;
@@ -148,7 +149,8 @@ class PeopleTest extends TestCase
 
         $this->as(Role::REGISTRAR);
         $this->get(self::HOST.'/people')->assertSee('Alice Active')->assertSee('Bob Active')->assertDontSee('Carl Left');
-        $this->get(self::HOST.'/people?status=LEFT')->assertSee('Carl Left')->assertDontSee('Alice Active');
+        $this->get(self::HOST.'/people?status=LEFT')->assertSee('Carl Left')->assertDontSee('Alice Active')->assertDontSee('Dora Graduated');
+        $this->get(self::HOST.'/people?status=GRADUATED')->assertSee('Dora Graduated')->assertSee('Graduated')->assertDontSee('Carl Left')->assertDontSee('Alice Active');
         $this->get(self::HOST.'/people?class='.$this->class->id)->assertSee('Alice Active')->assertDontSee('Bob Active');
         $this->get(self::HOST.'/people?q=B2')->assertSee('Bob Active')->assertDontSee('Alice Active');
         $this->get(self::HOST.'/people?student='.$this->aid)->assertSee('Mrs Active')->assertSee('JSS1 A')->assertSee('0701');

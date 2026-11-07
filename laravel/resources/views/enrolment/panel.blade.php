@@ -8,7 +8,7 @@
         <h2 class="text-base font-semibold">{{ $selected->student?->full_name }}</h2>
         <p class="text-xs text-gray-500">
             {{ $selected->student?->index_number }} &middot; {{ $selected->class?->display_name }} &middot; {{ $selected->session?->name }}
-            &middot; {{ $active ? 'Active' : 'Left' }}
+            &middot; {{ $selected->outcome === 'GRADUATED' ? 'Graduated' : ($active ? 'Active' : 'Left') }}
         </p>
     </div>
 

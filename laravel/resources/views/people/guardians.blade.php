@@ -73,7 +73,7 @@
                     <ul class="space-y-2 text-sm">
                         @forelse ($guardian->students as $student)
                             <li class="rounded-md bg-gray-50 px-3 py-2">
-                                <a href="{{ route('people', array_filter(['tab' => 'students', 'status' => ($teacherView ?? false) || $student->status !== 'LEFT' ? null : 'LEFT', 'scope' => ($teacherView ?? false) ? 'all' : null, 'student' => $student->id])) }}" class="font-medium link-primary hover:underline">{{ $student->full_name }}</a>
+                                <a href="{{ route('people', array_filter(['tab' => 'students', 'status' => ($teacherView ?? false) ? null : ($student->departure === 'GRADUATED' ? 'GRADUATED' : ($student->status === 'LEFT' ? 'LEFT' : null)), 'scope' => ($teacherView ?? false) ? 'all' : null, 'student' => $student->id])) }}" class="font-medium link-primary hover:underline">{{ $student->full_name }}</a>
                                 <div class="text-xs text-gray-500">{{ $student->index_number }} · {{ $student->pivot->relationship }}</div>
                             </li>
                         @empty

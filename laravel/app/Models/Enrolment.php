@@ -22,6 +22,7 @@ class Enrolment extends Model
         'class_id',
         'session_id',
         'status',
+        'outcome',
         'legacy_id',
     ];
 

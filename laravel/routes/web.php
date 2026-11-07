@@ -72,6 +72,7 @@ Route::middleware('auth')->group(function () {
         Route::middleware('role:ADMIN,REGISTRAR,PLATFORM_OWNER')->prefix('academics')->name('academics.')->group(function () {
             Route::post('/sessions', [SessionController::class, 'store'])->name('sessions.store');
             Route::put('/sessions/{session}', [SessionController::class, 'update'])->name('sessions.update');
+            Route::delete('/sessions/{session}', [SessionController::class, 'destroy'])->name('sessions.destroy');
             Route::post('/sessions/{session}/current', [SessionController::class, 'current'])->name('sessions.current');
             Route::post('/terms', [SessionController::class, 'storeTerm'])->name('terms.store');
 
@@ -114,6 +115,8 @@ Route::middleware('auth')->group(function () {
             ->get('/timetable', [TimetableController::class, 'index'])->name('timetable');
 
         Route::middleware('role:ADMIN,REGISTRAR,PLATFORM_OWNER')->prefix('timetable')->name('timetable.')->group(function () {
+            Route::post('/structure', [TimetableController::class, 'structure'])->name('structure');
+            Route::post('/assignments', [TimetableController::class, 'assign'])->name('assignments');
             Route::post('/periods', [TimetableController::class, 'store'])->name('periods.store');
             Route::put('/periods/{period}', [TimetableController::class, 'update'])->name('periods.update');
             Route::delete('/periods/{period}', [TimetableController::class, 'destroy'])->name('periods.destroy');

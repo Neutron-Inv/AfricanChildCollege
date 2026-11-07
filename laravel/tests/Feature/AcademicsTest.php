@@ -280,6 +280,50 @@ class AcademicsTest extends TestCase
         });
     }
 
+    public function test_deleting_a_session_removes_its_classes_and_enrolments_only(): void
+    {
+        $other = $this->tenant(function () {
+            Term::create(['session_id' => $this->session->id, 'sequence' => 1, 'name' => 'First Term', 'days_school_open' => 60]);
+            $other = AcademicSession::create(['name' => '2025/2026', 'start_year' => 2025, 'end_year' => 2026, 'is_current' => false]);
+            $kept = SchoolClass::create([
+                'session_id' => $other->id,
+                'level_id' => $this->class->level_id,
+                'arm_id' => $this->class->arm_id,
+            ]);
+
+            return $kept;
+        });
+
+        $this->as(Role::REGISTRAR)
+            ->get(self::HOST.'/academics?tab=sessions')
+            ->assertOk()
+            ->assertSee('is the current session', false)
+            ->assertSee('cannot be undone', false)
+            ->assertSee('aria-label="Edit session"', false)
+            ->assertSee('aria-label="Mark current"', false)
+            ->assertSee('aria-label="Delete session"', false);
+
+        $this->delete(self::HOST.'/academics/sessions/'.$this->session->id)
+            ->assertRedirect()
+            ->assertSessionHas('success');
+
+        $this->tenant(function () use ($other) {
+            $this->assertNull(AcademicSession::find($this->session->id));
+            $this->assertSame(0, SchoolClass::where('session_id', $this->session->id)->count());
+            $this->assertSame(0, Enrolment::where('session_id', $this->session->id)->count());
+            $this->assertSame(0, Term::where('session_id', $this->session->id)->count());
+            $this->assertNotNull(Student::find($this->enrolment->student_id));
+            $this->assertNotNull(SchoolClass::find($other->id));
+        });
+
+        $this->as(Role::TEACHER)
+            ->get(self::HOST.'/academics?tab=sessions')
+            ->assertOk()
+            ->assertDontSee('Delete', false);
+
+        $this->delete(self::HOST.'/academics/sessions/'.$other->session_id)->assertForbidden();
+    }
+
     public function test_a_session_and_its_terms_can_be_edited(): void
     {
         $term = $this->tenant(fn () => Term::create([

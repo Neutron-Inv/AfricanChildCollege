@@ -6,6 +6,7 @@ use App\Models\AcademicSession;
 use App\Models\ClassSubject;
 use App\Models\Enrolment;
 use App\Models\EnrolmentSubject;
+use App\Models\Level;
 use App\Models\SchoolClass;
 use App\Models\Student;
 use DomainException;
@@ -25,7 +26,10 @@ class EnrolmentService
 {
     public const PAGE_SIZES = [25, 50, 100];
 
-    public const STATUSES = ['ACTIVE', 'LEFT'];
+    public const STATUSES = ['ACTIVE', 'LEFT', 'GRADUATED'];
+
+    /** Mapping value: the class is not placed in the next session. */
+    public const PROMOTE_GRADUATED = 'graduated';
 
     private const COMPULSORY = AcademicsService::KIND_COMPULSORY;
 
@@ -86,8 +90,12 @@ class EnrolmentService
         if ($classId) {
             $query->where('class_id', $classId);
         }
-        if (in_array($status, self::STATUSES, true)) {
-            $query->where('status', $status);
+        if ($status === 'GRADUATED') {
+            $query->where('outcome', 'GRADUATED');
+        } elseif ($status === 'LEFT') {
+            $query->where('status', 'LEFT')->where(fn (Builder $q) => $q->whereNull('outcome')->orWhere('outcome', 'LEFT'));
+        } elseif ($status === 'ACTIVE') {
+            $query->where('status', 'ACTIVE');
         }
         if ($search !== null && trim($search) !== '') {
             $like = '%'.addcslashes(trim($search), '\\%_').'%';
@@ -172,7 +180,7 @@ class EnrolmentService
 
         $enrolment = DB::transaction(function () use ($student, $class, $existing) {
             if ($existing) { // LEFT -> back again
-                $existing->update(['class_id' => $class->getKey(), 'status' => 'ACTIVE']);
+                $existing->update(['class_id' => $class->getKey(), 'status' => 'ACTIVE', 'outcome' => null]);
                 EnrolmentSubject::query()->where('enrolment_id', $existing->getKey())->delete();
                 $enrolment = $existing;
             } else {
@@ -309,12 +317,15 @@ class EnrolmentService
 
     public function markLeft(string $enrolmentId): Enrolment
     {
-        $enrolment = Enrolment::query()->find($enrolmentId) ?? throw new DomainException('Enrolment not found.');
+        $enrolment = Enrolment::query()->with('student')->find($enrolmentId) ?? throw new DomainException('Enrolment not found.');
         if ($enrolment->status === 'LEFT') {
             throw new DomainException('This student is already marked as left.');
         }
 
-        $enrolment->update(['status' => 'LEFT']);
+        $enrolment->update(['status' => 'LEFT', 'outcome' => 'LEFT']);
+        if ($enrolment->student && $enrolment->student->departure !== 'GRADUATED') {
+            $enrolment->student->update(['status' => 'LEFT', 'departure' => 'LEFT']);
+        }
         AuditService::record('leave', 'Enrolment', $enrolment->getKey());
 
         return $enrolment;
@@ -331,14 +342,24 @@ class EnrolmentService
     public function promotionPlan(string $fromSessionId, string $toSessionId): array
     {
         $targets = $this->classes($toSessionId);
+        $levels = Level::query()->orderBy('sort_order')->orderBy('name')->get()->values();
+        $nextLevelId = [];
+        foreach ($levels as $i => $level) {
+            $nextLevelId[$level->getKey()] = $levels->get($i + 1)?->getKey();
+        }
 
         return $this->classes($fromSessionId)
-            ->map(function (SchoolClass $class) use ($targets) {
+            ->map(function (SchoolClass $class) use ($targets, $nextLevelId) {
                 $students = Enrolment::query()->where('class_id', $class->getKey())->where('status', 'ACTIVE')->count();
-                $match = $targets->first(fn (SchoolClass $t) => $t->level_id === $class->level_id && $t->arm_id === $class->arm_id)
-                    ?? $targets->first(fn (SchoolClass $t) => $t->display_name === $class->display_name);
+                $nextId = $nextLevelId[$class->level_id] ?? null;
+                $ofNext = $nextId ? $targets->filter(fn (SchoolClass $t) => $t->level_id === $nextId) : collect();
+                $match = $ofNext->first(fn (SchoolClass $t) => $t->arm_id === $class->arm_id) ?? $ofNext->first();
 
-                return ['class' => $class, 'students' => $students, 'suggested' => $match?->getKey()];
+                return [
+                    'class' => $class,
+                    'students' => $students,
+                    'suggested' => $match?->getKey() ?? self::PROMOTE_GRADUATED,
+                ];
             })
             ->filter(fn (array $row) => $row['students'] > 0)
             ->values()
@@ -349,12 +370,14 @@ class EnrolmentService
      * Promote every ACTIVE enrolment of session A into session B.
      *
      * $mapping is [sourceClassId => targetClassId]. A source class missing from the map is matched
-     * automatically (same level + arm / same name); mapped to '' it is skipped. The previous enrolment
-     * becomes LEFT and the new one ACTIVE with the target class's compulsory subjects plus any elective
-     * the student already took whose subject is also an elective in the target class.
+     * automatically to the next level (same arm when that class exists). Mapped to '' it is skipped.
+     * Mapped to "graduated", the enrolment is marked left with outcome GRADUATED and the student
+     * leaves the active roll as graduated. A real target makes the previous enrolment LEFT and the
+     * new one ACTIVE, with the target class's compulsory subjects plus any elective the student
+     * already took whose subject is also an elective in the target class.
      *
      * @param  array<string, ?string>  $mapping
-     * @return array{created:int, skipped: array<int, array{student:string, reason:string}>}
+     * @return array{created:int, graduated:int, skipped: array<int, array{student:string, reason:string}>}
      */
     public function promote(string $fromSessionId, string $toSessionId, array $mapping = []): array
     {
@@ -369,15 +392,16 @@ class EnrolmentService
             ->mapWithKeys(fn (array $row) => [$row['class']->getKey() => $row['suggested']]);
 
         foreach ($mapping as $sourceId => $targetId) {
-            if (filled($targetId) && ! $targets->has($targetId)) {
+            if (filled($targetId) && $targetId !== self::PROMOTE_GRADUATED && ! $targets->has($targetId)) {
                 throw new DomainException('Every target class must belong to '.$to->name.'.');
             }
         }
 
         $created = 0;
+        $graduated = 0;
         $skipped = [];
 
-        DB::transaction(function () use ($from, $to, $mapping, $targets, $suggested, &$created, &$skipped) {
+        DB::transaction(function () use ($from, $to, $mapping, $targets, $suggested, &$created, &$graduated, &$skipped) {
             $sources = Enrolment::query()
                 ->where('session_id', $from->getKey())
                 ->where('status', 'ACTIVE')
@@ -400,6 +424,14 @@ class EnrolmentService
                 }
                 if ($alreadyPlaced->has($source->student_id)) {
                     $skipped[] = ['student' => $name, 'reason' => 'Already placed in '.$to->name.'.'];
+
+                    continue;
+                }
+
+                if ($targetId === self::PROMOTE_GRADUATED) {
+                    $source->update(['status' => 'LEFT', 'outcome' => 'GRADUATED']);
+                    $source->student?->update(['status' => 'LEFT', 'departure' => 'GRADUATED']);
+                    $graduated++;
 
                     continue;
                 }
@@ -431,10 +463,11 @@ class EnrolmentService
             'from_session_id' => $from->getKey(),
             'to_session_id' => $to->getKey(),
             'created' => $created,
+            'graduated' => $graduated,
             'skipped' => count($skipped),
         ]);
 
-        return ['created' => $created, 'skipped' => $skipped];
+        return ['created' => $created, 'graduated' => $graduated, 'skipped' => $skipped];
     }
 
     // ---------------------------------------------------------------- Helpers

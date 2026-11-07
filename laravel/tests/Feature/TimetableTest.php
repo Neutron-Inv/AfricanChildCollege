@@ -15,6 +15,7 @@ use App\Models\SchoolClass;
 use App\Models\Staff;
 use App\Models\Student;
 use App\Models\Subject;
+use App\Models\TimetableSlot;
 use App\Models\User;
 use App\Support\Tenant;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -242,6 +243,88 @@ class TimetableTest extends TestCase
             ->assertOk()
             ->assertSee(route('timetable'), false)
             ->assertSee(route('attendance'), false);
+    }
+
+    public function test_school_day_fills_a_class_from_subject_lists_and_keeps_friday_separate(): void
+    {
+        $admin = $this->as(Role::ADMIN);
+
+        $admin->get(self::HOST.'/timetable?class='.$this->class->id)
+            ->assertOk()
+            ->assertSee('Save school day')
+            ->assertSee('Friday has different times');
+
+        $admin->post(self::HOST.'/timetable/structure', [
+            'session' => $this->session->id,
+            'class' => $this->class->id,
+            'start' => '08:00',
+            'period_minutes' => 40,
+            'periods' => 6,
+            'breaks' => [
+                ['after' => 3, 'minutes' => 20, 'label' => 'Short break'],
+                ['after' => 5, 'minutes' => 30, 'label' => 'Long break'],
+            ],
+            'friday_different' => '1',
+            'friday_start' => '08:00',
+            'friday_period_minutes' => 40,
+            'friday_periods' => 4,
+            'friday_breaks' => [
+                ['after' => 2, 'minutes' => 15, 'label' => 'Break'],
+            ],
+        ])->assertRedirect()->assertSessionHas('success');
+
+        $slots = Tenant::run($this->school, fn () => TimetableSlot::query()->orderBy('sequence')->get());
+        $week = $slots->where('day_group', 'WEEK')->values();
+        $friday = $slots->where('day_group', 'FRIDAY')->values();
+        $this->assertSame(['Period 1', 'Period 2', 'Period 3', 'Short break', 'Period 4', 'Period 5', 'Long break', 'Period 6'], $week->pluck('label')->all());
+        $this->assertSame('08:00', $week[0]->start_time);
+        $this->assertSame('08:40', $week[0]->end_time);
+        $this->assertSame('10:00', $week[3]->start_time);
+        $this->assertSame('12:10', $week[7]->start_time);
+        $this->assertSame('12:50', $week[7]->end_time);
+        $this->assertSame(['Period 1', 'Period 2', 'Break', 'Period 3', 'Period 4'], $friday->pluck('label')->all());
+
+        $period = $week->firstWhere('label', 'Period 1');
+        $admin->get(self::HOST.'/timetable?class='.$this->class->id)
+            ->assertOk()
+            ->assertSee('Monday – Thursday')
+            ->assertSee('Edit timetable')
+            ->assertSee('Maths — Ada Obi', false)
+            ->assertSee('name="assignments['.$period->id.'][MONDAY]"', false)
+            ->assertDontSee('name="assignments['.$period->id.'][FRIDAY]"', false);
+
+        $admin->post(self::HOST.'/timetable/assignments', [
+            'session' => $this->session->id,
+            'class_id' => $this->class->id,
+            'assignments' => [
+                $period->id => ['MONDAY' => $this->maths->id, 'WEDNESDAY' => $this->english->id],
+                $friday->firstWhere('label', 'Period 1')->id => ['FRIDAY' => $this->english->id],
+            ],
+        ])->assertSessionHas('success');
+
+        $this->assertSame(3, $this->periods()->count());
+        $monday = $this->periods()->firstWhere('day', 'MONDAY');
+        $this->assertSame($this->maths->id, $monday->class_subject_id);
+        $this->assertSame('08:00', $monday->start_time);
+        $this->assertSame('08:40', $monday->end_time);
+
+        // Same teacher cannot take the same period in another class.
+        $admin->post(self::HOST.'/timetable/assignments', [
+            'class_id' => $this->otherClass->id,
+            'assignments' => [$period->id => ['MONDAY' => $this->otherMaths->id]],
+        ])->assertSessionHas('error');
+        $this->assertSame(0, $this->periods()->where('class_subject_id', $this->otherMaths->id)->count());
+
+        // Clearing a cell removes the period. The student stays in this class.
+        $admin->post(self::HOST.'/timetable/assignments', [
+            'class_id' => $this->class->id,
+            'assignments' => [$period->id => ['MONDAY' => '']],
+        ])->assertSessionHas('success');
+        $this->assertNull($this->periods()->firstWhere('day', 'MONDAY'));
+
+        $this->as(Role::TEACHER, ['staff_id' => $this->teacher->id])
+            ->post(self::HOST.'/timetable/structure', ['start' => '08:00', 'period_minutes' => 40, 'periods' => 6])
+            ->assertForbidden();
     }
 
     public function test_other_schools_periods_are_not_reachable(): void

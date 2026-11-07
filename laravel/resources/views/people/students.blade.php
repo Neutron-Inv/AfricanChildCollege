@@ -3,7 +3,7 @@
     $scope = $scope ?? 'class';
     $link = fn (array $extra = []) => route('people', array_filter(array_merge([
         'tab' => 'students',
-        'status' => $teacherView || $status !== 'LEFT' ? null : 'LEFT',
+        'status' => $teacherView || $status === 'ACTIVE' ? null : $status,
         'scope' => $teacherView && $scope === 'all' ? 'all' : null,
         'class' => $teacherView ? null : $classId,
         'q' => $q,
@@ -26,8 +26,8 @@
                 </div>
             @else
                 <div class="inline-flex rounded-md border border-gray-200 bg-white p-0.5 text-sm">
-                    @foreach (['ACTIVE' => 'Active', 'LEFT' => 'Left'] as $key => $label)
-                        <a href="{{ route('people', array_filter(['tab' => 'students', 'status' => $key === 'LEFT' ? 'LEFT' : null, 'class' => $classId, 'q' => $q])) }}"
+                    @foreach (['ACTIVE' => 'Active', 'LEFT' => 'Left', 'GRADUATED' => 'Graduated'] as $key => $label)
+                        <a href="{{ route('people', array_filter(['tab' => 'students', 'status' => $key === 'ACTIVE' ? null : $key, 'class' => $classId, 'q' => $q])) }}"
                            class="rounded px-3 py-1.5 font-medium {{ $status === $key ? 'text-white' : 'text-gray-600 hover:bg-gray-50' }}"
                            @if ($status === $key) style="background: var(--primary)" @endif>{{ $label }}</a>
                     @endforeach
@@ -50,7 +50,7 @@
 
         <form method="GET" action="{{ route('people') }}" class="card flex flex-wrap items-end gap-3 !p-3">
             <input type="hidden" name="tab" value="students">
-            @if (! $teacherView && $status === 'LEFT') <input type="hidden" name="status" value="LEFT"> @endif
+            @if (! $teacherView && $status !== 'ACTIVE') <input type="hidden" name="status" value="{{ $status }}"> @endif
             @if ($teacherView && $scope === 'all') <input type="hidden" name="scope" value="all"> @endif
             <div class="min-w-[12rem] flex-1">
                 <label for="q" class="text-xs text-gray-500">Search name or index</label>
@@ -69,7 +69,7 @@
             @endunless
             <button class="btn-secondary">Search</button>
             @if ($q !== '' || (! $teacherView && $classId !== ''))
-                <a href="{{ route('people', array_filter(['tab' => 'students', 'status' => ! $teacherView && $status === 'LEFT' ? 'LEFT' : null, 'scope' => $teacherView && $scope === 'all' ? 'all' : null])) }}" class="btn-secondary">Clear</a>
+                <a href="{{ route('people', array_filter(['tab' => 'students', 'status' => ! $teacherView && $status !== 'ACTIVE' ? $status : null, 'scope' => $teacherView && $scope === 'all' ? 'all' : null])) }}" class="btn-secondary">Clear</a>
             @endif
         </form>
 
@@ -101,7 +101,7 @@
                             @elseif ($teacherView)
                                 No students in your class or taking your subjects.
                             @else
-                                No {{ $status === 'LEFT' ? 'former' : 'active' }} students found.
+                                No {{ $status === 'GRADUATED' ? 'graduated' : ($status === 'LEFT' ? 'former' : 'active') }} students found.
                             @endif
                         </td></tr>
                     @endforelse
@@ -109,7 +109,7 @@
             </table>
         </div>
 
-        <p class="text-xs text-gray-400">{{ $students->total() }} {{ $teacherView ? ($scope === 'class' ? 'in your class' : 'students') : ($status === 'LEFT' ? 'former' : 'active').' students' }}</p>
+        <p class="text-xs text-gray-400">{{ $students->total() }} {{ $teacherView ? ($scope === 'class' ? 'in your class' : 'students') : ($status === 'GRADUATED' ? 'graduated' : ($status === 'LEFT' ? 'former' : 'active')).' students' }}</p>
         {{ $students->links() }}
     </div>
 

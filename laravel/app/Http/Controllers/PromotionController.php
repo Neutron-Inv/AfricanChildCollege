@@ -46,9 +46,21 @@ class PromotionController extends Controller
 
         return $this->attempt(
             fn () => $this->enrolment->promote($data['from_session_id'], $data['to_session_id'], $data['mapping'] ?? []),
-            fn ($r) => "Promoted {$r['created']} student(s)".($r['skipped'] ? ', skipped '.count($r['skipped']) : '').'.',
+            function ($r) {
+                $parts = ["Promoted {$r['created']} student(s)"];
+                if ($r['graduated']) {
+                    $parts[] = "marked {$r['graduated']} as graduated";
+                }
+                if ($r['skipped']) {
+                    $parts[] = 'skipped '.count($r['skipped']);
+                }
+
+                return implode(', ', $parts).'.';
+            },
             function ($r) use ($data) {
-                $redirect = redirect()->route('enrolment', ['session' => $data['to_session_id']]);
+                $redirect = $r['created'] === 0 && $r['graduated'] > 0
+                    ? redirect()->route('people', ['tab' => 'students', 'status' => 'GRADUATED'])
+                    : redirect()->route('enrolment', ['session' => $data['to_session_id']]);
 
                 return $r['skipped'] ? $redirect->with('promotion_skipped', $r['skipped']) : $redirect;
             },

@@ -24,7 +24,9 @@ class PeopleController extends Controller
         if ($teacherView && $tab === 'staff') {
             $tab = 'students';
         }
-        $status = ! $teacherView && $request->query('status') === 'LEFT' ? 'LEFT' : 'ACTIVE';
+        $status = ! $teacherView && in_array($request->query('status'), ['LEFT', 'GRADUATED'], true)
+            ? $request->query('status')
+            : 'ACTIVE';
         $scope = $request->query('scope') === 'all' ? 'all' : 'class';
         $q = trim((string) $request->query('q', ''));
 

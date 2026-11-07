@@ -16,7 +16,7 @@
             'email' => $student->email,
             'address' => $student->address,
             'birthDate' => $student->birth_date?->format('j M Y'),
-            'status' => $student->status === 'LEFT' ? 'Left' : 'Active',
+            'status' => $student->departure === 'GRADUATED' ? 'Graduated' : ($student->status === 'LEFT' ? 'Left' : 'Active'),
             'className' => $className($shownClass),
             'session' => $term?->session?->name,
             'guardians' => $student->relationLoaded('studentGuardians')
