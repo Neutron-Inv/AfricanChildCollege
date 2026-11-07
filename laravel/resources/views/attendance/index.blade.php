@@ -79,8 +79,7 @@
                 <p class="mb-4 text-sm text-red-700">{{ $dateError }} Showing today instead.</p>
             @endif
 
-            <form method="POST" action="{{ route('attendance.store') }}" class="card"
-                  x-data="{ setAll(status) { this.$el.querySelectorAll('[data-mark][value=' + status + ']').forEach(r => r.checked = true) } }">
+            <form method="POST" action="{{ route('attendance.store') }}" class="card" x-data>
                 @csrf
                 <input type="hidden" name="class_id" value="{{ $class->id }}">
                 <input type="hidden" name="date" value="{{ $date->toDateString() }}">
@@ -91,7 +90,7 @@
                         <span class="text-sm font-normal text-gray-500">· {{ $date->format('l, j F Y') }} · {{ $rows->count() }} {{ \Illuminate\Support\Str::plural('student', $rows->count()) }}</span>
                     </h3>
                     @if ($canSave && $rows->isNotEmpty())
-                        <button type="button" class="btn-secondary !py-1.5" @click="setAll('PRESENT')">Mark all present</button>
+                        <button type="button" class="btn-secondary !py-1.5" @click="$root.querySelectorAll('[data-mark]').forEach(input => { if (input.value === 'PRESENT') input.checked = true })">Mark all present</button>
                     @endif
                 </div>
 
