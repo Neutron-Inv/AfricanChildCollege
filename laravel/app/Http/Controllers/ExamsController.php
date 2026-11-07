@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Role;
+use App\Models\Term;
 use App\Services\ExamsService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use DomainException;
@@ -29,11 +30,7 @@ class ExamsController extends Controller
         $selectedClass = null;
         if ($term && ! $user->hasRole(Role::STUDENT, Role::PARENT)) {
             $classes = $this->exams->classesFor($user, $term);
-            $requested = $request->query('class');
-            if ($requested && ! $classes->contains('id', $requested)) {
-                abort(403, 'You cannot open this class.');
-            }
-            $selectedClass = $classes->firstWhere('id', $requested) ?? $classes->first();
+            $selectedClass = $this->pickClass($request, $classes, $term);
         }
 
         $views = $this->exams->viewsFor($user, $term, $selectedClass);
@@ -148,7 +145,7 @@ class ExamsController extends Controller
     private function marksheet(Request $request, array $data): array
     {
         $term = $data['term'];
-        $class = $this->pickClass($request, $data['classes']);
+        $class = $this->pickClass($request, $data['classes'], $term);
         if (! $class) {
             return ['class' => null];
         }
@@ -198,7 +195,7 @@ class ExamsController extends Controller
             ];
         }
 
-        $class = $this->pickClass($request, $classes);
+        $class = $this->pickClass($request, $classes, $term);
         $tabs = $this->exams->taughtSubjects($user, $term, $class);
 
         $requested = $request->query('subject');
@@ -240,7 +237,7 @@ class ExamsController extends Controller
     private function broadsheet(Request $request, array $data): array
     {
         $user = $request->user();
-        $class = $this->pickClass($request, $data['classes']);
+        $class = $this->pickClass($request, $data['classes'], $data['term']);
         [$sort, $dir] = $this->broadsheetSort($request);
 
         return [
@@ -264,7 +261,7 @@ class ExamsController extends Controller
         abort_unless(isset($views['broadsheet']), 403, 'You cannot open the broadsheet.');
 
         $classes = $this->exams->classesFor($user, $term);
-        $class = $this->pickClass($request, $classes);
+        $class = $this->pickClass($request, $classes, $term);
         abort_unless($class, 404);
 
         [$sort, $dir] = $this->broadsheetSort($request);
@@ -415,7 +412,7 @@ class ExamsController extends Controller
             abort(403, 'Only form teachers can open report cards.');
         }
 
-        $class = $this->pickClass($request, $data['classes']);
+        $class = $this->pickClass($request, $data['classes'], $term);
         if (! $class) {
             return ['class' => null, 'ownOnly' => false, 'canEditReport' => false];
         }
@@ -441,12 +438,17 @@ class ExamsController extends Controller
 
     // ---------------------------------------------------------------- Helpers
 
-    /** The requested class (403 when not allowed) or the first one available. */
-    private function pickClass(Request $request, $classes)
+    /** The requested class, or the first in this term. A class from another session is ignored. */
+    private function pickClass(Request $request, $classes, ?Term $term = null)
     {
         $requested = $request->query('class');
-        if ($requested && ! $classes->contains('id', $requested)) {
-            abort(403, 'You cannot open this class.');
+        if (is_string($requested) && $requested !== '' && ! $classes->contains('id', $requested)) {
+            $class = $this->exams->findClass($requested);
+            $fromAnotherSession = ! $class || ($term && $class->session_id !== $term->session_id);
+            if (! $fromAnotherSession) {
+                abort(403, 'You cannot open this class.');
+            }
+            $requested = null;
         }
 
         return $classes->firstWhere('id', $requested) ?? $classes->first();

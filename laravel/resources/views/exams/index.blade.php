@@ -75,7 +75,7 @@
             @endif
             <div>
                 <label for="term" class="text-xs font-medium text-gray-500">Term</label>
-                <select id="term" name="term" class="form-input mt-1" onchange="this.form.submit()">
+                <select id="term" name="term" class="form-input mt-1" onchange="const field=this.form.querySelector('[name=class]'); if(field) field.disabled=true; this.form.submit()">
                     @foreach ($terms as $t)
                         <option value="{{ $t->id }}" @selected($t->id === $term->id)>{{ $t->session?->name }} · {{ $t->name }}</option>
                     @endforeach

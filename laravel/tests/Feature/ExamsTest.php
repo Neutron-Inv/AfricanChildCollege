@@ -734,4 +734,39 @@ class ExamsTest extends TestCase
         ])->assertNotFound();
         $this->assertCount(0, $this->scores());
     }
+
+    public function test_switching_session_drops_the_previous_class_instead_of_refusing_it(): void
+    {
+        [$term, $class] = Tenant::run($this->school, function () {
+            $session = AcademicSession::create(['name' => '2025/2026', 'start_year' => 2025, 'end_year' => 2026, 'is_current' => false]);
+            $term = Term::create(['session_id' => $session->id, 'sequence' => 1, 'name' => 'First Term', 'days_school_open' => 60]);
+            $level = Level::where('name', 'JSS1')->first();
+            $class = SchoolClass::create([
+                'session_id' => $session->id,
+                'level_id' => $level->id,
+                'arm_id' => Arm::create(['name' => 'C'])->id,
+            ]);
+
+            return [$term, $class];
+        });
+
+        $this->as(Role::PLATFORM_OWNER)
+            ->get(self::HOST.'/exams?term='.$term->id.'&class='.$this->class->id)
+            ->assertOk()
+            ->assertSee('2025/2026')
+            ->assertSee('JSS1 C')
+            ->assertSee('value="'.$class->id.'"', false);
+
+        $hidden = Tenant::run($this->school, function () {
+            return SchoolClass::create([
+                'session_id' => $this->term->session_id,
+                'level_id' => $this->class->level_id,
+                'arm_id' => Arm::create(['name' => 'D'])->id,
+            ]);
+        });
+
+        $this->as(Role::TEACHER, ['staff_id' => $this->maths->id])
+            ->get(self::HOST.'/exams?class='.$hidden->id)
+            ->assertForbidden();
+    }
 }
