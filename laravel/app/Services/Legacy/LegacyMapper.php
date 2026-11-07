@@ -11,7 +11,42 @@ use Throwable;
 final class LegacyMapper
 {
     /** Arm names the school normally uses; anything else is flagged as unusual in the report. */
-    public const USUAL_ARMS = ['diamond', 'gold', 'pearl', 'emerald'];
+    public const USUAL_ARMS = ['diamond', 'gold', 'pearl', 'emerald', 'joy', 'peace', 'success'];
+
+    /** Primary levels. Longest name wins when splitting a class such as "Nursery 1 Joy". */
+    public const PRIMARY_LEVELS = [
+        'Preparatory',
+        'Reception',
+        'Pre-Nursery',
+        'Nursery 1',
+        'Nursery 2',
+        'Primary 1',
+        'Primary 2',
+        'Primary 3',
+        'Primary 4',
+        'Primary 5',
+    ];
+
+    /** Teaching order, including the creche and the secondary years used at Bwari. */
+    public const LEVEL_ORDER = [
+        'Creche',
+        'Preparatory',
+        'Reception',
+        'Pre-Nursery',
+        'Nursery 1',
+        'Nursery 2',
+        'Primary 1',
+        'Primary 2',
+        'Primary 3',
+        'Primary 4',
+        'Primary 5',
+        'JSS 1',
+        'JSS 2',
+        'JSS 3',
+        'SSS 1',
+        'SSS 2',
+        'SSS 3',
+    ];
 
     public static function text(mixed $value): string
     {
@@ -69,7 +104,9 @@ final class LegacyMapper
     }
 
     /**
-     * "JS1 Diamond" / "SSS 2 Gold" => level JS1 / SS2 and arm; anything else => level "Other".
+     * "JS1 Diamond", "SSS 2 Gold", or "Nursery 1 Joy" => level and arm.
+     * A primary level with no stream ("Reception") has an empty arm.
+     * Anything else => level "Other".
      *
      * @return array{level: string, arm: string, unusual: bool}
      */
@@ -77,18 +114,73 @@ final class LegacyMapper
     {
         $cleaned = trim((string) preg_replace('/\s+/', ' ', (string) $name));
 
-        if (! preg_match('/^(JS|JSS|SS|SSS)\s*([123])\s+(.+)$/i', $cleaned, $m)) {
-            return ['level' => 'Other', 'arm' => $cleaned !== '' ? $cleaned : 'Unknown', 'unusual' => true];
+        if (preg_match('/^(JS|JSS|SS|SSS)\s*([123])\s+(.+)$/i', $cleaned, $m)) {
+            $band = str_starts_with(strtoupper($m[1]), 'J') ? 'JS' : 'SS';
+            $arm = trim($m[3]);
+
+            return [
+                'level' => $band.$m[2],
+                'arm' => $arm,
+                'unusual' => ! in_array(strtolower($arm), self::USUAL_ARMS, true),
+            ];
         }
 
-        $band = str_starts_with(strtoupper($m[1]), 'J') ? 'JS' : 'SS';
-        $arm = trim($m[3]);
+        if (preg_match('/^(JS|JSS|SS|SSS)\s*([123])$/i', $cleaned, $m)) {
+            $band = str_starts_with(strtoupper($m[1]), 'J') ? 'JSS' : 'SSS';
 
-        return [
-            'level' => $band.$m[2],
-            'arm' => $arm,
-            'unusual' => ! in_array(strtolower($arm), self::USUAL_ARMS, true),
-        ];
+            return ['level' => $band.' '.$m[2], 'arm' => '', 'unusual' => false];
+        }
+
+        if (strcasecmp($cleaned, 'Creche') === 0) {
+            return ['level' => 'Creche', 'arm' => '', 'unusual' => false];
+        }
+
+        $primary = self::primaryClassName($cleaned);
+        if ($primary !== null) {
+            return $primary;
+        }
+
+        return ['level' => 'Other', 'arm' => $cleaned !== '' ? $cleaned : 'Unknown', 'unusual' => true];
+    }
+
+    /**
+     * @return array{level: string, arm: string, unusual: bool}|null
+     */
+    private static function primaryClassName(string $cleaned): ?array
+    {
+        $levels = self::PRIMARY_LEVELS;
+        usort($levels, fn (string $a, string $b) => strlen($b) <=> strlen($a));
+
+        foreach ($levels as $level) {
+            if (strcasecmp($cleaned, $level) === 0) {
+                return ['level' => $level, 'arm' => '', 'unusual' => false];
+            }
+
+            $prefix = $level.' ';
+            if (stripos($cleaned, $prefix) !== 0) {
+                continue;
+            }
+
+            $arm = self::primaryArm(trim(substr($cleaned, strlen($prefix))));
+
+            return [
+                'level' => $level,
+                'arm' => $arm,
+                'unusual' => ! in_array(strtolower($arm), self::USUAL_ARMS, true),
+            ];
+        }
+
+        return null;
+    }
+
+    private static function primaryArm(string $arm): string
+    {
+        return match (strtolower($arm)) {
+            'joy' => 'Joy',
+            'peace' => 'Peace',
+            'success' => 'Success',
+            default => $arm,
+        };
     }
 
     /**

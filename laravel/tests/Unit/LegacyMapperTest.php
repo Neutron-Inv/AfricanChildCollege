@@ -12,7 +12,13 @@ class LegacyMapperTest extends TestCase
         $this->assertSame(['level' => 'JS1', 'arm' => 'Diamond', 'unusual' => false], LegacyMapper::className('JS1 Diamond'));
         $this->assertSame(['level' => 'SS2', 'arm' => 'Gold', 'unusual' => false], LegacyMapper::className(' SSS 2   Gold '));
         $this->assertSame(['level' => 'JS3', 'arm' => 'Ruby', 'unusual' => true], LegacyMapper::className('JSS3 Ruby'));
-        $this->assertSame(['level' => 'Other', 'arm' => 'Nursery 1', 'unusual' => true], LegacyMapper::className('Nursery 1'));
+        $this->assertSame(['level' => 'Nursery 1', 'arm' => 'Joy', 'unusual' => false], LegacyMapper::className('Nursery 1 Joy'));
+        $this->assertSame(['level' => 'Primary 4', 'arm' => 'Success', 'unusual' => false], LegacyMapper::className('Primary 4 Success'));
+        $this->assertSame(['level' => 'Reception', 'arm' => '', 'unusual' => false], LegacyMapper::className('Reception'));
+        $this->assertSame(['level' => 'JSS 1', 'arm' => '', 'unusual' => false], LegacyMapper::className('JSS 1'));
+        $this->assertSame(['level' => 'SSS 2', 'arm' => '', 'unusual' => false], LegacyMapper::className('SSS 2'));
+        $this->assertSame(['level' => 'Creche', 'arm' => '', 'unusual' => false], LegacyMapper::className('Creche'));
+        $this->assertSame(['level' => 'Preparatory', 'arm' => '', 'unusual' => false], LegacyMapper::className('Preparatory'));
         $this->assertSame('Unknown', LegacyMapper::className('')['arm']);
     }
 
