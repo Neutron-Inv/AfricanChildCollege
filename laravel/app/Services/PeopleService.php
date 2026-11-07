@@ -208,6 +208,74 @@ class PeopleService
         });
     }
 
+    public function updateStudent(Student $student, array $data): Student
+    {
+        $status = $data['status'];
+
+        return DB::transaction(function () use ($student, $data, $status) {
+            $student->update([
+                'index_number' => $data['index_number'],
+                'full_name' => $data['full_name'],
+                'gender' => $data['gender'] ?? '',
+                'phone' => $data['phone'] ?? '',
+                'email' => $data['email'] ?? '',
+                'address' => $data['address'] ?? '',
+                'birth_date' => ($data['birth_date'] ?? null) ?: null,
+                'status' => $status === 'ACTIVE' ? 'ACTIVE' : 'LEFT',
+                'departure' => match ($status) {
+                    'GRADUATED' => 'GRADUATED',
+                    'LEFT' => 'LEFT',
+                    default => null,
+                },
+            ]);
+
+            if ($user = $student->user) {
+                $user->update(['email' => $data['email'] ?? '']);
+            }
+
+            if (filled($data['password'] ?? null)) {
+                $login = $student->user()->first();
+                if (! $login) {
+                    if (blank($student->email)) {
+                        throw ValidationException::withMessages([
+                            'password' => 'Add an email before setting a password.',
+                        ])->errorBag('student');
+                    }
+                    $login = User::create([
+                        'school_id' => Tenant::id(),
+                        'email' => $student->email,
+                        'password' => $data['password'],
+                        'role' => Role::STUDENT,
+                        'must_change_password' => false,
+                        'student_id' => $student->getKey(),
+                    ]);
+                    AuditService::record('user.password_set', 'User', $login->getKey());
+                } else {
+                    $this->assignPassword($login, $data['password'], 'student');
+                }
+            }
+
+            if ($session = $this->currentSession()) {
+                $enrolment = Enrolment::query()
+                    ->where('student_id', $student->getKey())
+                    ->where('session_id', $session->getKey())
+                    ->first();
+                $enrolment?->update([
+                    'status' => $status === 'ACTIVE' ? 'ACTIVE' : 'LEFT',
+                    'outcome' => match ($status) {
+                        'GRADUATED' => 'GRADUATED',
+                        'LEFT' => 'LEFT',
+                        default => null,
+                    },
+                ]);
+            }
+
+            AuditService::record('student.updated', 'Student', $student->getKey());
+
+            return $student;
+        });
+    }
+
     /**
      * Active enrolment in the class's session plus its COMPULSORY subjects.
      */
@@ -368,7 +436,86 @@ class PeopleService
         });
     }
 
+    public function updateStaff(Staff $staff, array $data): Staff
+    {
+        return DB::transaction(function () use ($staff, $data) {
+            $staff->update([
+                'index_number' => $data['index_number'],
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'] ?? '',
+                'phone' => $data['phone'] ?? '',
+                'gender' => $data['gender'] ?? '',
+                'address' => $data['address'] ?? '',
+            ]);
+
+            if ($user = $staff->user) {
+                $user->update(['email' => $data['email'] ?? '']);
+            }
+
+            if (filled($data['password'] ?? null)) {
+                $login = $staff->user()->first();
+                if (! $login) {
+                    throw ValidationException::withMessages([
+                        'password' => 'This staff member has no login.',
+                    ])->errorBag('staffEdit');
+                }
+                $this->assignPassword($login, $data['password'], 'staffEdit');
+            }
+
+            AuditService::record('staff.updated', 'Staff', $staff->getKey());
+
+            return $staff;
+        });
+    }
+
     // --------------------------------------------------------------- guardians
+
+    /**
+     * Search-only: returns nothing for an empty query.
+     *
+     * @return Collection<int, Guardian>
+     */
+    public function findGuardian(string $id): ?Guardian
+    {
+        return Guardian::query()->with('user')->find($id);
+    }
+
+    public function setGuardianPassword(Guardian $guardian, string $password): Guardian
+    {
+        return DB::transaction(function () use ($guardian, $password) {
+            $login = $guardian->user()->first();
+
+            if (! $login) {
+                if (blank($guardian->email)) {
+                    throw ValidationException::withMessages([
+                        'password' => 'Add an email before setting a password.',
+                    ])->errorBag('guardianPassword');
+                }
+                if (User::where('school_id', Tenant::id())->where('email', $guardian->email)->exists()) {
+                    throw ValidationException::withMessages([
+                        'password' => 'That email already has a login at this school.',
+                    ])->errorBag('guardianPassword');
+                }
+
+                $login = User::create([
+                    'school_id' => Tenant::id(),
+                    'email' => $guardian->email,
+                    'password' => $password,
+                    'role' => Role::PARENT,
+                    'must_change_password' => false,
+                    'guardian_id' => $guardian->getKey(),
+                ]);
+                AuditService::record('user.password_set', 'User', $login->getKey());
+
+                return $guardian;
+            }
+
+            $this->assignPassword($login, $password, 'guardianPassword');
+
+            return $guardian;
+        });
+    }
 
     /**
      * Search-only: returns nothing for an empty query.
@@ -394,12 +541,31 @@ class PeopleService
         if ($teacherStaffId !== null) {
             $allowed = fn () => $this->applyTeacherScope(Student::query(), $teacherStaffId, 'all')->select('students.id');
             $query->whereHas('students', fn (Builder $students) => $students->whereIn('students.id', $allowed()));
-            $query->with(['students' => fn ($students) => $students->whereIn('students.id', $allowed())]);
+            $query->with([
+                'user',
+                'students' => fn ($students) => $students->whereIn('students.id', $allowed()),
+            ]);
         } else {
-            $query->with('students');
+            $query->with(['students', 'user']);
         }
 
         return $query->get();
+    }
+
+    private function assignPassword(User $user, string $password, string $bag): void
+    {
+        if ($user->isPlatformOwner() || (string) $user->school_id !== (string) Tenant::id()) {
+            throw ValidationException::withMessages([
+                'password' => 'That login cannot be changed here.',
+            ])->errorBag($bag);
+        }
+
+        $user->forceFill([
+            'password' => $password,
+            'must_change_password' => false,
+        ])->save();
+
+        AuditService::record('user.password_set', 'User', $user->getKey());
     }
 
     private function like(string $term): string

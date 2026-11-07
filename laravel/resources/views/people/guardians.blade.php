@@ -57,11 +57,42 @@
     <aside class="lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
         @if ($selectedGuardian)
             @php $guardian = $selectedGuardian; @endphp
-            <div class="card space-y-5">
-                <div>
-                    <h2 class="text-base font-semibold">{{ $guardian->full_name }}</h2>
-                    <p class="text-xs text-gray-500">{{ collect([$guardian->phone, $guardian->email])->filter()->implode(' · ') ?: 'No contact details' }}</p>
+            @php $settingPassword = $errors->hasBag('guardianPassword'); @endphp
+            <div class="card space-y-5" x-data="{ settingPassword: {{ $settingPassword ? 'true' : 'false' }} }">
+                <div class="flex items-start justify-between gap-2">
+                    <div>
+                        <h2 class="text-base font-semibold">{{ $guardian->full_name }}</h2>
+                        <p class="text-xs text-gray-500">{{ collect([$guardian->phone, $guardian->email])->filter()->implode(' · ') ?: 'No contact details' }}</p>
+                    </div>
+                    @if ($canSetPasswords ?? false)
+                        <button type="button" class="group relative inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-gray-600 hover:bg-black/5" x-show="!settingPassword" @click="settingPassword = true" title="Set password" aria-label="Set password">
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+                            <span class="pointer-events-none absolute right-0 top-full z-10 mt-1 whitespace-nowrap rounded bg-gray-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow group-hover:opacity-100">Set password</span>
+                        </button>
+                    @endif
                 </div>
+                @if ($canSetPasswords ?? false)
+                    <form method="POST" action="{{ route('people.guardians.password', $guardian->id) }}" x-show="settingPassword" x-cloak class="space-y-3">
+                        @csrf @method('PUT')
+                        <input type="hidden" name="q" value="{{ $q }}">
+                        <div>
+                            <x-input-label for="gp_password" value="New password" />
+                            <x-text-input id="gp_password" type="password" name="password" class="mt-1" autocomplete="new-password" required />
+                            <p class="mt-1 text-xs text-gray-500">
+                                @if ($guardian->user)
+                                    They can sign in with this straight away.
+                                @else
+                                    This creates their parent login. They can sign in with it straight away.
+                                @endif
+                            </p>
+                            <x-input-error :messages="$errors->getBag('guardianPassword')->get('password')" class="mt-1" />
+                        </div>
+                        <div class="flex justify-end gap-2">
+                            <button type="button" class="btn-secondary" @click="settingPassword = false">Cancel</button>
+                            <x-primary-button>Save password</x-primary-button>
+                        </div>
+                    </form>
+                @endif
                 <dl class="grid grid-cols-3 gap-x-3 gap-y-2 text-sm">
                     @foreach (['Phone' => $guardian->phone, 'Email' => $guardian->email, 'Address' => $guardian->address] as $label => $value)
                         <dt class="text-gray-500">{{ $label }}</dt>

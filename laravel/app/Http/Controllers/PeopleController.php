@@ -38,6 +38,7 @@ class PeopleController extends Controller
             'classId' => (string) $request->query('class', ''),
             'canEditStudents' => $user->hasRole(Role::ADMIN, Role::REGISTRAR, Role::PLATFORM_OWNER),
             'canCreateStaff' => $user->hasRole(Role::ADMIN, Role::PLATFORM_OWNER),
+            'canSetPasswords' => $user->hasRole(Role::ADMIN, Role::PLATFORM_OWNER),
             'teacherView' => $teacherView,
             'currentSession' => $this->people->currentSession(),
             'staffRoles' => PeopleService::STAFF_ROLES,

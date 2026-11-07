@@ -16,6 +16,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\FeeItemController;
 use App\Http\Controllers\FeesController;
+use App\Http\Controllers\GuardianController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PeopleController;
@@ -56,11 +57,14 @@ Route::middleware('auth')->group(function () {
 
         Route::middleware('role:ADMIN,REGISTRAR,PLATFORM_OWNER')->group(function () {
             Route::post('/people/students', [StudentController::class, 'store'])->name('people.students.store');
+            Route::put('/people/students/{student}', [StudentController::class, 'update'])->name('people.students.update');
             Route::post('/people/students/{student}/guardians', [StudentController::class, 'storeGuardian'])->name('people.students.guardians.store');
         });
 
         Route::middleware('role:ADMIN,PLATFORM_OWNER')->group(function () {
             Route::post('/people/staff', [StaffController::class, 'store'])->name('people.staff.store');
+            Route::put('/people/staff/{staff}', [StaffController::class, 'update'])->name('people.staff.update');
+            Route::put('/people/guardians/{guardian}/password', [GuardianController::class, 'password'])->name('people.guardians.password');
         });
 
         // Academics: staff can view; ADMIN / REGISTRAR edit; grading bands are ADMIN only.

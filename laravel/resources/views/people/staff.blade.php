@@ -133,17 +133,85 @@
                     ->sortBy(fn ($cs) => ($cs->class?->display_name ?? '').' '.($cs->subject?->name ?? ''))
                     ->values();
             @endphp
-            <div class="card space-y-5">
-                <div>
-                    <h2 class="text-base font-semibold">{{ $member->full_name }}</h2>
-                    <p class="text-xs text-gray-500">
-                        {{ $member->is_teacher ? 'Teacher' : 'Staff' }}
-                        @if ($currentSession)
-                            · {{ $currentSession->name }}
-                        @endif
-                    </p>
+            @php
+                $editingStaff = $errors->hasBag('staffEdit');
+                $stVal = fn (string $field, mixed $default = null) => $editingStaff ? old($field, $default) : $default;
+            @endphp
+            <div class="card space-y-5" x-data="{ editing: {{ $editingStaff ? 'true' : 'false' }} }">
+                <div class="flex items-start justify-between gap-2">
+                    <div>
+                        <h2 class="text-base font-semibold">{{ $member->full_name }}</h2>
+                        <p class="text-xs text-gray-500">
+                            {{ $member->is_teacher ? 'Teacher' : 'Staff' }}
+                            @if ($currentSession)
+                                · {{ $currentSession->name }}
+                            @endif
+                        </p>
+                    </div>
+                    @if ($canCreateStaff)
+                        <button type="button" class="group relative inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-gray-600 hover:bg-black/5" x-show="!editing" @click="editing = true" title="Edit staff" aria-label="Edit staff">
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                            <span class="pointer-events-none absolute right-0 top-full z-10 mt-1 whitespace-nowrap rounded bg-gray-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow group-hover:opacity-100">Edit staff</span>
+                        </button>
+                    @endif
                 </div>
-                <dl class="grid grid-cols-3 gap-x-3 gap-y-2 text-sm">
+                @if ($canCreateStaff)
+                    <form method="POST" action="{{ route('people.staff.update', $member->id) }}" x-show="editing" x-cloak class="space-y-3">
+                        @csrf @method('PUT')
+                        <div class="grid gap-3 sm:grid-cols-2">
+                            <div>
+                                <x-input-label for="se_index" value="Index number" />
+                                <x-text-input id="se_index" name="index_number" class="mt-1" :value="$stVal('index_number', $member->index_number)" required />
+                                <x-input-error :messages="$errors->getBag('staffEdit')->get('index_number')" class="mt-1" />
+                            </div>
+                            <div>
+                                <x-input-label for="se_gender" value="Gender" />
+                                <select id="se_gender" name="gender" class="form-input mt-1">
+                                    <option value="">-</option>
+                                    @foreach (['Male', 'Female'] as $g)
+                                        <option value="{{ $g }}" @selected($stVal('gender', $member->gender) === $g)>{{ $g }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <x-input-label for="se_first" value="First name" />
+                                <x-text-input id="se_first" name="first_name" class="mt-1" :value="$stVal('first_name', $member->first_name)" required />
+                                <x-input-error :messages="$errors->getBag('staffEdit')->get('first_name')" class="mt-1" />
+                            </div>
+                            <div>
+                                <x-input-label for="se_last" value="Last name" />
+                                <x-text-input id="se_last" name="last_name" class="mt-1" :value="$stVal('last_name', $member->last_name)" required />
+                                <x-input-error :messages="$errors->getBag('staffEdit')->get('last_name')" class="mt-1" />
+                            </div>
+                        </div>
+                        <div>
+                            <x-input-label for="se_email" value="Email" />
+                            <x-text-input id="se_email" type="email" name="email" class="mt-1" :value="$stVal('email', $member->email)" />
+                            <x-input-error :messages="$errors->getBag('staffEdit')->get('email')" class="mt-1" />
+                        </div>
+                        <div>
+                            <x-input-label for="se_phone" value="Phone" />
+                            <x-text-input id="se_phone" name="phone" class="mt-1" :value="$stVal('phone', $member->phone)" />
+                        </div>
+                        <div>
+                            <x-input-label for="se_address" value="Address" />
+                            <x-text-input id="se_address" name="address" class="mt-1" :value="$stVal('address', $member->address)" />
+                        </div>
+                        @if ($canSetPasswords ?? false)
+                            <div>
+                                <x-input-label for="se_password" value="New password" />
+                                <x-text-input id="se_password" type="password" name="password" class="mt-1" autocomplete="new-password" />
+                                <p class="mt-1 text-xs text-gray-500">Leave blank to keep the current password. A new one can be used to sign in straight away.</p>
+                                <x-input-error :messages="$errors->getBag('staffEdit')->get('password')" class="mt-1" />
+                            </div>
+                        @endif
+                        <div class="flex justify-end gap-2">
+                            <button type="button" class="btn-secondary" @click="editing = false">Cancel</button>
+                            <x-primary-button>Save staff</x-primary-button>
+                        </div>
+                    </form>
+                @endif
+                <dl class="grid grid-cols-3 gap-x-3 gap-y-2 text-sm" @if ($canCreateStaff) x-show="!editing" @endif>
                     @foreach ($fields as $label => $value)
                         <dt class="text-gray-500">{{ $label }}</dt>
                         <dd class="col-span-2 break-words">{{ filled($value) ? $value : '—' }}</dd>

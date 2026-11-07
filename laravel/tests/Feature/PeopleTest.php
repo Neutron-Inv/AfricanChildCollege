@@ -19,6 +19,7 @@ use App\Models\Subject;
 use App\Models\User;
 use App\Support\Tenant;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class PeopleTest extends TestCase
@@ -132,6 +133,94 @@ class PeopleTest extends TestCase
             ->post(self::HOST.'/people/students', $this->studentPayload(['class_id' => 'nope']))
             ->assertSessionHasErrors('class_id');
         $this->withTenant(fn () => $this->assertSame(0, Student::count()));
+    }
+
+    public function test_student_and_staff_profiles_can_be_edited(): void
+    {
+        $student = $this->withTenant(fn () => Student::create([
+            'index_number' => 'S9',
+            'full_name' => 'Kay Ade',
+            'email' => 'kay@example.com',
+            'status' => 'ACTIVE',
+        ]));
+        $this->withTenant(fn () => User::factory()->create([
+            'school_id' => $this->school->id,
+            'email' => 'kay@example.com',
+            'role' => Role::STUDENT,
+            'student_id' => $student->id,
+        ]));
+        $enrolment = $this->withTenant(fn () => Enrolment::create([
+            'student_id' => $student->id,
+            'class_id' => $this->class->id,
+            'session_id' => $this->class->session_id,
+            'status' => 'ACTIVE',
+        ]));
+        $staff = $this->withTenant(fn () => Staff::create([
+            'index_number' => 'T9',
+            'first_name' => 'Ada',
+            'last_name' => 'Obi',
+            'email' => 'ada.staff@example.com',
+            'is_teacher' => true,
+            'status' => 'ACTIVE',
+        ]));
+        $this->withTenant(fn () => User::factory()->create([
+            'school_id' => $this->school->id,
+            'email' => 'ada.staff@example.com',
+            'role' => Role::TEACHER,
+            'staff_id' => $staff->id,
+        ]));
+
+        $this->as(Role::REGISTRAR)
+            ->get(self::HOST.'/people?student='.$student->id)
+            ->assertOk()
+            ->assertSee('aria-label="Edit student"', false);
+
+        $this->put(self::HOST.'/people/students/'.$student->id, [
+            'index_number' => 'S10',
+            'full_name' => 'Kay Updated',
+            'email' => 'kay.new@example.com',
+            'phone' => '0801',
+            'status' => 'GRADUATED',
+        ])->assertRedirect()->assertSessionHas('success');
+
+        $this->withTenant(function () use ($student, $enrolment) {
+            $fresh = $student->fresh();
+            $this->assertSame('Kay Updated', $fresh->full_name);
+            $this->assertSame('S10', $fresh->index_number);
+            $this->assertSame('LEFT', $fresh->status);
+            $this->assertSame('GRADUATED', $fresh->departure);
+            $this->assertSame('kay.new@example.com', $fresh->user->email);
+            $this->assertSame('LEFT', $enrolment->fresh()->status);
+            $this->assertSame('GRADUATED', $enrolment->fresh()->outcome);
+        });
+
+        $this->as(Role::TEACHER)->put(self::HOST.'/people/students/'.$student->id, [])->assertForbidden();
+
+        $this->as(Role::ADMIN)
+            ->get(self::HOST.'/people?tab=staff&staff='.$staff->id)
+            ->assertOk()
+            ->assertSee('aria-label="Edit staff"', false);
+
+        $this->put(self::HOST.'/people/staff/'.$staff->id, [
+            'index_number' => 'T10',
+            'first_name' => 'Ada',
+            'last_name' => 'Nwosu',
+            'email' => 'ada.new@example.com',
+            'phone' => '0902',
+        ])->assertRedirect()->assertSessionHas('success');
+
+        $this->withTenant(function () use ($staff) {
+            $fresh = $staff->fresh();
+            $this->assertSame('Nwosu', $fresh->last_name);
+            $this->assertSame('ada.new@example.com', $fresh->user->email);
+        });
+
+        $this->as(Role::REGISTRAR)->put(self::HOST.'/people/staff/'.$staff->id, [
+            'index_number' => 'T10',
+            'first_name' => 'Ada',
+            'last_name' => 'Nwosu',
+            'email' => 'ada.new@example.com',
+        ])->assertForbidden();
     }
 
     public function test_student_list_filters_status_class_and_search_and_panel_shows(): void
@@ -298,5 +387,113 @@ class PeopleTest extends TestCase
             ->assertOk()
             ->assertSee('Kay Parent')
             ->assertDontSee('Outsider Parent');
+    }
+
+    public function test_only_admin_and_platform_owner_can_set_passwords(): void
+    {
+        $student = $this->withTenant(fn () => Student::create([
+            'index_number' => 'S20',
+            'full_name' => 'Password Kid',
+            'email' => 'kid@example.com',
+            'status' => 'ACTIVE',
+        ]));
+        $login = $this->withTenant(fn () => User::factory()->create([
+            'school_id' => $this->school->id,
+            'email' => 'kid@example.com',
+            'role' => Role::STUDENT,
+            'student_id' => $student->id,
+            'must_change_password' => true,
+        ]));
+        $staff = $this->withTenant(fn () => Staff::create([
+            'index_number' => 'T20',
+            'first_name' => 'Password',
+            'last_name' => 'Teacher',
+            'email' => 'teacher@example.com',
+            'is_teacher' => true,
+            'status' => 'ACTIVE',
+        ]));
+        $staffLogin = $this->withTenant(fn () => User::factory()->create([
+            'school_id' => $this->school->id,
+            'email' => 'teacher@example.com',
+            'role' => Role::TEACHER,
+            'staff_id' => $staff->id,
+        ]));
+        $guardian = $this->withTenant(fn () => Guardian::create([
+            'full_name' => 'Password Parent',
+            'email' => 'parent@example.com',
+            'phone' => '0803',
+        ]));
+
+        $fields = [
+            'index_number' => 'S20',
+            'full_name' => 'Password Kid',
+            'email' => 'kid@example.com',
+            'status' => 'ACTIVE',
+        ];
+
+        $this->as(Role::REGISTRAR)
+            ->get(self::HOST.'/people?student='.$student->id)
+            ->assertOk()
+            ->assertDontSee('id="e_password"', false);
+
+        $this->put(self::HOST.'/people/students/'.$student->id, $fields + ['password' => 'registrar-try'])
+            ->assertRedirect();
+
+        $this->withTenant(fn () => $this->assertTrue(Hash::check('password', $login->fresh()->password)));
+
+        $this->as(Role::ADMIN)
+            ->get(self::HOST.'/people?student='.$student->id)
+            ->assertOk()
+            ->assertSee('id="e_password"', false);
+
+        $this->put(self::HOST.'/people/students/'.$student->id, $fields + ['password' => 'no'])
+            ->assertSessionHasErrors('password', null, 'student');
+
+        $this->put(self::HOST.'/people/students/'.$student->id, $fields + ['password' => 'new-pass'])
+            ->assertRedirect()
+            ->assertSessionHas('success');
+
+        $this->withTenant(function () use ($login) {
+            $fresh = $login->fresh();
+            $this->assertTrue(Hash::check('new-pass', $fresh->password));
+            $this->assertFalse($fresh->must_change_password);
+        });
+
+        $this->as(Role::ADMIN)
+            ->get(self::HOST.'/people?tab=staff&staff='.$staff->id)
+            ->assertOk()
+            ->assertSee('id="se_password"', false);
+
+        $this->put(self::HOST.'/people/staff/'.$staff->id, [
+            'index_number' => 'T20',
+            'first_name' => 'Password',
+            'last_name' => 'Teacher',
+            'email' => 'teacher@example.com',
+            'password' => 'staff-pass',
+        ])->assertRedirect();
+
+        $this->withTenant(fn () => $this->assertTrue(Hash::check('staff-pass', $staffLogin->fresh()->password)));
+
+        $this->as(Role::REGISTRAR)
+            ->get(self::HOST.'/people?tab=guardians&q=Password')
+            ->assertOk()
+            ->assertDontSee('aria-label="Set password"', false);
+
+        $this->put(self::HOST.'/people/guardians/'.$guardian->id.'/password', ['password' => 'parent-pass'])
+            ->assertForbidden();
+
+        $this->as(Role::PLATFORM_OWNER)
+            ->put(self::HOST.'/people/guardians/'.$guardian->id.'/password', [
+                'password' => 'parent-pass',
+                'q' => 'Password',
+            ])
+            ->assertRedirect();
+
+        $this->withTenant(function () use ($guardian) {
+            $login = $guardian->fresh()->user;
+            $this->assertSame(Role::PARENT, $login->role);
+            $this->assertTrue(Hash::check('parent-pass', $login->password));
+            $this->assertFalse($login->must_change_password);
+        });
     }
 }

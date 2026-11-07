@@ -123,7 +123,7 @@
 </div>
 
 @if ($canEditStudents)
-    <div x-data="{ open: {{ $errors->any() && ! $errors->hasBag('guardian') ? 'true' : 'false' }} }"
+    <div x-data="{ open: {{ $errors->any() && ! $errors->hasBag('guardian') && ! $errors->hasBag('student') ? 'true' : 'false' }} }"
          @open-create-student.window="open = true"
          @keydown.escape.window="open = false"
          x-show="open" x-cloak
