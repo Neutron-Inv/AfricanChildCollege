@@ -77,6 +77,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/terms', [SessionController::class, 'storeTerm'])->name('terms.store');
 
             Route::post('/classes', [ClassController::class, 'store'])->name('classes.store');
+            Route::put('/classes/{class}', [ClassController::class, 'update'])->name('classes.update');
             Route::put('/classes/{class}/form-teacher', [ClassController::class, 'updateFormTeacher'])->name('classes.form-teacher');
             Route::put('/classes/{class}/subjects', [ClassSubjectController::class, 'sync'])->name('classes.subjects.sync');
             Route::post('/classes/{class}/subjects', [ClassSubjectController::class, 'store'])->name('class-subjects.store');

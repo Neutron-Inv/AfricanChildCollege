@@ -62,6 +62,12 @@ document.addEventListener('alpine:init', () => {
         academicsUrl: config.academicsUrl,
         panelUrlTemplate: config.panelUrlTemplate,
         syncUrlTemplate: config.syncUrlTemplate,
+        updateUrlTemplate: config.updateUrlTemplate,
+        levels: config.levels || [],
+        arms: config.arms || [],
+        editingDetails: false,
+        savingDetails: false,
+        detailBackup: null,
         storeSubjectUrlTemplate: config.storeSubjectUrlTemplate,
         destroySubjectUrlTemplate: config.destroySubjectUrlTemplate,
         teachers: config.teachers,
@@ -161,6 +167,27 @@ document.addEventListener('alpine:init', () => {
             return this.syncUrlTemplate.replace('__CLASS__', classId);
         },
 
+        updateUrl(classId) {
+            return this.updateUrlTemplate.replace('__CLASS__', classId);
+        },
+
+        startDetails() {
+            this.detailBackup = {
+                level_id: this.panel.level_id,
+                arm_id: this.panel.arm_id,
+                admission_fee: this.panel.admission_fee,
+                hall_charge: this.panel.hall_charge,
+            };
+            this.editingDetails = true;
+        },
+
+        cancelDetails() {
+            if (this.detailBackup && this.panel) {
+                Object.assign(this.panel, this.detailBackup);
+            }
+            this.editingDetails = false;
+        },
+
         storeSubjectUrl(classId) {
             return this.storeSubjectUrlTemplate.replace('__CLASS__', classId);
         },
@@ -184,6 +211,7 @@ document.addEventListener('alpine:init', () => {
                 this.subjectFilter = 'all';
                 this.subjectQuery = '';
                 this.showAssign = false;
+                this.editingDetails = false;
 
                 if (push) {
                     const url = new URL(this.academicsUrl, window.location.origin);
@@ -204,9 +232,36 @@ document.addEventListener('alpine:init', () => {
             this.snapshot = this.serialize();
             const card = this.classes.find((c) => c.id === data.id);
             if (card) {
+                card.name = data.name;
                 card.form_teacher_name = data.form_teacher_name;
                 card.form_teacher_id = data.form_teacher_id;
                 card.subjects_count = (data.subjects || []).length;
+            }
+        },
+
+        async saveDetails() {
+            if (! this.panel || this.savingDetails) {
+                return;
+            }
+
+            this.savingDetails = true;
+            try {
+                const data = await window.schoolFetch(this.updateUrl(this.panel.id), {
+                    method: 'PUT',
+                    body: {
+                        level_id: this.panel.level_id,
+                        arm_id: this.panel.arm_id,
+                        admission_fee: this.panel.admission_fee,
+                        hall_charge: this.panel.hall_charge,
+                    },
+                });
+                this.applyPanel(data.panel);
+                this.editingDetails = false;
+                Alpine.store('toasts').success(data.message || 'Class saved.');
+            } catch (error) {
+                Alpine.store('toasts').error(error.message);
+            } finally {
+                this.savingDetails = false;
             }
         },
 

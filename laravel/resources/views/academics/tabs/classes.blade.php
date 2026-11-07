@@ -28,6 +28,9 @@
             academicsUrl: @js(route('academics')),
             panelUrlTemplate: @js(route('academics.classes.panel', ['class' => '__CLASS__'])),
             syncUrlTemplate: @js(route('academics.classes.subjects.sync', ['class' => '__CLASS__'])),
+            updateUrlTemplate: @js(route('academics.classes.update', ['class' => '__CLASS__'])),
+            levels: @js($levels->map(fn ($l) => ['id' => $l->id, 'name' => $l->name])->values()),
+            arms: @js($arms->map(fn ($a) => ['id' => $a->id, 'name' => $a->name])->values()),
             storeSubjectUrlTemplate: @js(route('academics.class-subjects.store', ['class' => '__CLASS__'])),
             destroySubjectUrlTemplate: @js(route('academics.class-subjects.destroy', ['classSubject' => '__ID__'])),
             teachers: @js($teachersJson),
@@ -118,9 +121,45 @@
             <template x-if="panel && !loadingPanel">
                 <section class="card space-y-5">
                     <header class="flex flex-wrap items-end justify-between gap-4 border-b border-black/5 pb-4">
-                        <div>
-                            <h3 class="text-xl font-semibold" x-text="panel.name"></h3>
+                        <div class="min-w-0 flex-1">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <h3 class="text-xl font-semibold" x-text="panel.name"></h3>
+                                <button type="button" class="group relative inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-600 hover:bg-black/5" x-show="canEdit && !editingDetails" @click="startDetails()" title="Edit class" aria-label="Edit class">
+                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                                    <span class="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 whitespace-nowrap rounded bg-gray-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow group-hover:opacity-100">Edit class</span>
+                                </button>
+                            </div>
                             <p class="text-xs text-gray-500" x-text="panel.session_name"></p>
+                            <form x-show="editingDetails" x-cloak class="mt-3 grid gap-3 sm:grid-cols-2" @submit.prevent="saveDetails()">
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-600">Level</label>
+                                    <select class="form-input mt-1" x-model="panel.level_id" required>
+                                        <template x-for="level in levels" :key="level.id">
+                                            <option :value="level.id" :selected="panel.level_id === level.id" x-text="level.name"></option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-600">Arm</label>
+                                    <select class="form-input mt-1" x-model="panel.arm_id" required>
+                                        <template x-for="arm in arms" :key="arm.id">
+                                            <option :value="arm.id" :selected="panel.arm_id === arm.id" x-text="arm.name"></option>
+                                        </template>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-600">Admission fee</label>
+                                    <input type="number" min="0" step="0.01" class="form-input mt-1" x-model="panel.admission_fee">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium text-gray-600">Hall charge</label>
+                                    <input type="number" min="0" step="0.01" class="form-input mt-1" x-model="panel.hall_charge">
+                                </div>
+                                <div class="flex justify-end gap-2 sm:col-span-2">
+                                    <button type="button" class="btn-secondary" @click="cancelDetails()">Cancel</button>
+                                    <button class="btn-primary" :disabled="savingDetails" x-text="savingDetails ? 'Saving…' : 'Save class'"></button>
+                                </div>
+                            </form>
                             <div class="mt-2 flex flex-wrap gap-2 text-xs">
                                 <span class="rounded-full bg-emerald-50 px-2.5 py-1 font-medium text-emerald-800">
                                     <span x-text="compulsoryCount"></span> compulsory

@@ -52,6 +52,23 @@ class ClassController extends Controller
         }
     }
 
+    public function update(Request $request, string $class): RedirectResponse|JsonResponse
+    {
+        $data = $request->validate([
+            'level_id' => ['required', 'string'],
+            'arm_id' => ['required', 'string'],
+            'admission_fee' => ['nullable', 'numeric', 'min:0'],
+            'hall_charge' => ['nullable', 'numeric', 'min:0'],
+        ]);
+
+        return $this->attempt(
+            fn () => $this->academics->updateClass($class, $data),
+            'Class saved.',
+            ['tab' => 'classes'],
+            fn (array $panel) => ['panel' => $panel],
+        );
+    }
+
     public function updateFormTeacher(Request $request, string $class): RedirectResponse|JsonResponse
     {
         $data = $request->validate(['form_teacher_id' => ['nullable', 'string']]);

@@ -415,6 +415,49 @@ class AcademicsTest extends TestCase
         $this->assertNull($this->class->fresh()->form_teacher_id);
     }
 
+    public function test_a_class_level_arm_and_fees_can_be_edited(): void
+    {
+        [$levelId, $armId] = $this->tenant(fn () => [Level::create(['name' => 'JSS2'])->id, Arm::create(['name' => 'B'])->id]);
+
+        $this->as(Role::REGISTRAR)
+            ->get(self::HOST.'/academics?tab=classes&class='.$this->class->id)
+            ->assertOk()
+            ->assertSee('Edit class');
+
+        $this->putJson(self::HOST.'/academics/classes/'.$this->class->id, [
+            'level_id' => $levelId,
+            'arm_id' => $armId,
+            'admission_fee' => 2500,
+            'hall_charge' => 400,
+        ])
+            ->assertOk()
+            ->assertJsonPath('panel.name', 'JSS2 B')
+            ->assertJsonPath('panel.admission_fee', 2500)
+            ->assertJsonPath('panel.hall_charge', 400);
+
+        $fresh = $this->class->fresh();
+        $this->assertSame($levelId, $fresh->level_id);
+        $this->assertSame($armId, $fresh->arm_id);
+        $this->assertEquals(2500, (float) $fresh->admission_fee);
+        $this->assertEquals(400, (float) $fresh->hall_charge);
+
+        $this->tenant(fn () => SchoolClass::create([
+            'session_id' => $this->session->id,
+            'level_id' => $this->class->level_id,
+            'arm_id' => $this->class->arm_id,
+        ]));
+
+        $this->putJson(self::HOST.'/academics/classes/'.$fresh->id, [
+            'level_id' => $this->class->level_id,
+            'arm_id' => $this->class->arm_id,
+        ])->assertStatus(422);
+
+        $this->as(Role::TEACHER)->putJson(self::HOST.'/academics/classes/'.$fresh->id, [
+            'level_id' => $levelId,
+            'arm_id' => $armId,
+        ])->assertForbidden();
+    }
+
     public function test_class_panel_sync_saves_kind_and_teacher_over_ajax(): void
     {
         $this->as(Role::ADMIN);

@@ -437,6 +437,47 @@ class AcademicsService
         return $class;
     }
 
+    /** Change the level and arm that name the class, and its fee amounts. */
+    public function updateClass(string $classId, array $data): array
+    {
+        $class = $this->findOrFail(SchoolClass::query(), $classId, 'Class not found.');
+        $level = $this->findOrFail(Level::query(), $data['level_id'] ?? null, 'Level not found.');
+        $arm = $this->findOrFail(Arm::query(), $data['arm_id'] ?? null, 'Arm not found.');
+
+        $taken = SchoolClass::query()
+            ->where('session_id', $class->session_id)
+            ->where('level_id', $level->getKey())
+            ->where('arm_id', $arm->getKey())
+            ->where('id', '!=', $class->getKey())
+            ->exists();
+        if ($taken) {
+            throw new DomainException("{$level->name} {$arm->name} already exists in this session.");
+        }
+
+        $class->update([
+            'level_id' => $level->getKey(),
+            'arm_id' => $arm->getKey(),
+            'admission_fee' => $this->money($data['admission_fee'] ?? 0),
+            'hall_charge' => $this->money($data['hall_charge'] ?? 0),
+        ]);
+
+        AuditService::record('update', 'Class', $class->getKey(), [
+            'level_id' => $level->getKey(),
+            'arm_id' => $arm->getKey(),
+        ]);
+
+        return $this->presentClassPanel($class->getKey());
+    }
+
+    private function money(mixed $amount): string
+    {
+        if (! is_numeric($amount) || (float) $amount < 0) {
+            throw new DomainException('Enter a fee of zero or more.');
+        }
+
+        return number_format((float) $amount, 2, '.', '');
+    }
+
     public function updateFormTeacher(string $classId, ?string $teacherId): SchoolClass
     {
         $class = $this->findOrFail(SchoolClass::query(), $classId, 'Class not found.');
@@ -520,6 +561,10 @@ class AcademicsService
         return [
             'id' => $class->getKey(),
             'name' => $class->display_name,
+            'level_id' => $class->level_id,
+            'arm_id' => $class->arm_id,
+            'admission_fee' => (float) $class->admission_fee,
+            'hall_charge' => (float) $class->hall_charge,
             'session_id' => $class->session_id,
             'session_name' => $class->session?->name,
             'form_teacher_id' => $class->form_teacher_id ?? '',
