@@ -68,5 +68,11 @@
             @csrf
             <button class="text-sm font-medium text-red-700 hover:underline">Mark as left</button>
         </form>
+    @elseif ($canManage ?? true)
+        <form method="POST" action="{{ route('enrolment.active', $selected->id) }}" class="border-t border-gray-100 pt-4"
+              onsubmit="return confirm('Mark this student as active for {{ $selected->session?->name }}? They go back on the active roll, and become left in every other session.')">
+            @csrf
+            <button class="text-sm font-medium hover:underline" style="color: var(--primary)">Mark as active</button>
+        </form>
     @endif
 </div>

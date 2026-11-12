@@ -193,6 +193,7 @@ class EnrolmentService
             }
 
             $this->attach($enrolment, $this->compulsoryIds($class->getKey()));
+            $this->closeOtherSessions([$student->getKey()], $class->session_id);
 
             return $enrolment;
         });
@@ -331,6 +332,87 @@ class EnrolmentService
         return $enrolment;
     }
 
+    /** Put one enrolment, and the student, back on the active roll for that session. */
+    public function markActive(string $enrolmentId): Enrolment
+    {
+        $enrolment = Enrolment::query()->with('student')->find($enrolmentId) ?? throw new DomainException('Enrolment not found.');
+        if ($enrolment->status === 'ACTIVE' && $enrolment->outcome === null) {
+            throw new DomainException('This student is already active in this session.');
+        }
+
+        DB::transaction(function () use ($enrolment) {
+            $enrolment->update(['status' => 'ACTIVE', 'outcome' => null]);
+            $this->closeOtherSessions([$enrolment->student_id], $enrolment->session_id);
+            $this->reactivateStudents([$enrolment->student_id]);
+        });
+
+        AuditService::record('update', 'Enrolment', $enrolment->getKey(), ['status' => 'ACTIVE']);
+
+        return $enrolment->refresh();
+    }
+
+    /**
+     * Mark every enrolment in the session active, and put those students back on the active roll.
+     * Each of those students is marked left in every other session, so they are active in this one only.
+     */
+    public function activateSession(string $sessionId): int
+    {
+        AcademicSession::query()->find($sessionId) ?? throw new DomainException('Session not found.');
+
+        return DB::transaction(function () use ($sessionId) {
+            $enrolments = Enrolment::query()->where('session_id', $sessionId)->get(['id', 'student_id', 'status', 'outcome']);
+            $changed = $enrolments->filter(fn (Enrolment $enrolment) => $enrolment->status !== 'ACTIVE' || $enrolment->outcome !== null);
+
+            if ($changed->isNotEmpty()) {
+                Enrolment::query()->whereIn('id', $changed->modelKeys())->update([
+                    'status' => 'ACTIVE',
+                    'outcome' => null,
+                ]);
+            }
+
+            $studentIds = $enrolments->pluck('student_id')->all();
+            $this->closeOtherSessions($studentIds, $sessionId);
+            $this->reactivateStudents($studentIds);
+
+            AuditService::record('update', 'AcademicSession', $sessionId, ['activated' => $changed->count()]);
+
+            return $changed->count();
+        });
+    }
+
+    /**
+     * A student stays active in one session. Every other enrolment becomes Left.
+     *
+     * @param  array<int, string|null>  $studentIds
+     */
+    public function closeOtherSessions(array $studentIds, string $keepSessionId): void
+    {
+        $studentIds = array_values(array_unique(array_filter($studentIds)));
+        if ($studentIds === []) {
+            return;
+        }
+
+        Enrolment::query()
+            ->whereIn('student_id', $studentIds)
+            ->where('session_id', '!=', $keepSessionId)
+            ->where(fn (Builder $query) => $query->where('status', '!=', 'LEFT')->orWhereNotNull('outcome'))
+            ->update(['status' => 'LEFT', 'outcome' => null]);
+    }
+
+    /** @param  array<int, string|null>  $studentIds */
+    private function reactivateStudents(array $studentIds): void
+    {
+        $studentIds = array_values(array_filter(array_unique($studentIds)));
+        if ($studentIds === []) {
+            return;
+        }
+
+        Student::query()
+            ->whereIn('id', $studentIds)
+            ->where(fn (Builder $query) => $query->where('status', '!=', 'ACTIVE')->orWhereNotNull('departure'))
+            ->update(['status' => 'ACTIVE', 'departure' => null]);
+    }
+
     // --------------------------------------------------------------- Promotion
 
     /**
@@ -454,6 +536,7 @@ class EnrolmentService
                 ]);
                 $this->attach($next, $subjectIds);
                 $source->update(['status' => 'LEFT']);
+                $this->closeOtherSessions([$source->student_id], $to->getKey());
 
                 $created++;
             }

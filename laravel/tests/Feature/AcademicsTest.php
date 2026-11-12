@@ -269,10 +269,37 @@ class AcademicsTest extends TestCase
             $this->assertTrue($new->is_current);
             $this->assertSame(1, AcademicSession::where('is_current', true)->count());
 
+            $left = Student::create(['index_number' => 'L1', 'full_name' => 'Left Behind', 'status' => 'LEFT', 'departure' => 'LEFT']);
+            $graduated = Student::create(['index_number' => 'G1', 'full_name' => 'Gone Out', 'status' => 'LEFT', 'departure' => 'GRADUATED']);
+            $kept = Student::create(['index_number' => 'K1', 'full_name' => 'Kept Back', 'status' => 'LEFT', 'departure' => 'LEFT']);
+            Enrolment::create(['student_id' => $left->id, 'class_id' => $this->class->id, 'session_id' => $this->session->id, 'status' => 'LEFT', 'outcome' => 'LEFT']);
+            Enrolment::create(['student_id' => $graduated->id, 'class_id' => $this->class->id, 'session_id' => $this->session->id, 'status' => 'LEFT', 'outcome' => 'GRADUATED']);
+            $otherClass = SchoolClass::create([
+                'session_id' => $new->id,
+                'level_id' => $this->class->level_id,
+                'arm_id' => Arm::create(['name' => 'Kept'])->id,
+            ]);
+            Enrolment::create(['student_id' => $kept->id, 'class_id' => $otherClass->id, 'session_id' => $new->id, 'status' => 'LEFT', 'outcome' => 'LEFT']);
+            $keptElsewhere = Enrolment::create(['student_id' => $kept->id, 'class_id' => $this->class->id, 'session_id' => $this->session->id, 'status' => 'ACTIVE']);
+
             $this->actingAs(User::factory()->create(['school_id' => $this->school->id, 'role' => Role::ADMIN]))
-                ->post(self::HOST.'/academics/sessions/'.$this->session->id.'/current')->assertRedirect();
+                ->post(self::HOST.'/academics/sessions/'.$this->session->id.'/current', ['activate' => '0'])->assertRedirect();
             $this->assertTrue($this->session->fresh()->is_current);
             $this->assertFalse($new->fresh()->is_current);
+            $this->assertSame('LEFT', $left->fresh()->status);
+
+            $this->post(self::HOST.'/academics/sessions/'.$new->id.'/current', ['activate' => '1'])
+                ->assertRedirect()
+                ->assertSessionHas('success');
+            $this->assertTrue($new->fresh()->is_current);
+            $this->assertSame('ACTIVE', Enrolment::where('student_id', $kept->id)->where('session_id', $new->id)->value('status'));
+            $this->assertNull(Enrolment::where('student_id', $kept->id)->where('session_id', $new->id)->value('outcome'));
+            $this->assertSame('ACTIVE', $kept->fresh()->status);
+            $this->assertNull($kept->fresh()->departure);
+            $this->assertSame('LEFT', $left->fresh()->status);
+            $this->assertSame('GRADUATED', $graduated->fresh()->departure);
+            $this->assertSame('LEFT', $keptElsewhere->fresh()->status);
+            $this->assertNull($keptElsewhere->fresh()->outcome);
 
             $this->post(self::HOST.'/academics/terms', ['session_id' => $this->session->id, 'sequence' => 1, 'days_school_open' => 60])->assertRedirect();
             $this->post(self::HOST.'/academics/terms', ['session_id' => $this->session->id, 'sequence' => 1])->assertSessionHas('error');

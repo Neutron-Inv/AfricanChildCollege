@@ -490,5 +490,25 @@ class EnrolmentTest extends TestCase
         });
         $this->post(self::HOST.'/enrolment/'.$e->id.'/leave')->assertSessionHas('error');
         $this->post(self::HOST.'/enrolment/missing/leave')->assertSessionHas('error');
+
+        $other = $this->tenant(fn () => Enrolment::create([
+            'student_id' => $e->student_id,
+            'class_id' => $this->c['1-jss1a']->id,
+            'session_id' => $this->c['1-jss1a']->session_id,
+            'status' => 'ACTIVE',
+        ]));
+
+        $this->as(Role::TEACHER)->post(self::HOST.'/enrolment/'.$e->id.'/active')->assertForbidden();
+        $this->as(Role::REGISTRAR)->post(self::HOST.'/enrolment/'.$e->id.'/active')->assertSessionHas('success');
+        $this->assertSame('ACTIVE', $e->fresh()->status);
+        $this->assertNull($e->fresh()->outcome);
+        $this->tenant(function () use ($e, $other) {
+            $student = Student::find($e->student_id);
+            $this->assertSame('ACTIVE', $student->status);
+            $this->assertNull($student->departure);
+            $this->assertSame('LEFT', $other->fresh()->status);
+            $this->assertNull($other->fresh()->outcome);
+        });
+        $this->post(self::HOST.'/enrolment/'.$e->id.'/active')->assertSessionHas('error');
     }
 }

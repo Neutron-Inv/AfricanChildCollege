@@ -103,6 +103,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/place', [EnrolmentController::class, 'place'])->name('place');
             Route::put('/{enrolment}/class', [EnrolmentController::class, 'move'])->name('move');
             Route::post('/{enrolment}/leave', [EnrolmentController::class, 'leave'])->name('leave');
+            Route::post('/{enrolment}/active', [EnrolmentController::class, 'active'])->name('active');
         });
         Route::get('/enrolment', [EnrolmentController::class, 'index'])
             ->middleware('role:ADMIN,REGISTRAR,TEACHER,PLATFORM_OWNER')

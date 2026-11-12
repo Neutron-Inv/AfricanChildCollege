@@ -6,6 +6,7 @@ use App\Http\Controllers\Concerns\RunsAcademicsActions;
 use App\Http\Controllers\Controller;
 use App\Models\AcademicSession;
 use App\Services\AcademicsService;
+use App\Services\EnrolmentService;
 use Illuminate\Support\Str;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,7 +15,10 @@ class SessionController extends Controller
 {
     use RunsAcademicsActions;
 
-    public function __construct(private readonly AcademicsService $academics) {}
+    public function __construct(
+        private readonly AcademicsService $academics,
+        private readonly EnrolmentService $enrolment,
+    ) {}
 
     public function store(Request $request): RedirectResponse
     {
@@ -68,9 +72,24 @@ class SessionController extends Controller
         );
     }
 
-    public function current(string $session): RedirectResponse
+    public function current(Request $request, string $session): RedirectResponse
     {
-        return $this->attempt(fn () => $this->academics->markCurrent($session), 'Current session updated.');
+        $activate = $request->boolean('activate');
+
+        return $this->attempt(function () use ($session, $activate) {
+            $record = $this->academics->markCurrent($session);
+            $count = $activate ? $this->enrolment->activateSession($record->getKey()) : 0;
+
+            return ['session' => $record, 'activated' => $count];
+        }, function (array $result) use ($activate) {
+            if (! $activate) {
+                return 'Current session updated.';
+            }
+
+            $count = $result['activated'];
+
+            return 'Current session updated. '.$count.' '.Str::plural('student', $count).' marked active.';
+        });
     }
 
     public function storeTerm(Request $request): RedirectResponse

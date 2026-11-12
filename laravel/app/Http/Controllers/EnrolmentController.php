@@ -110,6 +110,11 @@ class EnrolmentController extends Controller
         return $this->attempt(fn () => $this->enrolment->markLeft($enrolment), 'Student marked as left.');
     }
 
+    public function active(string $enrolment): RedirectResponse
+    {
+        return $this->attempt(fn () => $this->enrolment->markActive($enrolment), 'Student marked as active.');
+    }
+
     /** A form teacher may set electives only for a class they form-teach. The office may set any. */
     private function ensureCanEditElectives(Request $request, Enrolment $enrolment): void
     {

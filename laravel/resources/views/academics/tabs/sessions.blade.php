@@ -4,7 +4,7 @@
     <div class="space-y-4 lg:col-span-2">
         @forelse ($sessions as $session)
             @php $openEditor = old('editing_session') === $session->id; @endphp
-            <section class="card" x-data="{ editing: {{ $openEditor ? 'true' : 'false' }} }">
+            <section class="card" x-data="{ editing: {{ $openEditor ? 'true' : 'false' }}, asking: false }">
                 <header class="flex flex-wrap items-center justify-between gap-2">
                     <div class="flex items-center gap-2">
                         <h3 class="text-base font-semibold">{{ $session->name }}</h3>
@@ -26,12 +26,9 @@
                                 <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                             </button>
                             @if (! $session->is_current)
-                                <form method="POST" action="{{ route('academics.sessions.current', $session->id) }}" x-show="!editing">
-                                    @csrf
-                                    <button class="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-600 hover:bg-black/5" title="Mark current" aria-label="Mark current">
-                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                    </button>
-                                </form>
+                                <button type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-600 hover:bg-black/5" x-show="!editing" @click="asking = true" title="Mark current" aria-label="Mark current">
+                                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </button>
                             @endif
                             <form method="POST" action="{{ route('academics.sessions.destroy', $session->id) }}" x-show="!editing" onsubmit="return confirm(@js($warning))">
                                 @csrf @method('DELETE')
@@ -119,6 +116,21 @@
                             <button class="btn-primary">Save session</button>
                         </div>
                     </form>
+                @endif
+
+                @if ($canEdit && ! $session->is_current)
+                    <div x-show="asking" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" @keydown.escape.window="asking = false" @click.self="asking = false">
+                        <form method="POST" action="{{ route('academics.sessions.current', $session->id) }}" class="card w-full max-w-md space-y-4" @click.stop>
+                            @csrf
+                            <h3 class="text-base font-semibold">Make {{ $session->name }} the current session?</h3>
+                            <p class="text-sm text-gray-600">You can also mark every student enrolled in this session as active. Students marked left or graduated here go back on the active roll, and become left in every other session. You can then promote them, or leave them active here.</p>
+                            <div class="flex flex-wrap justify-end gap-2">
+                                <button type="button" class="btn-secondary" @click="asking = false">Cancel</button>
+                                <button class="btn-secondary" name="activate" value="0">Just make current</button>
+                                <button class="btn-primary" name="activate" value="1">Make current and activate</button>
+                            </div>
+                        </form>
+                    </div>
                 @endif
             </section>
         @empty

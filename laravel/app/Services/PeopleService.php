@@ -29,6 +29,8 @@ use Illuminate\Validation\ValidationException;
  */
 class PeopleService
 {
+    public function __construct(private EnrolmentService $enrolment) {}
+
     public const STUDENT_STATUSES = ['ACTIVE', 'LEFT', 'GRADUATED'];
 
     /** Roles an admin may assign when creating a staff member. */
@@ -430,6 +432,9 @@ class PeopleService
                         default => null,
                     },
                 ]);
+                if ($status === 'ACTIVE' && $enrolment) {
+                    $this->enrolment->closeOtherSessions([$student->getKey()], $session->getKey());
+                }
             }
 
             AuditService::record('student.updated', 'Student', $student->getKey());
