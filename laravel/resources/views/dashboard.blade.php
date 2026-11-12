@@ -9,41 +9,18 @@
 
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         @if ($studentHome)
-            @foreach ([
-                ['Index number', $studentHome['index'] ?? '—', null],
-                ['Current class', $studentHome['class'] ?? 'Not placed', $studentHome['formTeacher'] ?? 'No form teacher'],
-                ['Current session', $studentHome['session'] ?? 'Not set', null],
-                ['Students in class', $studentHome['classSize'] ?? '—', null],
-            ] as [$label, $value, $note])
-                <div class="card">
-                    <div class="text-sm text-gray-500">{{ $label }}</div>
-                    <div class="mt-1 text-2xl font-semibold">{{ $value }}</div>
-                    @if ($note)
-                        <div class="mt-1 text-sm text-gray-500">{{ $note }}</div>
-                    @endif
-                </div>
-            @endforeach
+            <x-stat-card label="Index number" :value="$studentHome['index'] ?? '—'" tone="primary" icon="badge" />
+            <x-stat-card label="Current class" :value="$studentHome['class'] ?? 'Not placed'" :note="$studentHome['formTeacher'] ?? 'No form teacher'" tone="teal" icon="book" />
+            <x-stat-card label="Current session" :value="$studentHome['session'] ?? 'Not set'" tone="amber" icon="calendar" />
+            <x-stat-card label="Students in class" :value="$studentHome['classSize'] ?? '—'" tone="green" icon="users" />
         @elseif ($teacherHome)
-            @foreach ([
-                ['Form class', $teacherHome['class'] ?? 'None'],
-                ['Students in class', $teacherHome['classSize'] ?? '—'],
-            ] as [$label, $value])
-                <div class="card">
-                    <div class="text-sm text-gray-500">{{ $label }}</div>
-                    <div class="mt-1 text-2xl font-semibold">{{ $value }}</div>
-                </div>
-            @endforeach
+            <x-stat-card label="Form class" :value="$teacherHome['class'] ?? 'None'" tone="primary" icon="book" />
+            <x-stat-card label="Students in class" :value="$teacherHome['classSize'] ?? '—'" tone="teal" icon="users" />
             <div class="contents" x-data="{ open: false }" @keydown.escape.window="open = false">
                 @if ($teacherHome['subjectCount'] > 0)
-                    <button type="button" class="card w-full text-left transition hover:ring-1 hover:ring-[color:var(--primary)]" @click="open = true">
-                        <div class="text-sm text-gray-500">Subjects</div>
-                        <div class="mt-1 text-2xl font-semibold">{{ $teacherHome['subjectCount'] }}</div>
-                    </button>
+                    <x-stat-card as="button" type="button" label="Subjects" :value="$teacherHome['subjectCount']" tone="amber" icon="grid" class="w-full cursor-pointer text-left" x-on:click="open = true" />
                 @else
-                    <div class="card">
-                        <div class="text-sm text-gray-500">Subjects</div>
-                        <div class="mt-1 text-2xl font-semibold">0</div>
-                    </div>
+                    <x-stat-card label="Subjects" value="0" tone="amber" icon="grid" />
                 @endif
                 <div
                     x-show="open"
@@ -73,28 +50,20 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="text-sm text-gray-500">Current session</div>
-                <div class="mt-1 text-2xl font-semibold">{{ $teacherHome['session'] ?? 'Not set' }}</div>
-            </div>
+            <x-stat-card label="Current session" :value="$teacherHome['session'] ?? 'Not set'" tone="green" icon="calendar" />
         @else
-            @foreach ([
-                ['Students', $studentCount],
-                ['Staff', $staffCount],
-                ['Classes', $classCount],
-                ['Current session', $currentSession?->name ?? 'Not set'],
-            ] as [$label, $value])
-                <div class="card">
-                    <div class="text-sm text-gray-500">{{ $label }}</div>
-                    <div class="mt-1 text-2xl font-semibold">{{ $value }}</div>
-                </div>
-            @endforeach
+            <x-stat-card label="Students" :value="$studentCount" tone="primary" icon="users" />
+            <x-stat-card label="Staff" :value="$staffCount" tone="teal" icon="person" />
+            <x-stat-card label="Classes" :value="$classCount" tone="amber" icon="grid" />
+            <x-stat-card label="Current session" :value="$currentSession?->name ?? 'Not set'" tone="green" icon="calendar" />
         @endif
     </div>
 
     <div class="mt-6 grid gap-5 xl:grid-cols-3">
         {{-- School calendar --}}
-        <div class="card xl:col-span-2" id="calendar">
+        <div class="card overflow-hidden !p-0 xl:col-span-2" id="calendar">
+            <div class="h-1.5" style="background: linear-gradient(90deg, var(--primary), #0f766e 55%, #d97706)"></div>
+            <div class="p-5">
             <div class="mb-3 flex items-center justify-between">
                 <h3 class="text-base font-semibold">{{ $calendar['month']->format('F Y') }}</h3>
                 <div class="flex items-center gap-2 text-sm">
@@ -132,12 +101,13 @@
                     </tbody>
                 </table>
             </div>
+            </div>
         </div>
 
         <div class="space-y-5">
-            <div class="card">
+            <div class="card border-l-4" style="border-left-color: #0f766e; background: linear-gradient(180deg, #f3fbfa, white 4.5rem)">
                 <div class="mb-3 flex items-center justify-between">
-                    <h3 class="text-base font-semibold">Upcoming events</h3>
+                    <h3 class="flex items-center gap-2 text-base font-semibold"><span class="h-2.5 w-2.5 rounded-full" style="background: #0f766e"></span>Upcoming events</h3>
                     <a href="{{ route('notices') }}" class="link-primary text-sm hover:underline">All</a>
                 </div>
                 @forelse ($upcomingEvents as $event)
@@ -153,9 +123,9 @@
                 @endforelse
             </div>
 
-            <div class="card">
+            <div class="card border-l-4" style="border-left-color: #d97706; background: linear-gradient(180deg, #fff8ee, white 4.5rem)">
                 <div class="mb-3 flex items-center justify-between">
-                    <h3 class="text-base font-semibold">Latest notices</h3>
+                    <h3 class="flex items-center gap-2 text-base font-semibold"><span class="h-2.5 w-2.5 rounded-full" style="background: #d97706"></span>Latest notices</h3>
                     <a href="{{ route('notices') }}" class="link-primary text-sm hover:underline">All</a>
                 </div>
                 @forelse ($latestNotices as $notice)
