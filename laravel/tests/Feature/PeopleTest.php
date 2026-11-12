@@ -9,6 +9,7 @@ use App\Models\ClassSubject;
 use App\Models\Enrolment;
 use App\Models\EnrolmentSubject;
 use App\Models\Guardian;
+use App\Models\LegacyLink;
 use App\Models\Level;
 use App\Models\School;
 use App\Models\SchoolClass;
@@ -599,6 +600,68 @@ class PeopleTest extends TestCase
             $this->assertSame(Role::PARENT, $login->role);
             $this->assertTrue(Hash::check('parent-pass', $login->password));
             $this->assertFalse($login->must_change_password);
+        });
+    }
+
+    public function test_office_roles_can_delete_a_student_and_teachers_cannot(): void
+    {
+        [$student, $guardian, $forAdmin, $forPlatform] = $this->withTenant(function () {
+            $student = Student::create(['index_number' => 'K1', 'full_name' => 'Kay Delete', 'email' => 'kay.delete@example.com', 'status' => 'ACTIVE']);
+            User::factory()->create([
+                'school_id' => $this->school->id,
+                'email' => 'kay.delete@example.com',
+                'role' => Role::STUDENT,
+                'student_id' => $student->id,
+            ]);
+            Enrolment::create([
+                'student_id' => $student->id,
+                'class_id' => $this->class->id,
+                'session_id' => $this->class->session_id,
+                'status' => 'ACTIVE',
+            ]);
+            $guardian = Guardian::create(['full_name' => 'Mrs Delete', 'phone' => '0801']);
+            StudentGuardian::create(['student_id' => $student->id, 'guardian_id' => $guardian->id, 'relationship' => 'mother']);
+            LegacyLink::create(['entity' => 'student', 'legacy_key' => 'K1', 'record_id' => $student->id]);
+
+            $forAdmin = Student::create(['index_number' => 'K2', 'full_name' => 'Ken Delete', 'status' => 'ACTIVE']);
+            $forPlatform = Student::create(['index_number' => 'K3', 'full_name' => 'Kim Delete', 'status' => 'ACTIVE']);
+
+            return [$student, $guardian, $forAdmin, $forPlatform];
+        });
+
+        $this->as(Role::REGISTRAR)
+            ->get(self::HOST.'/people?student='.$student->id)
+            ->assertOk()
+            ->assertSee('aria-label="Delete student"', false)
+            ->assertSee('This cannot be undone', false);
+
+        $this->as(Role::TEACHER)
+            ->delete(self::HOST.'/people/students/'.$student->id)
+            ->assertForbidden();
+
+        $this->as(Role::REGISTRAR)
+            ->delete(self::HOST.'/people/students/'.$student->id)
+            ->assertRedirect(self::HOST.'/people?tab=students');
+
+        $this->withTenant(function () use ($student, $guardian) {
+            $this->assertNull(Student::find($student->id));
+            $this->assertSame(0, User::where('student_id', $student->id)->count());
+            $this->assertSame(0, Enrolment::where('student_id', $student->id)->count());
+            $this->assertSame(0, StudentGuardian::where('student_id', $student->id)->count());
+            $this->assertSame(0, LegacyLink::where('record_id', $student->id)->count());
+            $this->assertNotNull(Guardian::find($guardian->id));
+        });
+
+        $this->as(Role::ADMIN)
+            ->delete(self::HOST.'/people/students/'.$forAdmin->id)
+            ->assertRedirect();
+        $this->as(Role::PLATFORM_OWNER)
+            ->delete(self::HOST.'/people/students/'.$forPlatform->id)
+            ->assertRedirect();
+
+        $this->withTenant(function () use ($forAdmin, $forPlatform) {
+            $this->assertNull(Student::find($forAdmin->id));
+            $this->assertNull(Student::find($forPlatform->id));
         });
     }
 }

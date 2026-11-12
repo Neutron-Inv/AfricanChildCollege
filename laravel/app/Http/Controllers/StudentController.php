@@ -35,6 +35,19 @@ class StudentController extends Controller
             ->with('success', "Student {$saved->full_name} updated.");
     }
 
+    public function destroy(string $student): RedirectResponse
+    {
+        $record = $this->people->findStudent($student);
+        abort_unless($record, 404);
+
+        $name = $record->full_name;
+        $this->people->deleteStudent($record);
+
+        return redirect()
+            ->route('people', ['tab' => 'students'])
+            ->with('success', "Student {$name} deleted.");
+    }
+
     public function storeGuardian(StoreGuardianRequest $request, string $student): RedirectResponse
     {
         $record = $this->people->findStudent($student);

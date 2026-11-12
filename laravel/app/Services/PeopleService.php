@@ -8,10 +8,13 @@ use App\Models\ClassSubject;
 use App\Models\Enrolment;
 use App\Models\EnrolmentSubject;
 use App\Models\Guardian;
+use App\Models\LegacyLink;
 use App\Models\SchoolClass;
 use App\Models\Staff;
 use App\Models\Student;
 use App\Models\StudentGuardian;
+use App\Models\SubjectScore;
+use App\Models\TermReport;
 use App\Models\User;
 use App\Support\Tenant;
 use Illuminate\Database\Eloquent\Builder;
@@ -332,6 +335,39 @@ class PeopleService
 
             return $student;
         });
+    }
+
+    /**
+     * Remove a student and the records that belong to them: login, guardian links,
+     * enrolments, scores, attendance and invoices. Guardian profiles are kept.
+     */
+    public function deleteStudent(Student $student): void
+    {
+        $id = $student->getKey();
+        $name = $student->full_name;
+        $index = $student->index_number;
+
+        DB::transaction(function () use ($student, $id) {
+            $enrolmentIds = $student->enrolments()->pluck('id');
+            $scoreIds = $enrolmentIds->isEmpty()
+                ? collect()
+                : SubjectScore::query()->whereIn('enrolment_id', $enrolmentIds)->pluck('id');
+            $reportIds = $enrolmentIds->isEmpty()
+                ? collect()
+                : TermReport::query()->whereIn('enrolment_id', $enrolmentIds)->pluck('id');
+
+            LegacyLink::query()->where('entity', 'student')->where('record_id', $id)->delete();
+            $this->deleteLinks('enrolment', $enrolmentIds);
+            $this->deleteLinks('score', $scoreIds);
+            $this->deleteLinks('term_report', $reportIds);
+
+            $student->delete();
+        });
+
+        AuditService::record('delete', 'Student', $id, [
+            'full_name' => $name,
+            'index_number' => $index,
+        ]);
     }
 
     public function updateStudent(Student $student, array $data): Student
@@ -734,6 +770,15 @@ class PeopleService
         $digits[$index] = (string) ((int) $digits[$index] + 1);
 
         return $digits;
+    }
+
+    private function deleteLinks(string $entity, $ids): void
+    {
+        if ($ids->isEmpty()) {
+            return;
+        }
+
+        LegacyLink::query()->where('entity', $entity)->whereIn('record_id', $ids)->delete();
     }
 
     private function like(string $term): string

@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function () {
         Route::middleware('role:ADMIN,REGISTRAR,PLATFORM_OWNER')->group(function () {
             Route::post('/people/students', [StudentController::class, 'store'])->name('people.students.store');
             Route::put('/people/students/{student}', [StudentController::class, 'update'])->name('people.students.update');
+            Route::delete('/people/students/{student}', [StudentController::class, 'destroy'])->name('people.students.destroy');
             Route::post('/people/students/{student}/guardians', [StudentController::class, 'storeGuardian'])->name('people.students.guardians.store');
         });
 

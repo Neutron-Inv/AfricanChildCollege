@@ -76,12 +76,12 @@
             </div>
 
             @if ($plan)
-                <div class="flex items-center justify-between gap-3 px-4 pb-4">
-                    <p class="text-xs text-gray-500">
+                <div class="flex items-center justify-end gap-3 px-4 pb-4">
+                    {{-- <p class="text-xs text-gray-500">
                         Each class is offered the next level, keeping the same arm when that class exists. Change any row before promoting.
                         Graduated marks those students as left with a completed record, and they are not placed in {{ $to->name }}.
                         Compulsory subjects of each target class are attached, and electives are kept when the target class still offers them.
-                    </p>
+                    </p> --}}
                     <x-primary-button>Promote students</x-primary-button>
                 </div>
             @endif
