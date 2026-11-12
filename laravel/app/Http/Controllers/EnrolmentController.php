@@ -66,12 +66,15 @@ class EnrolmentController extends Controller
         $data = $request->validate([
             'student_id' => ['required', 'string'],
             'class_id' => ['required', 'string'],
+            'return_to' => ['nullable', 'in:people'],
         ]);
 
         return $this->attempt(
             fn () => $this->enrolment->place($data['student_id'], $data['class_id']),
             fn ($e) => "{$e->student->full_name} placed in {$e->class->display_name}.",
-            fn ($e) => redirect()->route('enrolment', $this->keep($request, ['session' => $e->session_id, 'enrolment' => $e->getKey()])),
+            fn ($e) => ($data['return_to'] ?? null) === 'people'
+                ? redirect()->route('people', ['tab' => 'students', 'student' => $e->student_id])
+                : redirect()->route('enrolment', $this->keep($request, ['session' => $e->session_id, 'enrolment' => $e->getKey()])),
         );
     }
 

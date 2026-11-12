@@ -106,6 +106,27 @@
         @endforeach
     </dl>
 
+    @if ($canEditStudents && $student->status === 'ACTIVE' && ($currentSession ?? null) && ! $student->enrolments->contains(fn ($enrolment) => $enrolment->status === 'ACTIVE') && ($classes ?? collect())->isNotEmpty())
+        <form method="POST" action="{{ route('enrolment.place') }}" class="space-y-3 border-t border-gray-100 pt-4">
+            @csrf
+            <input type="hidden" name="return_to" value="people">
+            <input type="hidden" name="student_id" value="{{ $student->id }}">
+            <h3 class="text-sm font-semibold">Place in a class</h3>
+            <p class="text-xs text-gray-500">This student has no class in {{ $currentSession->name }}. Compulsory subjects are added with the class.</p>
+            <div>
+                <x-input-label for="place_class" value="Class" />
+                <select id="place_class" name="class_id" class="form-input mt-1" required>
+                    <option value="">Choose a class</option>
+                    @foreach ($classes as $class)
+                        <option value="{{ $class->id }}" @selected(old('class_id') === $class->id)>{{ $class->display_name }}</option>
+                    @endforeach
+                </select>
+                <x-input-error :messages="$errors->get('class_id')" class="mt-1" />
+            </div>
+            <x-primary-button>Place in class</x-primary-button>
+        </form>
+    @endif
+
     <div class="border-t border-gray-100 pt-4">
         <h3 class="mb-2 text-sm font-semibold">Guardians</h3>
         <ul class="space-y-2 text-sm">

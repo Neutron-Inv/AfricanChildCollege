@@ -228,7 +228,8 @@ class PeopleTest extends TestCase
         $this->withTenant(function () {
             $a = Student::create(['index_number' => 'A1', 'full_name' => 'Alice Active', 'status' => 'ACTIVE', 'phone' => '0701']);
             Enrolment::create(['student_id' => $a->id, 'class_id' => $this->class->id, 'session_id' => $this->class->session_id, 'status' => 'ACTIVE']);
-            Student::create(['index_number' => 'B2', 'full_name' => 'Bob Active', 'status' => 'ACTIVE']);
+            $bob = Student::create(['index_number' => 'B2', 'full_name' => 'Bob Active', 'status' => 'ACTIVE']);
+            $this->bid = $bob->id;
             Student::create(['index_number' => 'C3', 'full_name' => 'Carl Left', 'status' => 'LEFT']);
             Student::create(['index_number' => 'D4', 'full_name' => 'Dora Graduated', 'status' => 'LEFT', 'departure' => 'GRADUATED']);
             $g = Guardian::create(['full_name' => 'Mrs Active', 'phone' => '0999']);
@@ -241,7 +242,37 @@ class PeopleTest extends TestCase
         $this->get(self::HOST.'/people?status=LEFT')->assertSee('Carl Left')->assertDontSee('Alice Active')->assertDontSee('Dora Graduated');
         $this->get(self::HOST.'/people?status=GRADUATED')->assertSee('Dora Graduated')->assertSee('Graduated')->assertDontSee('Carl Left')->assertDontSee('Alice Active');
         $this->get(self::HOST.'/people?class='.$this->class->id)->assertSee('Alice Active')->assertDontSee('Bob Active');
+        $this->get(self::HOST.'/people?class=none')->assertSee('Bob Active')->assertDontSee('Alice Active');
+        $this->get(self::HOST.'/people?class=none&student='.$this->bid)->assertSee('Place in a class')->assertSee('JSS1 A');
         $this->get(self::HOST.'/people?q=B2')->assertSee('Bob Active')->assertDontSee('Alice Active');
+
+        $this->withTenant(function () {
+            $level = Level::create(['name' => 'JSS2', 'sort_order' => 2]);
+            $class = SchoolClass::create([
+                'session_id' => $this->class->session_id,
+                'level_id' => $level->id,
+                'arm_id' => $this->class->arm_id,
+            ]);
+            $zoe = Student::create(['index_number' => 'Z1', 'full_name' => 'Zoe Later', 'status' => 'ACTIVE']);
+            Enrolment::create(['student_id' => $zoe->id, 'class_id' => $class->id, 'session_id' => $class->session_id, 'status' => 'ACTIVE']);
+
+        });
+        $this->get(self::HOST.'/people?sort=class')
+            ->assertOk()
+            ->assertSeeInOrder(['Alice Active', 'Zoe Later', 'Bob Active']);
+        $this->get(self::HOST.'/people?sort=class&dir=desc')
+            ->assertOk()
+            ->assertSeeInOrder(['Zoe Later', 'Alice Active', 'Bob Active']);
+        $this->post(self::HOST.'/enrolment/place', [
+            'student_id' => $this->bid,
+            'class_id' => $this->class->id,
+            'return_to' => 'people',
+        ])->assertRedirect(self::HOST.'/people?tab=students&student='.$this->bid);
+
+        $this->withTenant(fn () => $this->assertSame(
+            $this->class->id,
+            Enrolment::where('student_id', $this->bid)->where('status', 'ACTIVE')->value('class_id'),
+        ));
         $this->get(self::HOST.'/people?student='.$this->aid)->assertSee('Mrs Active')->assertSee('JSS1 A')->assertSee('0701');
     }
 

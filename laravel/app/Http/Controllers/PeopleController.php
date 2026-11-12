@@ -36,6 +36,8 @@ class PeopleController extends Controller
             'scope' => $scope,
             'q' => $q,
             'classId' => (string) $request->query('class', ''),
+            'sort' => $request->query('sort') === 'class' ? 'class' : 'name',
+            'dir' => $request->query('dir') === 'desc' ? 'desc' : 'asc',
             'canEditStudents' => $user->hasRole(Role::ADMIN, Role::REGISTRAR, Role::PLATFORM_OWNER),
             'canCreateStaff' => $user->hasRole(Role::ADMIN, Role::PLATFORM_OWNER),
             'canSetPasswords' => $user->hasRole(Role::ADMIN, Role::PLATFORM_OWNER),
@@ -46,7 +48,7 @@ class PeopleController extends Controller
 
         if ($tab === 'students') {
             $data['classes'] = $teacherView ? collect() : $this->people->classOptions();
-            $data['students'] = $this->people->students($status, $data['classId'] ?: null, $q, $teacherStaffId, $scope);
+            $data['students'] = $this->people->students($status, $data['classId'] !== '' ? $data['classId'] : null, $q, $teacherStaffId, $scope, $data['sort'], $data['dir']);
             $data['selected'] = ($id = $request->query('student')) ? $this->people->findStudent((string) $id, $teacherStaffId) : null;
         } elseif ($tab === 'staff') {
             $kind = in_array($request->query('kind'), ['teacher', 'other'], true) ? $request->query('kind') : 'all';

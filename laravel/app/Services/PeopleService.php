@@ -70,25 +70,45 @@ class PeopleService
     /**
      * @param  'class'|'all'|null  $teacherScope  class = form class only; all = form class plus students taking their subjects. Null is the office list.
      */
-    public function students(string $status, ?string $classId, ?string $search, ?string $teacherStaffId = null, ?string $teacherScope = null): LengthAwarePaginator
+    public function students(string $status, ?string $classId, ?string $search, ?string $teacherStaffId = null, ?string $teacherScope = null, string $sort = 'name', string $dir = 'asc'): LengthAwarePaginator
     {
         $status = in_array($status, self::STUDENT_STATUSES, true) ? $status : 'ACTIVE';
         $sessionId = $this->currentSession()?->getKey();
+        $dir = $dir === 'desc' ? 'desc' : 'asc';
 
         $query = Student::query()
-            ->with(['enrolments' => fn ($q) => $q->where('session_id', $sessionId)->with(['class.level', 'class.arm'])])
-            ->orderBy('full_name');
+            ->with(['enrolments' => fn ($q) => $q->where('session_id', $sessionId)->with(['class.level', 'class.arm'])]);
+
+        if ($sort === 'class' && $sessionId) {
+            $query->leftJoin('enrolments as sort_enrolments', function ($join) use ($sessionId) {
+                $join->on('sort_enrolments.student_id', '=', 'students.id')
+                    ->where('sort_enrolments.session_id', '=', $sessionId);
+            })
+                ->leftJoin('classes as sort_classes', 'sort_classes.id', '=', 'sort_enrolments.class_id')
+                ->leftJoin('levels as sort_levels', 'sort_levels.id', '=', 'sort_classes.level_id')
+                ->leftJoin('arms as sort_arms', 'sort_arms.id', '=', 'sort_classes.arm_id')
+                ->select('students.*')
+                ->orderByRaw('CASE WHEN sort_levels.id IS NULL THEN 1 ELSE 0 END')
+                ->orderBy('sort_levels.sort_order', $dir)
+                ->orderBy('sort_levels.name', $dir)
+                ->orderBy('sort_arms.name', $dir)
+                ->orderBy('students.full_name');
+        } else {
+            $query->orderBy('full_name', $dir);
+        }
 
         if ($teacherStaffId !== null || $status === 'ACTIVE') {
-            $query->where('status', 'ACTIVE');
+            $query->where('students.status', 'ACTIVE');
         } elseif ($status === 'GRADUATED') {
-            $query->where('departure', 'GRADUATED');
+            $query->where('students.departure', 'GRADUATED');
         } else {
-            $query->where('status', 'LEFT')->where(fn (Builder $q) => $q->whereNull('departure')->orWhere('departure', 'LEFT'));
+            $query->where('students.status', 'LEFT')->where(fn (Builder $q) => $q->whereNull('students.departure')->orWhere('students.departure', 'LEFT'));
         }
 
         if ($teacherStaffId !== null) {
             $this->applyTeacherScope($query, $teacherStaffId, $teacherScope === 'all' ? 'all' : 'class');
+        } elseif ($classId === 'none') {
+            $query->whereDoesntHave('enrolments', fn (Builder $q) => $q->where('session_id', $sessionId));
         } elseif ($classId) {
             $query->whereHas('enrolments', fn (Builder $q) => $q
                 ->where('session_id', $sessionId)

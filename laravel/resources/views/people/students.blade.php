@@ -7,6 +7,8 @@
         'scope' => $teacherView && $scope === 'all' ? 'all' : null,
         'class' => $teacherView ? null : $classId,
         'q' => $q,
+        'sort' => ($sort ?? 'name') === 'class' ? 'class' : null,
+        'dir' => ($sort ?? 'name') === 'class' && ($dir ?? 'asc') === 'desc' ? 'desc' : null,
         'page' => request('page'),
     ], $extra), fn ($v) => $v !== null && $v !== ''));
 
@@ -27,7 +29,7 @@
             @else
                 <div class="inline-flex rounded-md border border-gray-200 bg-white p-0.5 text-sm">
                     @foreach (['ACTIVE' => 'Active', 'LEFT' => 'Left', 'GRADUATED' => 'Graduated'] as $key => $label)
-                        <a href="{{ route('people', array_filter(['tab' => 'students', 'status' => $key === 'ACTIVE' ? null : $key, 'class' => $classId, 'q' => $q])) }}"
+                        <a href="{{ $link(['status' => $key === 'ACTIVE' ? null : $key, 'page' => null]) }}"
                            class="rounded px-3 py-1.5 font-medium {{ $status === $key ? 'text-white' : 'text-gray-600 hover:bg-gray-50' }}"
                            @if ($status === $key) style="background: var(--primary)" @endif>{{ $label }}</a>
                     @endforeach
@@ -52,6 +54,10 @@
             <input type="hidden" name="tab" value="students">
             @if (! $teacherView && $status !== 'ACTIVE') <input type="hidden" name="status" value="{{ $status }}"> @endif
             @if ($teacherView && $scope === 'all') <input type="hidden" name="scope" value="all"> @endif
+            @if (($sort ?? 'name') === 'class')
+                <input type="hidden" name="sort" value="class">
+                @if (($dir ?? 'asc') === 'desc') <input type="hidden" name="dir" value="desc"> @endif
+            @endif
             <div class="min-w-[12rem] flex-1">
                 <label for="q" class="text-xs text-gray-500">Search name or index</label>
                 <input id="q" type="search" name="q" value="{{ $q }}" class="form-input mt-1" placeholder="Search...">
@@ -61,6 +67,7 @@
                     <label for="class" class="text-xs text-gray-500">Class{{ $currentSession ? ' · '.$currentSession->name : '' }}</label>
                     <select id="class" name="class" class="form-input mt-1" onchange="this.form.submit()">
                         <option value="">All classes</option>
+                        <option value="none" @selected($classId === 'none')>No class</option>
                         @foreach ($classes as $class)
                             <option value="{{ $class->id }}" @selected($classId === $class->id)>{{ $class->display_name }}</option>
                         @endforeach
@@ -79,7 +86,15 @@
                     <tr>
                         <th class="px-4 py-2">Index</th>
                         <th class="px-4 py-2">Name</th>
-                        <th class="px-4 py-2">Class</th>
+                        <th class="px-4 py-2">
+                            @php $classSortDir = ($sort ?? 'name') === 'class' && ($dir ?? 'asc') === 'asc' ? 'desc' : 'asc'; @endphp
+                            <a href="{{ $link(['sort' => 'class', 'dir' => $classSortDir === 'desc' ? 'desc' : null, 'page' => null]) }}" class="hover:text-gray-800">
+                                Class
+                                @if (($sort ?? 'name') === 'class')
+                                    <span aria-hidden="true">{{ ($dir ?? 'asc') === 'desc' ? '↓' : '↑' }}</span>
+                                @endif
+                            </a>
+                        </th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
