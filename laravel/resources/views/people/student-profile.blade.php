@@ -71,7 +71,7 @@
                 </div>
                 <div>
                     <x-input-label for="e_birth" value="Birth date" />
-                    <x-text-input id="e_birth" type="date" name="birth_date" class="mt-1" :value="$sVal('birth_date', $student->birth_date?->format('Y-m-d'))" />
+                    <x-text-input id="e_birth" type="date" name="birth_date" class="mt-1" :value="$sVal('birth_date', $student->birth_date?->format('Y-m-d'))" :max="now()->toDateString()" />
                     <x-input-error :messages="$errors->getBag('student')->get('birth_date')" class="mt-1" />
                 </div>
             </div>

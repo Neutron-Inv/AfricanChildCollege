@@ -48,6 +48,8 @@ class PeopleController extends Controller
 
         if ($tab === 'students') {
             $data['classes'] = $teacherView ? collect() : $this->people->classOptions();
+            $data['nextIndex'] = $teacherView ? null : $this->people->nextIndexNumber();
+            $data['electivesByClass'] = $teacherView ? [] : $this->people->electivesByClass($data['classes']);
             $data['students'] = $this->people->students($status, $data['classId'] !== '' ? $data['classId'] : null, $q, $teacherStaffId, $scope, $data['sort'], $data['dir']);
             $data['selected'] = ($id = $request->query('student')) ? $this->people->findStudent((string) $id, $teacherStaffId) : null;
         } elseif ($tab === 'staff') {

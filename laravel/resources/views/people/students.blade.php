@@ -138,24 +138,63 @@
 </div>
 
 @if ($canEditStudents)
-    <div x-data="{ open: {{ $errors->any() && ! $errors->hasBag('guardian') && ! $errors->hasBag('student') ? 'true' : 'false' }} }"
+    @php
+        $sOld = fn ($f) => $errors->hasBag('guardian') ? null : old($f);
+        $createErrors = $errors->any() && ! $errors->hasBag('guardian') && ! $errors->hasBag('student');
+        $detailError = $createErrors && $errors->hasAny(['index_number', 'full_name', 'gender', 'email', 'password', 'address', 'phone', 'birth_date']);
+        $createStep = $detailError ? 1 : ($createErrors && $errors->has('class_id') ? 2 : ($createErrors ? 3 : 1));
+        $classNames = ($classes ?? collect())->mapWithKeys(fn ($class) => [$class->id => $class->display_name])->all();
+        $suggestedIndex = $sOld('index_number') ?: ($nextIndex ?? '1');
+    @endphp
+    <div x-data="{
+            open: {{ $createErrors ? 'true' : 'false' }},
+            step: {{ $createStep }},
+            classId: @js((string) $sOld('class_id')),
+            electives: @js($electivesByClass ?? []),
+            oldElectives: @js(array_values(array_filter((array) ($createErrors ? old('elective_ids', []) : [])))),
+            classNames: @js($classNames),
+            hasClasses: {{ ($classes ?? collect())->isNotEmpty() ? 'true' : 'false' }},
+            continueDetails() {
+                const fields = this.$refs.details.querySelectorAll('input, select, textarea');
+                for (const field of fields) {
+                    if (!field.checkValidity()) { field.reportValidity(); return; }
+                }
+                if (this.hasClasses) this.step = 2;
+            },
+            continueClass() {
+                if (!this.classId) { this.$refs.classSelect.reportValidity(); return; }
+                this.step = 3;
+            },
+            finish(event) {
+                if (!this.hasClasses) return;
+                if (this.step === 1) { event.preventDefault(); this.continueDetails(); }
+                else if (this.step === 2) { event.preventDefault(); this.continueClass(); }
+            }
+         }"
          @open-create-student.window="open = true"
          @keydown.escape.window="open = false"
          x-show="open" x-cloak
          class="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/40 p-4">
-        @php $sOld = fn ($f) => $errors->hasBag('guardian') ? null : old($f); @endphp
-        <form method="POST" action="{{ route('people.students.store') }}" @click.outside="open = false"
+        <form x-ref="form" method="POST" action="{{ route('people.students.store') }}" @click.outside="open = false" @submit="finish($event)"
               class="card my-8 w-full max-w-2xl space-y-4">
             @csrf
-            <div class="flex items-center justify-between">
-                <h2 class="text-base font-semibold">Add student</h2>
+            <div class="flex items-center justify-between gap-3">
+                <div>
+                    <h2 class="text-base font-semibold" x-text="step === 1 ? 'Add student' : (step === 2 ? 'Choose a class' : 'Electives')"></h2>
+                    <ol class="mt-1 flex gap-3 text-xs text-gray-400" x-show="hasClasses">
+                        <li :class="step === 1 ? 'font-semibold text-gray-800' : ''">1. Details</li>
+                        <li :class="step === 2 ? 'font-semibold text-gray-800' : ''">2. Class</li>
+                        <li :class="step === 3 ? 'font-semibold text-gray-800' : ''">3. Electives</li>
+                    </ol>
+                </div>
                 <button type="button" @click="open = false" class="text-xl leading-none text-gray-400 hover:text-gray-700" aria-label="Close">&times;</button>
             </div>
 
-            <div class="grid gap-4 sm:grid-cols-2">
+            <div x-show="step === 1" x-ref="details" class="grid gap-4 sm:grid-cols-2">
                 <div>
                     <x-input-label for="s_index" value="Index number" />
-                    <x-text-input id="s_index" name="index_number" class="mt-1" :value="$sOld('index_number')" required />
+                    <x-text-input id="s_index" name="index_number" class="mt-1" :value="$suggestedIndex" required />
+                    <p class="mt-1 text-xs text-gray-500">Next after the highest index in this school. Change it if this student already has one.</p>
                     <x-input-error :messages="$errors->get('index_number')" class="mt-1" />
                 </div>
                 <div>
@@ -175,7 +214,7 @@
                 </div>
                 <div>
                     <x-input-label for="s_birth" value="Birth date" />
-                    <x-text-input id="s_birth" type="date" name="birth_date" class="mt-1" :value="$sOld('birth_date')" />
+                    <x-text-input id="s_birth" type="date" name="birth_date" class="mt-1" :value="$sOld('birth_date')" :max="now()->toDateString()" />
                     <x-input-error :messages="$errors->get('birth_date')" class="mt-1" />
                 </div>
                 <div>
@@ -193,28 +232,49 @@
                     <x-text-input id="s_phone" name="phone" class="mt-1" :value="$sOld('phone')" />
                     <x-input-error :messages="$errors->get('phone')" class="mt-1" />
                 </div>
-                <div>
-                    <x-input-label for="s_class" value="Class (optional){{ $currentSession ? ' · '.$currentSession->name : '' }}" />
-                    <select id="s_class" name="class_id" class="form-input mt-1">
-                        <option value="">No placement</option>
-                        @foreach ($classes as $class)
-                            <option value="{{ $class->id }}" @selected($sOld('class_id') === $class->id)>{{ $class->display_name }}</option>
-                        @endforeach
-                    </select>
-                    <x-input-error :messages="$errors->get('class_id')" class="mt-1" />
-                </div>
                 <div class="sm:col-span-2">
                     <x-input-label for="s_address" value="Address" />
                     <x-text-input id="s_address" name="address" class="mt-1" :value="$sOld('address')" />
                     <x-input-error :messages="$errors->get('address')" class="mt-1" />
                 </div>
+                <p class="text-xs text-gray-500 sm:col-span-2">The student must change this password at first login.</p>
             </div>
 
-            <p class="text-xs text-gray-500">The student must change this password at first login.</p>
+            <div x-show="step === 2" x-cloak class="space-y-3">
+                <div>
+                    <x-input-label for="s_class" value="Class{{ $currentSession ? ' · '.$currentSession->name : '' }}" />
+                    <select id="s_class" name="class_id" x-ref="classSelect" x-model="classId" class="form-input mt-1" required>
+                        <option value="">Choose a class</option>
+                        @foreach ($classes as $class)
+                            <option value="{{ $class->id }}">{{ $class->display_name }}</option>
+                        @endforeach
+                    </select>
+                    <x-input-error :messages="$errors->get('class_id')" class="mt-1" />
+                </div>
+                <p class="text-xs text-gray-500">Compulsory subjects are added with the class. Electives are chosen next.</p>
+            </div>
+
+            <div x-show="step === 3" x-cloak class="space-y-3">
+                <p class="text-sm text-gray-600">Class: <span class="font-medium" x-text="classNames[classId] || ''"></span></p>
+                <div class="space-y-2">
+                    <template x-for="offer in (electives[classId] || [])" :key="offer.id">
+                        <label class="flex items-center gap-2 text-sm">
+                            <input type="checkbox" name="elective_ids[]" :value="offer.id" class="rounded border-gray-300" :checked="oldElectives.includes(offer.id)">
+                            <span x-text="offer.name"></span>
+                        </label>
+                    </template>
+                </div>
+                <p x-show="(electives[classId] || []).length === 0" class="text-sm text-gray-500">This class has no elective subjects. Compulsory subjects are still added.</p>
+                <p x-show="(electives[classId] || []).length > 0" class="text-xs text-gray-500">Leave these unticked to add compulsory subjects only.</p>
+                <x-input-error :messages="$errors->get('elective_ids')" class="mt-1" />
+            </div>
 
             <div class="flex justify-end gap-2">
-                <button type="button" class="btn-secondary" @click="open = false">Cancel</button>
-                <x-primary-button>Create student</x-primary-button>
+                <button type="button" class="btn-secondary" x-show="step === 1" @click="open = false">Cancel</button>
+                <button type="button" class="btn-secondary" x-show="step > 1" x-cloak @click="step = step - 1">Back</button>
+                <button type="button" class="btn-primary" x-show="step === 1 && hasClasses" @click="continueDetails()">Continue</button>
+                <button type="button" class="btn-primary" x-show="step === 2" x-cloak @click="continueClass()">Continue</button>
+                <button type="submit" class="btn-primary" x-show="!hasClasses || step === 3" x-cloak>Create student</button>
             </div>
         </form>
     </div>

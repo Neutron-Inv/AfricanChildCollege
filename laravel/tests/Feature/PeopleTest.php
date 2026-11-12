@@ -77,7 +77,7 @@ class PeopleTest extends TestCase
 
     public function test_people_page_renders_for_admin_and_nav_is_enabled(): void
     {
-        $this->as(Role::ADMIN)->get(self::HOST.'/people')->assertOk()->assertSee('Find a guardian')->assertSee('href="'.self::HOST.'/people"', false);
+        $this->as(Role::ADMIN)->get(self::HOST.'/people')->assertOk()->assertSee('Find a guardian')->assertSee('href="'.self::HOST.'/people"', false)->assertSee('max="'.now()->toDateString().'"', false);
         $this->as(Role::STUDENT)->get(self::HOST.'/people')->assertForbidden();
         $this->as(Role::TEACHER)->post(self::HOST.'/people/students', $this->studentPayload())->assertForbidden();
         $this->as(Role::REGISTRAR)->post(self::HOST.'/people/staff', [])->assertForbidden();
@@ -86,7 +86,7 @@ class PeopleTest extends TestCase
     public function test_a_five_character_password_is_accepted_for_a_new_student(): void
     {
         $this->as(Role::REGISTRAR)
-            ->post(self::HOST.'/people/students', $this->studentPayload(['password' => '12345', 'email' => 'short@example.com', 'index_number' => 'S045']))
+            ->post(self::HOST.'/people/students', $this->studentPayload(['password' => '12345', 'email' => 'short@example.com', 'index_number' => 'S045', 'class_id' => $this->class->id]))
             ->assertRedirect()
             ->assertSessionHasNoErrors();
 
@@ -118,13 +118,87 @@ class PeopleTest extends TestCase
         });
     }
 
-    public function test_create_student_without_class_and_duplicate_index_rejected(): void
+    public function test_create_student_requires_a_class_when_the_session_has_classes_and_rejects_a_duplicate_index(): void
     {
-        $this->as(Role::ADMIN)->post(self::HOST.'/people/students', $this->studentPayload())->assertRedirect();
-        $this->withTenant(fn () => $this->assertSame(0, Enrolment::count()));
+        $this->as(Role::ADMIN)
+            ->post(self::HOST.'/people/students', $this->studentPayload())
+            ->assertSessionHasErrors('class_id');
+        $this->withTenant(fn () => $this->assertSame(0, Student::count()));
 
-        $this->post(self::HOST.'/people/students', $this->studentPayload(['email' => 'other@example.com']))
-            ->assertSessionHasErrors('index_number');
+        $this->post(self::HOST.'/people/students', $this->studentPayload(['class_id' => $this->class->id]))
+            ->assertRedirect();
+        $this->post(self::HOST.'/people/students', $this->studentPayload([
+            'email' => 'other@example.com',
+            'class_id' => $this->class->id,
+        ]))->assertSessionHasErrors('index_number');
+    }
+
+    public function test_a_student_can_be_created_without_a_class_when_the_session_has_none(): void
+    {
+        $this->withTenant(function () {
+            AcademicSession::query()->update(['is_current' => false]);
+            AcademicSession::create(['name' => 'Empty', 'start_year' => 2027, 'end_year' => 2028, 'is_current' => true]);
+        });
+
+        $this->as(Role::ADMIN)
+            ->post(self::HOST.'/people/students', $this->studentPayload())
+            ->assertRedirect()
+            ->assertSessionHasNoErrors();
+        $this->withTenant(fn () => $this->assertSame(0, Enrolment::count()));
+    }
+
+    public function test_new_student_form_suggests_the_next_index_and_saves_the_chosen_elective(): void
+    {
+        $this->as(Role::REGISTRAR);
+        $this->get(self::HOST.'/people')->assertOk()->assertSee('value="1"', false)->assertSee('2. Class')->assertSee('3. Electives');
+
+        $this->withTenant(fn () => Student::create(['index_number' => 'JS005', 'full_name' => 'Prefixed', 'status' => 'ACTIVE']));
+        $this->get(self::HOST.'/people')->assertSee('value="JS006"', false);
+
+        $this->withTenant(fn () => Student::create(['index_number' => '009', 'full_name' => 'Padded', 'status' => 'ACTIVE']));
+        $this->get(self::HOST.'/people')->assertSee('value="010"', false);
+
+        $this->withTenant(fn () => Student::create(['index_number' => '10', 'full_name' => 'Plain', 'status' => 'ACTIVE']));
+        $this->get(self::HOST.'/people')->assertSee('value="11"', false)->assertDontSee('value="JS006"', false);
+
+        $electiveId = $this->withTenant(fn () => ClassSubject::where('kind', 'ELECTIVE')->where('class_id', $this->class->id)->value('id'));
+        $foreignId = $this->withTenant(function () {
+            $class = SchoolClass::create([
+                'session_id' => $this->class->session_id,
+                'level_id' => Level::create(['name' => 'JSS2'])->id,
+                'arm_id' => $this->class->arm_id,
+            ]);
+
+            return ClassSubject::create([
+                'class_id' => $class->id,
+                'subject_id' => Subject::create(['name' => 'Music'])->id,
+                'kind' => 'ELECTIVE',
+            ])->id;
+        });
+
+        $this->post(self::HOST.'/people/students', $this->studentPayload([
+            'index_number' => '11',
+            'email' => 'next@example.com',
+            'class_id' => $this->class->id,
+            'elective_ids' => [$foreignId],
+        ]))->assertSessionHasErrors('elective_ids');
+        $this->withTenant(fn () => $this->assertNull(Student::where('index_number', '11')->first()));
+
+        $this->post(self::HOST.'/people/students', $this->studentPayload([
+            'index_number' => '11',
+            'email' => 'next@example.com',
+            'class_id' => $this->class->id,
+            'elective_ids' => [$electiveId],
+        ]))->assertRedirect();
+
+        $this->withTenant(function () use ($electiveId) {
+            $student = Student::where('index_number', '11')->firstOrFail();
+            $enrolment = Enrolment::where('student_id', $student->id)->firstOrFail();
+            $this->assertEqualsCanonicalizing(
+                [$this->compulsory->id, $electiveId],
+                EnrolmentSubject::where('enrolment_id', $enrolment->id)->pluck('class_subject_id')->all(),
+            );
+        });
     }
 
     public function test_class_from_other_session_is_rejected(): void
@@ -243,7 +317,7 @@ class PeopleTest extends TestCase
         $this->get(self::HOST.'/people?status=GRADUATED')->assertSee('Dora Graduated')->assertSee('Graduated')->assertDontSee('Carl Left')->assertDontSee('Alice Active');
         $this->get(self::HOST.'/people?class='.$this->class->id)->assertSee('Alice Active')->assertDontSee('Bob Active');
         $this->get(self::HOST.'/people?class=none')->assertSee('Bob Active')->assertDontSee('Alice Active');
-        $this->get(self::HOST.'/people?class=none&student='.$this->bid)->assertSee('Place in a class')->assertSee('JSS1 A');
+        $this->get(self::HOST.'/people?class=none&student='.$this->bid)->assertSee('Place in a class')->assertSee('JSS1 A')->assertSee('id="e_birth"', false)->assertSee('max="'.now()->toDateString().'"', false);
         $this->get(self::HOST.'/people?q=B2')->assertSee('Bob Active')->assertDontSee('Alice Active');
 
         $this->withTenant(function () {

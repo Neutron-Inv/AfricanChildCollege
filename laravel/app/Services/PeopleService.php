@@ -65,6 +65,78 @@ class PeopleService
             ->values();
     }
 
+    /**
+     * One past the highest numeric index in this school.
+     * A trailing number is incremented and its prefix kept, so 2152 becomes 2153 and JS005 becomes JS006.
+     * The highest number wins when prefixes differ. Leading zeros are kept until the number needs another digit.
+     */
+    public function nextIndexNumber(): string
+    {
+        $bestValue = null;
+        $bestWidth = 0;
+        $bestPrefix = '';
+
+        foreach (Student::query()->pluck('index_number') as $index) {
+            if (! preg_match('/^(.*?)(\d+)$/u', (string) $index, $match)) {
+                continue;
+            }
+
+            $digits = $match[2];
+            $widerTie = $bestValue !== null && $this->sameNumber($digits, $bestValue) && strlen($digits) > $bestWidth;
+            if ($bestValue === null || $this->numberGreater($digits, $bestValue) || $widerTie) {
+                $bestValue = $digits;
+                $bestWidth = strlen($digits);
+                $bestPrefix = $match[1];
+            }
+        }
+
+        if ($bestValue === null) {
+            return '1';
+        }
+
+        $value = $bestValue;
+        do {
+            $value = $this->incrementDigits($value);
+            $candidate = $bestPrefix.str_pad($value, $bestWidth, '0', STR_PAD_LEFT);
+        } while (Student::query()->where('index_number', $candidate)->exists());
+
+        return $candidate;
+    }
+
+    /**
+     * Elective subjects offered by each class, keyed by class id.
+     *
+     * @param  Collection<int, SchoolClass>  $classes
+     * @return array<string, list<array{id: string, name: string}>>
+     */
+    public function electivesByClass(Collection $classes): array
+    {
+        if ($classes->isEmpty()) {
+            return [];
+        }
+
+        $grouped = ClassSubject::query()
+            ->whereIn('class_id', $classes->modelKeys())
+            ->where('kind', 'ELECTIVE')
+            ->with('subject')
+            ->get()
+            ->groupBy('class_id');
+
+        $offers = [];
+        foreach ($classes as $class) {
+            $offers[$class->getKey()] = $grouped->get($class->getKey(), collect())
+                ->sortBy(fn (ClassSubject $row) => strtolower($row->subject?->name ?? ''))
+                ->map(fn (ClassSubject $row) => [
+                    'id' => $row->getKey(),
+                    'name' => $row->subject?->name ?? 'Subject',
+                ])
+                ->values()
+                ->all();
+        }
+
+        return $offers;
+    }
+
     // ---------------------------------------------------------------- students
 
     /**
@@ -174,12 +246,14 @@ class PeopleService
     }
 
     /**
-     * Create a student, their STUDENT login and (optionally) a current-session placement.
+     * Create a student and their STUDENT login.
+     * A class is required when the current session has classes. Chosen electives are added with the compulsory subjects.
      */
     public function createStudent(array $data): Student
     {
         $classId = $data['class_id'] ?? null;
         $class = null;
+        $electiveIds = array_values(array_unique(array_filter($data['elective_ids'] ?? [])));
 
         if ($classId) {
             $session = $this->currentSession();
@@ -192,9 +266,35 @@ class PeopleService
                     'class_id' => 'Choose a class from the current session.',
                 ]);
             }
+        } elseif ($this->classOptions()->isNotEmpty()) {
+            throw ValidationException::withMessages([
+                'class_id' => 'Choose a class for this student.',
+            ]);
         }
 
-        return DB::transaction(function () use ($data, $class) {
+        $allowedElectives = [];
+        if ($electiveIds !== []) {
+            if (! $class) {
+                throw ValidationException::withMessages([
+                    'elective_ids' => 'Choose a class before electives.',
+                ]);
+            }
+
+            $allowedElectives = ClassSubject::query()
+                ->where('class_id', $class->getKey())
+                ->where('kind', 'ELECTIVE')
+                ->whereIn('id', $electiveIds)
+                ->pluck('id')
+                ->all();
+
+            if (count($allowedElectives) !== count($electiveIds)) {
+                throw ValidationException::withMessages([
+                    'elective_ids' => 'Choose elective subjects offered to this class.',
+                ]);
+            }
+        }
+
+        return DB::transaction(function () use ($data, $class, $allowedElectives) {
             $student = Student::create([
                 'index_number' => $data['index_number'],
                 'full_name' => $data['full_name'],
@@ -216,7 +316,13 @@ class PeopleService
             ]);
 
             if ($class) {
-                $this->place($student, $class);
+                $enrolment = $this->place($student, $class);
+                foreach ($allowedElectives as $classSubjectId) {
+                    EnrolmentSubject::create([
+                        'enrolment_id' => $enrolment->getKey(),
+                        'class_subject_id' => $classSubjectId,
+                    ]);
+                }
             }
 
             AuditService::record('student.created', 'Student', $student->getKey(), [
@@ -586,6 +692,48 @@ class PeopleService
         ])->save();
 
         AuditService::record('user.password_set', 'User', $user->getKey());
+    }
+
+    private function sameNumber(string $left, string $right): bool
+    {
+        return $this->normalDigits($left) === $this->normalDigits($right);
+    }
+
+    private function numberGreater(string $left, string $right): bool
+    {
+        $left = $this->normalDigits($left);
+        $right = $this->normalDigits($right);
+
+        return strlen($left) === strlen($right) ? $left > $right : strlen($left) > strlen($right);
+    }
+
+    private function normalDigits(string $digits): string
+    {
+        $digits = ltrim($digits, '0');
+
+        return $digits === '' ? '0' : $digits;
+    }
+
+    private function incrementDigits(string $digits): string
+    {
+        $digits = $this->normalDigits($digits);
+        if ($digits === '0') {
+            return '1';
+        }
+
+        $index = strlen($digits) - 1;
+        while ($index >= 0 && $digits[$index] === '9') {
+            $digits[$index] = '0';
+            $index--;
+        }
+
+        if ($index < 0) {
+            return '1'.$digits;
+        }
+
+        $digits[$index] = (string) ((int) $digits[$index] + 1);
+
+        return $digits;
     }
 
     private function like(string $term): string

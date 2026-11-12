@@ -28,6 +28,8 @@ class StoreStudentRequest extends FormRequest
             'phone' => ['nullable', 'string', 'max:50'],
             'birth_date' => ['nullable', 'date', 'before_or_equal:today'],
             'class_id' => ['nullable', 'string'],
+            'elective_ids' => ['nullable', 'array'],
+            'elective_ids.*' => ['string'],
         ];
     }
 }
