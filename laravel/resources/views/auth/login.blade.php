@@ -2,6 +2,13 @@
     $color = preg_match('/^#[0-9a-fA-F]{6}$/', (string) $school?->primary_color) ? $school->primary_color : '#a01010';
     $name = $school?->name ?? config('app.name');
     $mark = strtoupper(substr($name, 0, 1));
+    $school?->loadMissing('logo');
+    $logoFile = $school?->logo;
+    $schoolLogo = $logoFile && \Illuminate\Support\Facades\Storage::disk(\App\Services\SchoolSettingsService::DISK)->exists($logoFile->storage_key)
+        ? route('branding.logo', ['v' => $logoFile->getKey()])
+        : null;
+    $logoUrl = $school ? $schoolLogo : asset('img/logo.png');
+    $logoAlt = $school ? $school->name.' logo' : config('app.name').' logo';
     $headline = $school ? 'The school day, in one place.' : 'One desk for every school.';
     $points = $school
         ? ['Report cards and scores', 'Attendance and the timetable', 'Fees, lessons, and notices']
@@ -30,7 +37,11 @@
                 <div class="pointer-events-none absolute inset-0" style="background: linear-gradient(160deg, rgba(255,255,255,.14), transparent 42%, rgba(0,0,0,.28));"></div>
 
                 <div class="relative flex items-center gap-3">
-                    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 text-lg font-semibold ring-1 ring-white/25">{{ $mark }}</div>
+                    @if ($logoUrl)
+                        <img src="{{ $logoUrl }}" alt="{{ $logoAlt }}" class="h-16 w-16 shrink-0 rounded-xl bg-white object-contain p-1 shadow-sm">
+                    @else
+                        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 text-lg font-semibold ring-1 ring-white/25">{{ $mark }}</div>
+                    @endif
                     <div class="min-w-0 leading-tight">
                         <div class="truncate text-sm font-semibold">{{ $name }}</div>
                         @if ($school?->motto)

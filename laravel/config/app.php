@@ -17,6 +17,9 @@ return [
 
     // Shown as "Powered by …" in the page footer. Leave blank to hide it.
     'powered_by' => env('POWERED_BY', 'Whizdom Engineering'),
+    'powered_by_email' => env('POWERED_BY_EMAIL'),
+    'powered_by_phone' => env('POWERED_BY_PHONE'),
+    'powered_by_website' => env('POWERED_BY_WEBSITE'),
 
     /*
     |--------------------------------------------------------------------------

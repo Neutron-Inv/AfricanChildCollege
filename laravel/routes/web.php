@@ -32,6 +32,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect()->route(Auth::check() ? 'dashboard' : 'login'));
 
+// Public so a school login page can show the school's logo before anyone signs in.
+Route::get('/branding/logo', SchoolLogoController::class)->name('branding.logo');
+
 // Login / logout / password reset (registration is disabled).
 require __DIR__.'/auth.php';
 
@@ -50,7 +53,6 @@ Route::middleware('auth')->group(function () {
     // School shell: resolved school (host, or entered by the platform owner).
     Route::middleware(['school', 'password.changed'])->group(function () {
         Route::get('/dashboard', DashboardController::class)->name('dashboard');
-        Route::get('/branding/logo', SchoolLogoController::class)->name('branding.logo');
 
         // People: staff-side read access; students edited by ADMIN/REGISTRAR; staff created by ADMIN.
         Route::middleware('role:ADMIN,REGISTRAR,TEACHER,PLATFORM_OWNER')->get('/people', [PeopleController::class, 'index'])->name('people');

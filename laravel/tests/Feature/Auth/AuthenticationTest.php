@@ -31,8 +31,20 @@ class AuthenticationTest extends TestCase
 
     public function test_login_screens_render_for_school_and_platform(): void
     {
-        $this->get('http://secondary.localhost/login')->assertOk()->assertSee('Sign in to Secondary');
-        $this->get('http://localhost/login')->assertOk()->assertSee('Platform sign in');
+        $this->get('http://secondary.localhost/login')->assertOk()->assertSee('Sign in to Secondary')->assertDontSee('img/logo.png', false);
+        config([
+            'app.powered_by_email' => 'hello@wengineering.ng',
+            'app.powered_by_phone' => '+234 800 000 0000',
+            'app.powered_by_website' => 'https://www.wengineering.ng',
+        ]);
+        $this->get('http://localhost/login')
+            ->assertOk()
+            ->assertSee('Platform sign in')
+            ->assertSee('img/logo.png', false)
+            ->assertSee('Powered by')
+            ->assertSee('hello@wengineering.ng')
+            ->assertSee('www.wengineering.ng')
+            ->assertSee('tel:+2348000000000', false);
     }
 
     public function test_school_user_logs_in_on_own_school_and_lands_on_dashboard(): void
