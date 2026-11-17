@@ -1,0 +1,3101 @@
+{
+  "workbook_indexes": {
+    "2145": 1,
+    "2285": 1,
+    "2209": 1,
+    "2217": 1,
+    "2166": 1,
+    "2246": 1,
+    "2274": 1,
+    "2245": 1,
+    "2221": 1,
+    "2124": 1,
+    "2260": 1,
+    "2283": 2,
+    "2206": 1,
+    "2225": 1,
+    "2240": 1,
+    "2243": 1,
+    "2251": 1,
+    "2090": 1,
+    "2188": 1,
+    "2133": 1,
+    "2249": 1,
+    "2164": 1,
+    "2205": 1,
+    "2219": 1,
+    "2267": 1,
+    "2233": 1,
+    "2275": 1,
+    "2115": 1,
+    "1995": 1,
+    "2074": 1,
+    "2149": 1,
+    "2178": 1,
+    "2185": 1,
+    "2247": 1,
+    "2114": 1,
+    "2156": 1,
+    "2252": 1,
+    "2244": 1,
+    "2238": 1,
+    "2228": 1,
+    "2199": 1,
+    "2258": 1,
+    "2131": 1,
+    "2132": 1,
+    "1996": 1,
+    "2151": 1,
+    "2096": 1,
+    "2095": 1,
+    "2272": 1,
+    "2253": 1,
+    "2064": 1,
+    "2180": 1,
+    "2204": 1,
+    "2143": 1,
+    "2170": 1,
+    "2268": 1,
+    "2183": 1,
+    "1959": 1,
+    "1998": 1,
+    "2021": 1,
+    "2101": 1,
+    "2250": 1,
+    "2067": 1,
+    "2176": 1,
+    "2092": 1,
+    "2271": 1,
+    "2222": 1,
+    "2057": 1,
+    "2048": 1,
+    "2097": 1,
+    "2086": 1,
+    "2254": 1,
+    "2022": 1,
+    "2087": 1,
+    "2155": 1,
+    "2075": 1,
+    "2157": 1,
+    "2058": 1,
+    "2072": 1,
+    "2273": 1,
+    "2187": 1,
+    "2028": 1,
+    "2116": 1,
+    "2094": 1,
+    "2264": 1,
+    "2224": 1,
+    "2112": 1,
+    "2237": 1,
+    "2144": 1,
+    "1990": 1,
+    "2100": 1,
+    "2041": 1,
+    "2000": 1,
+    "2169": 1,
+    "1821": 1,
+    "2142": 1,
+    "2210": 1,
+    "2259": 1,
+    "2060": 1,
+    "2269": 1,
+    "2053": 1,
+    "2163": 1,
+    "2005": 1,
+    "1905": 1,
+    "2039": 1,
+    "2110": 1,
+    "2066": 1,
+    "2138": 1,
+    "2016": 1,
+    "2107": 1,
+    "2278": 1,
+    "2174": 1,
+    "2165": 1,
+    "2099": 1,
+    "2068": 1,
+    "2050": 1,
+    "2083": 1,
+    "2011": 1,
+    "2189": 1,
+    "2284": 1,
+    "2218": 1,
+    "2195": 1,
+    "2059": 1,
+    "1802": 1,
+    "2080": 1,
+    "1961": 1,
+    "1906": 1,
+    "1886": 1,
+    "1932": 1,
+    "1910": 1,
+    "1908": 1,
+    "1980": 1,
+    "2024": 1,
+    "1936": 1,
+    "2119": 1,
+    "2200": 1,
+    "1970": 1,
+    "2098": 1,
+    "1999": 1,
+    "2229": 1,
+    "1956": 1,
+    "1912": 1,
+    "1988": 1,
+    "1901": 1,
+    "1903": 1,
+    "1909": 1,
+    "1911": 1,
+    "2220": 1,
+    "2042": 1,
+    "1883": 1,
+    "1879": 1,
+    "1876": 1,
+    "2212": 1,
+    "2248": 1,
+    "1690": 1,
+    "2236": 1,
+    "2235": 1,
+    "2261": 1,
+    "1937": 1,
+    "1843": 1,
+    "1981": 1,
+    "2127": 1,
+    "1835": 1,
+    "2003": 1,
+    "1989": 1,
+    "1875": 1,
+    "1869": 1,
+    "2023": 1,
+    "2171": 1,
+    "2049": 1,
+    "1857": 1,
+    "2150": 1,
+    "1858": 1,
+    "1691": 1,
+    "2241": 1,
+    "2130": 1,
+    "1968": 1,
+    "2232": 1,
+    "2242": 1,
+    "1982": 1,
+    "1850": 1,
+    "1815": 1,
+    "1834": 1,
+    "1845": 1,
+    "1813": 1,
+    "2172": 1,
+    "2214": 1,
+    "1880": 1,
+    "1870": 1,
+    "1888": 1,
+    "2104": 1,
+    "2239": 1,
+    "2226": 1,
+    "1793": 1,
+    "1971": 1,
+    "2175": 1,
+    "2277": 1,
+    "1765": 1,
+    "2190": 1,
+    "1784": 1,
+    "1759": 1,
+    "2152": 1,
+    "2173": 1,
+    "2223": 1,
+    "1933": 1,
+    "1783": 1,
+    "1819": 1,
+    "2062": 1,
+    "2213": 1,
+    "1855": 1,
+    "1800": 1,
+    "1626": 1,
+    "2105": 1,
+    "2043": 1,
+    "2073": 1,
+    "2123": 1,
+    "2065": 1,
+    "2006": 1,
+    "2103": 1,
+    "1736": 1,
+    "1640": 1,
+    "1856": 1,
+    "1812": 1,
+    "2055": 1,
+    "2227": 1,
+    "2128": 1,
+    "2276": 1,
+    "1914": 1,
+    "2025": 1,
+    "2117": 1,
+    "1799": 1,
+    "2089": 1,
+    "1976": 1,
+    "2230": 1,
+    "1769": 1,
+    "1974": 1,
+    "1742": 1,
+    "1710": 1,
+    "2255": 1,
+    "2136": 1,
+    "2215": 1,
+    "1897": 1,
+    "2168": 1,
+    "1776": 1,
+    "2262": 1,
+    "1678": 1,
+    "1712": 1,
+    "1713": 1,
+    "1657": 1,
+    "1979": 1,
+    "1663": 1,
+    "1681": 1,
+    "1648": 1,
+    "1741": 1,
+    "1740": 1,
+    "1848": 1,
+    "1750": 1,
+    "2070": 1,
+    "2234": 1,
+    "2197": 1,
+    "1973": 1,
+    "2231": 1,
+    "1718": 1,
+    "1747": 1,
+    "1946": 1,
+    "1707": 1,
+    "2177": 1,
+    "2198": 1,
+    "2148": 1,
+    "1805": 1,
+    "1696": 1,
+    "2257": 1,
+    "1967": 1,
+    "2154": 1,
+    "2134": 1,
+    "2137": 1,
+    "1665": 1,
+    "2203": 1,
+    "1963": 1,
+    "2118": 1,
+    "2196": 1,
+    "1761": 1,
+    "1863": 1,
+    "1916": 1,
+    "2140": 1,
+    "2061": 1,
+    "2129": 1,
+    "2135": 1,
+    "2265": 1,
+    "2263": 1,
+    "2147": 1,
+    "1934": 1,
+    "2036": 1,
+    "1931": 1,
+    "1950": 1,
+    "2279": 1,
+    "1629": 1,
+    "1625": 1,
+    "1862": 1,
+    "1636": 1,
+    "2282": 1,
+    "2153": 1,
+    "1917": 1,
+    "2063": 1,
+    "1631": 1,
+    "2004": 1,
+    "1758": 1,
+    "1859": 1,
+    "2084": 1,
+    "1561": 1,
+    "2281": 1,
+    "1630": 1,
+    "1966": 1,
+    "2102": 1,
+    "1562": 1,
+    "1608": 1,
+    "2192": 1,
+    "2280": 1,
+    "1494": 1,
+    "1841": 1,
+    "1617": 1,
+    "1659": 1,
+    "2076": 1,
+    "1833": 1,
+    "1642": 1,
+    "1638": 1,
+    "1639": 1,
+    "2045": 1,
+    "2194": 1,
+    "2056": 1,
+    "1827": 1
+  },
+  "students": [
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2285",
+      "full_name": "Agubata Patrick Godwin",
+      "gender": "Male",
+      "birth_date": "2024-09-06",
+      "address": "Ijayapi Across",
+      "phone": "08136414211/08162903071",
+      "guardian": "Hycienth Agubata"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2217",
+      "full_name": "Braimoh Zion Ogo-Ose",
+      "gender": "Female",
+      "birth_date": "2024-06-23",
+      "address": "Beside Yoruba Mosque Shelter Farm",
+      "phone": "08037974503/8160779842 3",
+      "guardian": "John Braimoh"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2166",
+      "full_name": "Chris Kamsi Ihotu",
+      "gender": "Female",
+      "birth_date": "2024-11-12",
+      "address": "16, Zion Street , Cele Road Across",
+      "phone": "08065587434/ 09061827226",
+      "guardian": "Christian Omale"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2246",
+      "full_name": "Ezechi Tobechukwu",
+      "gender": "Male",
+      "birth_date": "2024-04-08",
+      "address": "Beside Catholic Church Byazhin",
+      "phone": "08166114175/08035026622",
+      "guardian": "Austin Ezechi"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2274",
+      "full_name": "Bashir Ameera",
+      "gender": "Female",
+      "birth_date": "2024-06-26",
+      "address": "Byhazhin Across",
+      "phone": "08136827884/07066043423",
+      "guardian": "Bashir Haliru"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2245",
+      "full_name": "Chinedu Deborah",
+      "gender": "Female",
+      "birth_date": "2025-04-20",
+      "address": "Chikakre by Living Faith",
+      "phone": "8105170241/09019555800",
+      "guardian": "David Chinedu"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2221",
+      "full_name": "John Walter Dathan",
+      "gender": "Male",
+      "birth_date": "2025-02-20",
+      "address": "Byhazhin Across",
+      "phone": "08062100976/08136350909",
+      "guardian": "John Yakubu"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2124",
+      "full_name": "Erumeseh Joan Ikpemi",
+      "gender": "Female",
+      "birth_date": "2024-08-10",
+      "address": "10, Kunle Close Opp Leisure Palace Shelter Farm",
+      "phone": "08030561005/ 08100369635",
+      "guardian": "David Jaiyeola"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2260",
+      "full_name": "Muhammed Imran Adoza",
+      "gender": "Male",
+      "birth_date": "2024-01-07",
+      "address": "16 , Hilltop Avenue, Chikakore Shelter Farm",
+      "phone": "08060860877/07037315928",
+      "guardian": "Muhammed Audu"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2283",
+      "full_name": "Nkanu Ibiang Efayeobase",
+      "gender": "Male",
+      "birth_date": "2024-05-09",
+      "address": "9,Olayinka Awo Street Across Kubwa",
+      "phone": "08065505508/07035296290",
+      "guardian": "Nkanu Ibiang"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2225",
+      "full_name": "Odoh Fortune",
+      "gender": "Male",
+      "birth_date": "2024-05-12",
+      "address": "5, River side Streeet Uncle Joe Byhazhin Kubwa",
+      "phone": "08023293666/ 090550256588",
+      "guardian": "Sunday Odoh"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2240",
+      "full_name": "Onweh Nora",
+      "gender": "Male",
+      "birth_date": "2024-12-28",
+      "address": "2/2 Queen Amina Street Kubwa",
+      "phone": "08064323840/08175432633",
+      "guardian": "Christian Oweh"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2243",
+      "full_name": "Ojuola Ayomide Gideon",
+      "gender": "Male",
+      "birth_date": "2024-09-15",
+      "address": "Chikakore , Redeemed Christian Church",
+      "phone": "08149439197/08165011753",
+      "guardian": "Ojuola Rotimi"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2251",
+      "full_name": "Samuel Eliezer Oluwasemilanu",
+      "gender": "Male",
+      "birth_date": "2024-05-28",
+      "address": "Uncle Joe ,Shelter Farm opp Yoruba Mosque",
+      "phone": "08079506370/08132672388",
+      "guardian": "Samuel Ogunrinde"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2090",
+      "full_name": "Samuel Davis Chimezirim Oluwatomi",
+      "gender": "Male",
+      "birth_date": "2024-08-29",
+      "address": "Opp MTN mast Byhazhin Across Kubwa",
+      "phone": "08065289732/ 08109451332",
+      "guardian": "Oyebode Samuel"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2188",
+      "full_name": "Thompson Olamide Purity",
+      "gender": "Female",
+      "birth_date": "2024-08-31",
+      "address": "Byhazhin Across",
+      "phone": "8162920747/09077250048",
+      "guardian": "Arogundade Thompson"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2133",
+      "full_name": "Yiye Michael Naseter",
+      "gender": "Male",
+      "birth_date": "2024-08-14",
+      "address": "13,Coker Street Byhazhin Kubwa",
+      "phone": "8100301057",
+      "guardian": "Yiye Mark"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2249",
+      "full_name": "Aaron Esther Chukwudallu",
+      "gender": "Male",
+      "birth_date": "2023-05-10",
+      "address": "Shelter Farm Kubwa",
+      "phone": "08035959733/07035266978",
+      "guardian": "Aaron Uchenna"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2219",
+      "full_name": "Akinbode Iretomiwa Elora",
+      "gender": "Female",
+      "birth_date": "2023-04-17",
+      "address": "Beside Uncle Joe Supermarket Kubwa",
+      "phone": "08147994371/08108842399",
+      "guardian": "Akinbode Olamide"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2267",
+      "full_name": "Audu Fortune",
+      "gender": "Male",
+      "birth_date": "2023-02-10",
+      "address": "Hill Top Opp CAC",
+      "phone": "",
+      "guardian": "Gershon"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2233",
+      "full_name": "Chinacherem Evidence Nnabueze",
+      "gender": "Male",
+      "birth_date": "2024-05-28",
+      "address": "Byhazhin Across",
+      "phone": "07039823491/09033002152",
+      "guardian": "Chinaecherem Ihegborah"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2275",
+      "full_name": "Charles Britney Ifeoma",
+      "gender": "Female",
+      "birth_date": "2024-01-01",
+      "address": "21,Anglican street",
+      "phone": "09131777526/07032389778",
+      "guardian": "Clement Charles"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2247",
+      "full_name": "Igwe Chidiebube Melvin",
+      "gender": "Male",
+      "birth_date": "2024-07-21",
+      "address": "Byhazhin Across Kubwa",
+      "phone": "08160768317/09166761597",
+      "guardian": "Igwe Promise"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2252",
+      "full_name": "John-Umoru Janice Eseosi",
+      "gender": "Female",
+      "birth_date": "2024-03-09",
+      "address": "8,Mike Duinoh Str Millionaire Qtr, Byazhin",
+      "phone": "08165575746/08024967987",
+      "guardian": "Umoru John"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2244",
+      "full_name": "Kolade Norah Oluwanifemi",
+      "gender": "Female",
+      "birth_date": "2024-02-25",
+      "address": "Best Famous Road Shelter Farm",
+      "phone": "08165957517/07030796459",
+      "guardian": "Kolade Olorunfemi"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2238",
+      "full_name": "Kingsley Imade Moses Ilerioluwa",
+      "gender": "Male",
+      "birth_date": null,
+      "address": "Chikakore Byhazhin Kubwa",
+      "phone": "08120203069/09133491465",
+      "guardian": "Joseph Kingsley"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2228",
+      "full_name": "Michael Jamin Imole",
+      "gender": "Male",
+      "birth_date": "2023-09-22",
+      "address": "Back of Uncle Joe Supermarket",
+      "phone": "08101278350/09157439417",
+      "guardian": "Michael Mose"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2258",
+      "full_name": "Obaze Amanosi E",
+      "gender": "Female",
+      "birth_date": "2024-05-20",
+      "address": "Shelter Farm Kubwa",
+      "phone": "08035976692/ 07062889303",
+      "guardian": "Obaze Philip Obi"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2272",
+      "full_name": "Otsoge Damian Ochai",
+      "gender": "Male",
+      "birth_date": "2024-02-04",
+      "address": "1,Oluyombo Crescent",
+      "phone": "07034611657/08103410578",
+      "guardian": "Wisdom Ochai"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2253",
+      "full_name": "Onyebuchi Mikayla Chiamanda",
+      "gender": "Female",
+      "birth_date": "2024-05-22",
+      "address": "Behind Madam Edo Restaurant",
+      "phone": "07033337610/09050539505",
+      "guardian": "Joseph Onyebuchi"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2268",
+      "full_name": "Usman Nabeel",
+      "gender": "Male",
+      "birth_date": "2024-11-02",
+      "address": "Bck of Catholic Church Byhazhin",
+      "phone": "7037456501",
+      "guardian": "Usman Oseni"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2250",
+      "full_name": "Dada Great Grace",
+      "gender": "Female",
+      "birth_date": "2022-11-09",
+      "address": "Yoruba Mosque Shelter Farm",
+      "phone": "09061797682/08109238213",
+      "guardian": "Friday Dada"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2271",
+      "full_name": "Joseph Daberechukwu Claire",
+      "gender": "Female",
+      "birth_date": "2023-10-16",
+      "address": "Flat 9 Uncle Joe Estate Byhazhin",
+      "phone": "08112986052/07036823742",
+      "guardian": "Joseph Uzochukwu"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2222",
+      "full_name": "Obasi Evan Ihe",
+      "gender": "Male",
+      "birth_date": "2023-05-16",
+      "address": "Hadiza Est Shelter Farm",
+      "phone": "08130421230/08131666536s",
+      "guardian": "Okuakaji Kingsley"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2254",
+      "full_name": "Titus Chiziterem Praise",
+      "gender": "Male",
+      "birth_date": "2023-06-20",
+      "address": "Hill Top By Uncle Joe",
+      "phone": "08162602622/",
+      "guardian": "Titus Titus"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2273",
+      "full_name": "Ochigbo Natasha Ihotu",
+      "gender": "Female",
+      "birth_date": "2023-12-20",
+      "address": "Byhazhin Across Cele Road By Zion Street",
+      "phone": "08034650526/08060356126",
+      "guardian": "John Ochigbo"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2264",
+      "full_name": "Saando Ethan",
+      "gender": "Male",
+      "birth_date": "2022-12-10",
+      "address": "Arab Kubwa",
+      "phone": "09166687116/08064751679",
+      "guardian": "Saando Uzer"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2224",
+      "full_name": "Simon Trust Wealth",
+      "gender": "Male",
+      "birth_date": "2020-06-27",
+      "address": "Byhazhin Across",
+      "phone": "08036981199/08148283027",
+      "guardian": "Adamu Simon"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2237",
+      "full_name": "Tanloju Emmanuella Ayomide",
+      "gender": "Female",
+      "birth_date": "2022-07-27",
+      "address": "Old Madam Gulder By Redeem Church Byhazhin",
+      "phone": "08136669124/08133716642",
+      "guardian": "Abraham Tnloju"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "2259",
+      "full_name": "Olomu Daniella Oghenetejiri",
+      "gender": "Female",
+      "birth_date": "2022-10-29",
+      "address": "Kubwa Abuja",
+      "phone": "7043349816",
+      "guardian": "olomu Daniel"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "2269",
+      "full_name": "Paul David Owochofie",
+      "gender": "Male",
+      "birth_date": "2021-11-17",
+      "address": "75, Zion Street Byhazhin Kubwa",
+      "phone": "08060868177/08166892206",
+      "guardian": "Paul Michael"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2278",
+      "full_name": "Lucky Ozavize Jewel",
+      "gender": "Female",
+      "birth_date": "2021-12-29",
+      "address": "Behind Chief Palace Byhazhin Across",
+      "phone": "09078258919/08052183070",
+      "guardian": "Joseph Lucky"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "2284",
+      "full_name": "Agwaonye Owen Chimbuifem",
+      "gender": "Male",
+      "birth_date": "2021-04-03",
+      "address": "Shelter Farm Kubwa Yoruba Mosque",
+      "phone": "08162687597/08149245198",
+      "guardian": "Titus Arua"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "2218",
+      "full_name": "Ajayiosho Iyanuoluwa Flourish",
+      "gender": "Male",
+      "birth_date": "2021-01-21",
+      "address": "56,Across Byhazhin Kubwa",
+      "phone": "09031347798/08038177098",
+      "guardian": "Ajayiosho Joshua"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "2229",
+      "full_name": "Godwin Marvellous",
+      "gender": "Female",
+      "birth_date": "2021-10-01",
+      "address": "Chikakore",
+      "phone": "9039601857",
+      "guardian": "Udo Godwin"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "2220",
+      "full_name": "Ogwuche Solomon Oche",
+      "gender": "Male",
+      "birth_date": "2021-06-30",
+      "address": "14b Richard Mba Street Behind St Monica",
+      "phone": "8062531373",
+      "guardian": "Ogwuche Israel"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2236",
+      "full_name": "Idam Divine C",
+      "gender": "Female",
+      "birth_date": "2019-01-11",
+      "address": "5,London Close Catholic Avenue",
+      "phone": "08021000519/08034271621",
+      "guardian": "EGWU Philip"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2235",
+      "full_name": "Idam Dominion C",
+      "gender": "Male",
+      "birth_date": "2019-01-11",
+      "address": "5,London Close Catholic Avenue",
+      "phone": "08021000519/08034271621",
+      "guardian": "EGWU Philip"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2261",
+      "full_name": "Ikechukwu Excel Chidera",
+      "gender": "Female",
+      "birth_date": "2020-06-10",
+      "address": "Chikakore",
+      "phone": "08147851035/09138472401",
+      "guardian": "Anthony Ikechukwu"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2283",
+      "full_name": "Titus Miracle Chioma",
+      "gender": "Female",
+      "birth_date": "2020-01-17",
+      "address": "12,Hill Top By Uncle Joe Supermarket",
+      "phone": "08162602622/",
+      "guardian": "TITUS Titus"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "2241",
+      "full_name": "Felix Favour Eshofume",
+      "gender": "Female",
+      "birth_date": "2021-08-10",
+      "address": "By Living Faith Church ByHAZHIN Kubwa",
+      "phone": "09065628458/",
+      "guardian": "Felix Samuel"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "2232",
+      "full_name": "Idam Destiny C",
+      "gender": "Male",
+      "birth_date": "2019-01-11",
+      "address": "5 London Close Catholic Avenue",
+      "phone": "0802100519/0803471621",
+      "guardian": "Egwu Philip Idam"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "2242",
+      "full_name": "Irenoa Okpeku Efe",
+      "gender": "Female",
+      "birth_date": "2019-02-27",
+      "address": "Chikakore Zone C",
+      "phone": "08060219988/08033738620",
+      "guardian": "Irenoa Patrick"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2239",
+      "full_name": "Ajogwu Ene Mirabel",
+      "gender": "Female",
+      "birth_date": "2018-08-12",
+      "address": "Byhazhin Across Kubwa Abuja",
+      "phone": "8137778050",
+      "guardian": "Augustine Ajogwu"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2226",
+      "full_name": "Anyanwu Emmanuel C",
+      "gender": "Female",
+      "birth_date": "2019-06-25",
+      "address": "18 CLEMENT King Close Azeyapi",
+      "phone": "8030997966",
+      "guardian": "Anyanwu Nduuisi"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2277",
+      "full_name": "Francis-Obozekhai Diane Oshone",
+      "gender": "Female",
+      "birth_date": "2018-10-25",
+      "address": "Chikakore Adjacent Deeper Life Kubwa",
+      "phone": "08032939882/08032689846",
+      "guardian": "Obezekhai Francis"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2223",
+      "full_name": "Obasi Ethan Aku",
+      "gender": "Male",
+      "birth_date": "2020-08-18",
+      "address": "Hadiza Estate Shelter Farm Kubwa",
+      "phone": "081304221230/08131666536",
+      "guardian": "Kingsley Okuakaji"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2227",
+      "full_name": "Michael Khalid Olalekan",
+      "gender": "Male",
+      "birth_date": "2018-08-19",
+      "address": "Chita's Farm Back of Uncle Joe Supermarket",
+      "phone": "08101278350/09157439417",
+      "guardian": "Michael Moses"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2276",
+      "full_name": "Nwobodo Praise",
+      "gender": "Female",
+      "birth_date": "2026-10-25",
+      "address": "Chikakore Block Industry Kubwa",
+      "phone": "07039666692/08108722823",
+      "guardian": "Nwobodo Okwi"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2230",
+      "full_name": "Uzochukwu Princess Ifunanya",
+      "gender": "Female",
+      "birth_date": "2019-02-23",
+      "address": "Byhazhin Across",
+      "phone": "08038051721/08068092664",
+      "guardian": "Joshua Ojukwu"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "2255",
+      "full_name": "Etadaferua Samuel Efetobore",
+      "gender": "Male",
+      "birth_date": "2017-10-29",
+      "address": "Across Kubwa",
+      "phone": "07036452003/07043349816",
+      "guardian": "Etadaferua Ovie"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "2262",
+      "full_name": "Martins Faithful O",
+      "gender": "Female",
+      "birth_date": "2017-01-26",
+      "address": "Arab Road Kubwa",
+      "phone": "08147851035/09138472401",
+      "guardian": "Ajida Martins"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "2234",
+      "full_name": "Anyanwu Divine Ifeanyichukwu",
+      "gender": "Male",
+      "birth_date": "2019-02-19",
+      "address": "34. Uncle Joe Avenue Kubwa",
+      "phone": "08069569085/08055152250",
+      "guardian": "Anyanwu Kenneth"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "2231",
+      "full_name": "Emenike Ekeneolisa Benedict",
+      "gender": "Male",
+      "birth_date": "2017-11-10",
+      "address": "10,Ibiyemi Adenle Close Chikakore",
+      "phone": "08032157333/08030611777",
+      "guardian": "Emenike Obinna"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "2257",
+      "full_name": "Okoro Faustina Mmesoma",
+      "gender": "Female",
+      "birth_date": "2017-07-13",
+      "address": "Bck Of Primary School",
+      "phone": "07034863643/08038258239",
+      "guardian": "Okoro Ifeanyichukwu"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2263",
+      "full_name": "Akhabue Jahdiel",
+      "gender": "Male",
+      "birth_date": "2017-06-30",
+      "address": "Peace Layout Area Chikakore",
+      "phone": "9059475999",
+      "guardian": "Akhabue Emmanuel"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2279",
+      "full_name": "Essien Valerie Aye",
+      "gender": "Female",
+      "birth_date": "2017-09-02",
+      "address": "Ibiyemi Adenle Close Chikakore",
+      "phone": "08034513199/08058410311",
+      "guardian": "Essien Aye"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2282",
+      "full_name": "Monday Amos",
+      "gender": "Male",
+      "birth_date": "2014-12-19",
+      "address": "Back of Lea Pry School Byhazhin",
+      "phone": "08106673689/07089938724",
+      "guardian": "Shemulo Monday"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "2281",
+      "full_name": "Balogun Mariam",
+      "gender": "Female",
+      "birth_date": "2015-10-05",
+      "address": "Byhazhin Kubwa Abuja",
+      "phone": "0807070035125/",
+      "guardian": "Bashiru Balogun"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "2280",
+      "full_name": "Joseph Joanna",
+      "gender": "Female",
+      "birth_date": "2015-07-19",
+      "address": "Bck of LEA Pry Sch Byhazhin",
+      "phone": "08106673689/09035426094",
+      "guardian": "Yahaya Joseph"
+    }
+  ],
+  "register": [
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2145",
+      "full_name": "Abu Marvelous"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2285",
+      "full_name": "Agubata Patrick Godwin"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2209",
+      "full_name": "Ajose Success E"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2217",
+      "full_name": "Braimoh Zion Ogo-Ose"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2166",
+      "full_name": "Chris Kamsi Ihotu"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2246",
+      "full_name": "Ezechi Tobechukwu"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2274",
+      "full_name": "Bashir Ameera"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2245",
+      "full_name": "Chinedu Deborah"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2221",
+      "full_name": "John Walter Dathan"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2124",
+      "full_name": "Erumeseh Joan Ikpemi"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2260",
+      "full_name": "Muhammed Imran Adoza"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2283",
+      "full_name": "Nkanu Ibiang Efayeobase"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2206",
+      "full_name": "Obidiegwu Emmanuel Chibueze"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2225",
+      "full_name": "Odoh Fortune"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2240",
+      "full_name": "Onweh Nora"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2243",
+      "full_name": "Ojuola Ayomide Gideon"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2251",
+      "full_name": "Samuel Eliezer Oluwasemilanu"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2090",
+      "full_name": "Samuel Davis Chimezirim Oluwatomi"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2188",
+      "full_name": "Thompson Olamide Purity"
+    },
+    {
+      "level": "Reception",
+      "arm": "",
+      "index": "2133",
+      "full_name": "Yiye Michael Naseter"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2249",
+      "full_name": "Aaron Esther Chukwudallu"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2164",
+      "full_name": "Adeosun Bernice Eniobanke"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2205",
+      "full_name": "Adebowale Ivani Adefolarin"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2219",
+      "full_name": "Akinbode Iretomiwa Elora"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2267",
+      "full_name": "Audu Fortune"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2233",
+      "full_name": "Chinacherem Evidence Nnabueze"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2275",
+      "full_name": "Charles Britney Ifeoma"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2115",
+      "full_name": "Chinedu David Ugochukwu"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "1995",
+      "full_name": "Chris king Oche"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2074",
+      "full_name": "Dennis Ekenedirichukwu Emmanuel"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2149",
+      "full_name": "Ezema Chidiomimi Victor"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2178",
+      "full_name": "Ferdinard Brian"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2185",
+      "full_name": "Ibega Nneoma"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2247",
+      "full_name": "Igwe Chidiebube Melvin"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2114",
+      "full_name": "Isaac Michelle Ehikowoicho"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2156",
+      "full_name": "Irevhoje Ofure Tehilla"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2252",
+      "full_name": "John-Umoru Janice Eseosi"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2244",
+      "full_name": "Kolade Norah Oluwanifemi"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2238",
+      "full_name": "Kingsley Imade Moses Ilerioluwa"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2228",
+      "full_name": "Michael Jamin Imole"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2199",
+      "full_name": "Monday Mgbashoga Myron"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2258",
+      "full_name": "Obaze Amanosi E"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2131",
+      "full_name": "Olaore Afnan Akorede"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2132",
+      "full_name": "Olaniyi David Opeyemi"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "1996",
+      "full_name": "Orjir Destiny Terdoo"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2151",
+      "full_name": "Ohiemu Patrick Eneufedejo"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2096",
+      "full_name": "Oghenerabome B Orezimena"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2095",
+      "full_name": "Oghenerabome M EvaEvi"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2272",
+      "full_name": "Otsoge Damian Ochai"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2253",
+      "full_name": "Onyebuchi Mikayla Chiamanda"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2064",
+      "full_name": "Ramnan Miracle Nanbyen"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2180",
+      "full_name": "Sylvanus Gabriella Efua"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2204",
+      "full_name": "Thank God Kamsiyochukwu Priestly"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2143",
+      "full_name": "Thompson Oghenemaro Destiny"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2170",
+      "full_name": "Ubara Imani"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2268",
+      "full_name": "Usman Nabeel"
+    },
+    {
+      "level": "Pre-Nursery",
+      "arm": "Joy",
+      "index": "2183",
+      "full_name": "Victor Mylah"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "1959",
+      "full_name": "Akubo Divine Enechojo"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "1998",
+      "full_name": "Aluh MaryJane"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2021",
+      "full_name": "Aniefiok Tehilla Friday"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2101",
+      "full_name": "Chukwudi Jason Chukwuemeka"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2250",
+      "full_name": "Dada Great Grace"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2067",
+      "full_name": "Duoih Pascal"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2176",
+      "full_name": "Emmanuel Nma-sinachi Sophia"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2092",
+      "full_name": "Habila Grace"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2271",
+      "full_name": "Joseph Daberechukwu Claire"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2222",
+      "full_name": "Obasi Evan Ihe"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2057",
+      "full_name": "Ogbuagu Clara Afomachukwu"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2048",
+      "full_name": "Onuchukwu Assurance Ginikachukwu"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2097",
+      "full_name": "Omojuola Adesewa Princess"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2086",
+      "full_name": "Shakiru Fawwad"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2254",
+      "full_name": "Titus Chiziterem Praise"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Joy",
+      "index": "2022",
+      "full_name": "Uzorka Unbeatable Uche"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2087",
+      "full_name": "Adekanye Boluwatife Zion"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2155",
+      "full_name": "Agboola Asiat Ashabi"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2075",
+      "full_name": "Amani Treasure Enewa"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2157",
+      "full_name": "Egbune Audrey"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2058",
+      "full_name": "Godwin Ofugocho Beniah"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2072",
+      "full_name": "Godwin Arichiobong Praise"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2273",
+      "full_name": "Ochigbo Natasha Ihotu"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2187",
+      "full_name": "Odukoya Solomon"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2028",
+      "full_name": "Ojilere Chikanyima Stephanie"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2116",
+      "full_name": "Ohajuru- KOAC Wealth Kesandu"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2094",
+      "full_name": "Omerigwe Otse Miracle"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2264",
+      "full_name": "Saando Ethan"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2224",
+      "full_name": "Simon Trust Wealth"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2112",
+      "full_name": "Sylvester Purity"
+    },
+    {
+      "level": "Nursery 1",
+      "arm": "Peace",
+      "index": "2237",
+      "full_name": "Tanloju Emmanuella Ayomide"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "2144",
+      "full_name": "Adebayo Toluwanimi David"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "1990",
+      "full_name": "Chinedu Sachiel Kosisochukwu"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "2100",
+      "full_name": "Emmanuel Ryan Ogaga Oghene"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "2041",
+      "full_name": "Gabriel Elgahikowiocho Karis"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "2000",
+      "full_name": "Itodo Dominion Ondugbe"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "2169",
+      "full_name": "John Divine Samuel"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "1821",
+      "full_name": "Joshua Special Adanna"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "2142",
+      "full_name": "Nanaghan Jesse"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "2210",
+      "full_name": "Nwafor Divine"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "2259",
+      "full_name": "Olomu Daniella Oghenetejiri"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "2060",
+      "full_name": "Oyetokun Praise Damola"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "2269",
+      "full_name": "Paul David Owochofie"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Joy",
+      "index": "2053",
+      "full_name": "Wilfred Bethel Oyo"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2163",
+      "full_name": "Abella David"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2005",
+      "full_name": "Alah Gertrude"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "1905",
+      "full_name": "Alex Grace"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2039",
+      "full_name": "Daniel Roxxane"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2110",
+      "full_name": "Edom Emmanuel Out"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2066",
+      "full_name": "Ifenna Gabriella Kamsiyochukwu"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2138",
+      "full_name": "Kamike Nelly Olaedo"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2016",
+      "full_name": "Kenechi Favour Nmesoma"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2107",
+      "full_name": "Lamidi Oluwatobi Abdul-muqqadim"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2278",
+      "full_name": "Lucky Ozavize Jewel"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2174",
+      "full_name": "Nzei James Chukwuyenum"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2165",
+      "full_name": "Obasi Bryan C"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2099",
+      "full_name": "Oluwabukunmi Emmanuel Olamide"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2068",
+      "full_name": "Oluwatobi Royalty"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2050",
+      "full_name": "Onweh Bamiyo Emmanuel"
+    },
+    {
+      "level": "Nursery 2",
+      "arm": "Peace",
+      "index": "2083",
+      "full_name": "Yusuf Ijuptul"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "2011",
+      "full_name": "Aaron Chidiebube Samuel"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "2189",
+      "full_name": "Afolabi Tinuola Laura"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "2284",
+      "full_name": "Agwaonye Owen Chimbuifem"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "2218",
+      "full_name": "Ajayiosho Iyanuoluwa Flourish"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "2195",
+      "full_name": "Ayodele Blessing Ebunoluwa"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "2059",
+      "full_name": "Emmanuel Gad Oghale"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "1802",
+      "full_name": "Erumeseh T. Anastasia"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "2080",
+      "full_name": "Isaac Duriel Egahikowoicho"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "1961",
+      "full_name": "Kolade Eniola Adriel"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "1906",
+      "full_name": "Mohammed Ameerah"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "1886",
+      "full_name": "Nwankwo Ebube Divine"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "1932",
+      "full_name": "Obidiegwu Samuel Uchenna"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "1910",
+      "full_name": "Oduenyi Chikamso Daniella"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "1908",
+      "full_name": "Odensanya-Nweze Daniel Chinenye"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "1980",
+      "full_name": "Ogbu Chimgozirim Prince"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Joy",
+      "index": "2024",
+      "full_name": "Sunday Flourish Chioma"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "1936",
+      "full_name": "Adewale Ubaldullah Murewa"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "2119",
+      "full_name": "Audu Gershon kyenpang Confidence"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "2200",
+      "full_name": "Daniel Zion"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "1970",
+      "full_name": "Elisha Tamarakuro Emmanuel"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "2098",
+      "full_name": "Ezekiel Praise Oluwapamilerin"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "1999",
+      "full_name": "Ferdinard Excel"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "2229",
+      "full_name": "Godwin Marvellous"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "1956",
+      "full_name": "Ibega Chiziterem Embrace-God"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "1912",
+      "full_name": "Ithenumah Christopher Ikaena"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "1988",
+      "full_name": "Igwe Ryan Chikamso"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "1901",
+      "full_name": "John-Umoru Janelle Ochuwa"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "1903",
+      "full_name": "Nweke Nmesomachukwu Maria Dorathy"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "1909",
+      "full_name": "Odensanya-Nweze David Nonso"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "1911",
+      "full_name": "Oduenyi Chikamso Daniel"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "2220",
+      "full_name": "Ogwuche Solomon Oche"
+    },
+    {
+      "level": "Primary 1",
+      "arm": "Peace",
+      "index": "2042",
+      "full_name": "Sylvanus Gabriel Eshiofe"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "1883",
+      "full_name": "Abdulfattah Abdulhameed Akolade"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "1879",
+      "full_name": "Adewole Daniel Oreoluwa"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "1876",
+      "full_name": "Babalola Isaac Olamilekan"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2212",
+      "full_name": "Butter Daniel"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2248",
+      "full_name": "Daniel Annabella Ene"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "1690",
+      "full_name": "Emeka Wisdom Kosisochukwu"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2236",
+      "full_name": "Idam Divine C"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2235",
+      "full_name": "Idam Dominion C"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2261",
+      "full_name": "Ikechukwu Excel Chidera"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "1937",
+      "full_name": "Johnson Joshua Oghena-ogie"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "1843",
+      "full_name": "Madu Zinachi Daniella"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "1981",
+      "full_name": "Ngene Kamsiyochukwu Michael"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2127",
+      "full_name": "Olatunji Mary Titilopemi"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "1835",
+      "full_name": "Ojeiwa Testimony Eghogho"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2003",
+      "full_name": "Omofoyewa Jamaldeen Olajuwon"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "1989",
+      "full_name": "Rameen Shakiru"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "1875",
+      "full_name": "Romeo Dominion"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "1869",
+      "full_name": "Shedrack Prosper Chisindi"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2023",
+      "full_name": "Sunday Wealth Ifeanyichukwu"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2283",
+      "full_name": "Titus Miracle Chioma"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Joy",
+      "index": "2171",
+      "full_name": "Uche Chizurum Fred"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "2049",
+      "full_name": "Areghan Osesemen Samuel"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "1857",
+      "full_name": "Chukwudi Enya Munachimso"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "2150",
+      "full_name": "Chibuke Emmanuel"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "1858",
+      "full_name": "Divine Onmanya Otsoge"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "1691",
+      "full_name": "Dada Ayotomiwa Isreal"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "2241",
+      "full_name": "Felix Favour Eshofume"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "2130",
+      "full_name": "Godwin Precious"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "1968",
+      "full_name": "Idako Wealth"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "2232",
+      "full_name": "Idam Destiny C"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "2242",
+      "full_name": "Irenoa Okpeku Efe"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "1982",
+      "full_name": "John Ethan Ehiametable"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "1850",
+      "full_name": "Nwobodo Deborah Simdi"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "1815",
+      "full_name": "Ogbuagu Chinora Nina"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "1834",
+      "full_name": "Ojeiwa Amen Eronmon"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "1845",
+      "full_name": "Oluwabukunmi Nathaniel Olumide"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "1813",
+      "full_name": "Oluwafemi Oluwadarasimi DivineFavour"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "2172",
+      "full_name": "Olukayode Oiza Jane"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "2214",
+      "full_name": "Oko Norah Nnenna"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "1880",
+      "full_name": "Onyebuchi Misheal Oluebubechukwu"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "1870",
+      "full_name": "Shedrack Prosper Chimdiebube"
+    },
+    {
+      "level": "Primary 2",
+      "arm": "Peace",
+      "index": "1888",
+      "full_name": "Ugwu Melvin Ugochukwu"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2104",
+      "full_name": "Abraham Delight Ejuojo"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2239",
+      "full_name": "Ajogwu Ene Mirabel"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2226",
+      "full_name": "Anyanwu Emmanuel C"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "1793",
+      "full_name": "Austine Tobenna Michael"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "1971",
+      "full_name": "Emmanuel Dominion Oyintare"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2175",
+      "full_name": "Emmanuel King-Isaac Chibuzor"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2277",
+      "full_name": "Francis-Obozekhai Diane Oshone"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "1765",
+      "full_name": "Ithenumah Michael Oghenakhogie"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2190",
+      "full_name": "Johnson Samuel O"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "1784",
+      "full_name": "Mba Joshua"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "1759",
+      "full_name": "Monday Mgbashozema Moriah"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2152",
+      "full_name": "Muhammed Kamal"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2173",
+      "full_name": "Nzei Marvelous chikadibe"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2223",
+      "full_name": "Obasi Ethan Aku"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "1933",
+      "full_name": "Obidiegwu Phoebe Mmasinachi"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "1783",
+      "full_name": "Odukoya Marvellous David"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "1819",
+      "full_name": "Ogbuagu Joy Abbot"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2062",
+      "full_name": "Oloche Michelle Oyalekondu"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2213",
+      "full_name": "Olawale A Iremide"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "1855",
+      "full_name": "Olorunmotito Zane Kayode"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "1800",
+      "full_name": "Omerigwe Divine-Favour Agbenu"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "1626",
+      "full_name": "Oyetunji Janet Oluwaseun"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2105",
+      "full_name": "Onyema Dominion Akachukwu"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Joy",
+      "index": "2043",
+      "full_name": "Sylvanus Great Oshiole"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2073",
+      "full_name": "Abdullahi Yusuf Ojodale"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2123",
+      "full_name": "Adamu Liam Bobai"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2065",
+      "full_name": "Afon Dorcas Oluwafikayomi"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2006",
+      "full_name": "Alah Cyprian Lipeunim"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2103",
+      "full_name": "Chidi Joshua Ifechukwu N"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "1736",
+      "full_name": "Chukwuma Bethel Kaima"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "1640",
+      "full_name": "Eke Francis Chinaemerem"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "1856",
+      "full_name": "Ezemaduako Amaris Chisom"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "1812",
+      "full_name": "Ibega Ebubechukwu Testimony"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2055",
+      "full_name": "Ibrahim Abdulshaqur Ahmed"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2227",
+      "full_name": "Michael Khalid Olalekan"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2128",
+      "full_name": "Muoneke Ifechukwu Jane"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2276",
+      "full_name": "Nwobodo Praise"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "1914",
+      "full_name": "Ohiemu Laura Alifia"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2025",
+      "full_name": "Oluwatobi Great-Perez Adeoluwa"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2117",
+      "full_name": "Omokaro Joshua Oghosanadiakhe"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "1799",
+      "full_name": "Patrick Chikima"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2089",
+      "full_name": "Tambari Laurel Baridana"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "1976",
+      "full_name": "Rapheal Somtochukwu Ifenna"
+    },
+    {
+      "level": "Primary 3",
+      "arm": "Peace",
+      "index": "2230",
+      "full_name": "Uzochukwu Princess Ifunanya"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1769",
+      "full_name": "Aaron Chisom"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1974",
+      "full_name": "Adeniran Nana Firdaus"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1742",
+      "full_name": "Alimi Fatimah Opeyemi"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1710",
+      "full_name": "Daniel Idaradi Roses"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "2255",
+      "full_name": "Etadaferua Samuel Efetobore"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "2136",
+      "full_name": "Haruna Edojo Heavenly"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "2215",
+      "full_name": "Idam Micah Chimdindu"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1897",
+      "full_name": "Igwilo Covenant Chukwudalu"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "2168",
+      "full_name": "John Fidelia Praise"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1776",
+      "full_name": "Madu Chizara Zita"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "2262",
+      "full_name": "Martins Faithful O"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1678",
+      "full_name": "Mohammed Qoreebat"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1712",
+      "full_name": "Nwankwo Chukwuebuka GodDelight"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1713",
+      "full_name": "Nweke Chukwunonso Chrysanthus"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1657",
+      "full_name": "Oluwabukunmi Annabel Ayomide"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1979",
+      "full_name": "Omotosho Grace Habiba"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1663",
+      "full_name": "Onuchukwu Preference Iruoma"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1681",
+      "full_name": "Shedrack Chijindu Dominion"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1648",
+      "full_name": "Simon Jemima Oluwanifemi"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1741",
+      "full_name": "Undie Nathan"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Joy",
+      "index": "1740",
+      "full_name": "Wilfred Joel Ojoma"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "1848",
+      "full_name": "Akubo Joy Ojonide"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "1750",
+      "full_name": "Adewole Fiyinfoluwa"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "2070",
+      "full_name": "Amaifeobu-Ndubuisi Praise Chioma"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "2234",
+      "full_name": "Anyanwu Divine Ifeanyichukwu"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "2197",
+      "full_name": "Ayodele Kehinde Jotham"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "1973",
+      "full_name": "Benjamin Bernice Zugwai"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "2231",
+      "full_name": "Emenike Ekeneolisa Benedict"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "1718",
+      "full_name": "Emenike Julian Kamsi"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "1747",
+      "full_name": "Gadzama Joseph Philemon"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "1946",
+      "full_name": "Ifeanychukwu Ckuwuenyemeze Brave"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "1707",
+      "full_name": "Mbah Delight Kamsiyochukwu"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "2177",
+      "full_name": "Nwabueze Jeremiah Ekene"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "2198",
+      "full_name": "Ojubolamo Esther Oluwatomisin"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "2148",
+      "full_name": "Onah Fortune Agbenu"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "1805",
+      "full_name": "Oladapo Isaac Oluwafemi"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "1696",
+      "full_name": "Olasunkanmi Greatness Semilanu"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "2257",
+      "full_name": "Okoro Faustina Mmesoma"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "1967",
+      "full_name": "Peter Isioma Diamond"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "2154",
+      "full_name": "Usman Najib"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Peace",
+      "index": "2134",
+      "full_name": "Yiye Mark Sooter"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Success",
+      "index": "2137",
+      "full_name": "Adejoh Christabel Ochanya"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Success",
+      "index": "1665",
+      "full_name": "Adekunle Adebisola Anuoluwa"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Success",
+      "index": "2203",
+      "full_name": "Akor Smart Jude"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Success",
+      "index": "1963",
+      "full_name": "Amani Anthony"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Success",
+      "index": "2118",
+      "full_name": "Audu Gershon Lopji"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Success",
+      "index": "2196",
+      "full_name": "Ayodele Taiwo Jonathan"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Success",
+      "index": "1761",
+      "full_name": "Bright Emerald Chinaeche"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Success",
+      "index": "1863",
+      "full_name": "Josiah Jemimah"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Success",
+      "index": "1916",
+      "full_name": "Obinna Onu Rex Arinzechukwu"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Success",
+      "index": "2140",
+      "full_name": "Okoliobodozie Afoma Emmanuella"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Success",
+      "index": "2061",
+      "full_name": "Oyetokun Precious Omolewa"
+    },
+    {
+      "level": "Primary 4",
+      "arm": "Success",
+      "index": "2129",
+      "full_name": "Muoneke Osinachi Daniel"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2135",
+      "full_name": "Abraham Joanah Oluwakitan"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2265",
+      "full_name": "Aforijuku Declan Toritsemogha"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2263",
+      "full_name": "Akhabue Jahdiel"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2147",
+      "full_name": "Ayodele Success"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "1934",
+      "full_name": "ChristianObidiegwu Bethel Munachimso"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2036",
+      "full_name": "Chidiebere Jayden Chibueze"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "1931",
+      "full_name": "Dennis Chimemeria Favour"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "1950",
+      "full_name": "Emmanuel Grace Odufua"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2279",
+      "full_name": "Essien Valerie Aye"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "1629",
+      "full_name": "Irevohoje Ese Deborah"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "1625",
+      "full_name": "Joseph Adamu JohnSon Ijai"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "1862",
+      "full_name": "Kamike Nicole Oluomachi"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "1636",
+      "full_name": "Lamidi Pelumi Abdulwasiu"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2282",
+      "full_name": "Monday Amos"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2153",
+      "full_name": "Muhammed Jamal"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "1917",
+      "full_name": "Ohiemu Lucy Ojonoke"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2063",
+      "full_name": "Olaniyi Edwin Oluwanifemi"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "1631",
+      "full_name": "Olarewaju Winner A.T"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2004",
+      "full_name": "Omofoyewa Fadheela Tiwatope"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "1758",
+      "full_name": "Patrick Chisom"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "1859",
+      "full_name": "Sylvester Praise Chimmamda"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Joy",
+      "index": "2084",
+      "full_name": "Yusuf Mariyam"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1561",
+      "full_name": "Ajunwa Ochanya Esther"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "2281",
+      "full_name": "Balogun Mariam"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1630",
+      "full_name": "Edoka Dominion Ojimaojo"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1966",
+      "full_name": "Emmanuel Halleuyah Oyindienepere"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "2102",
+      "full_name": "Ezekiel Maxwell Ayotomiwa"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1562",
+      "full_name": "James Majesty"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1608",
+      "full_name": "Johnson Isreal Aloye"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "2192",
+      "full_name": "Johnson Rachel O"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "2280",
+      "full_name": "Joseph Joanna"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1494",
+      "full_name": "Kingsley Chinonso Emmanuel"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1841",
+      "full_name": "Kusamotu Zainab Olamide"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1617",
+      "full_name": "Motoro Michelle Murewa"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1659",
+      "full_name": "Odukoya Emmanuel Ayomide"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "2076",
+      "full_name": "Ogah Divine Oshomokare"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1833",
+      "full_name": "Ojeiwa Succeed Osewese"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1642",
+      "full_name": "Okechukwu Chidubem Bertrand"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1638",
+      "full_name": "Onyebuchi Miracle Ikechukwu"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1639",
+      "full_name": "Romeo Glory Oghenekaro Uwa"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "2045",
+      "full_name": "Solomon Omonefe Jethro"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "2194",
+      "full_name": "Timothy Anabel Onyinyechi"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "2056",
+      "full_name": "Uzorka Churchill Chukwuemeka"
+    },
+    {
+      "level": "Primary 5",
+      "arm": "Peace",
+      "index": "1827",
+      "full_name": "Yusuf Ali"
+    }
+  ]
+}

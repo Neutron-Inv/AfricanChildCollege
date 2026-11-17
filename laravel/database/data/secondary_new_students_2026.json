@@ -1,0 +1,6194 @@
+{
+  "workbook_indexes": {
+    "3849": 1,
+    "4006": 1,
+    "3985": 1,
+    "4027": 1,
+    "4010": 1,
+    "3963": 1,
+    "3947": 1,
+    "4004": 1,
+    "4009": 1,
+    "3998": 1,
+    "3962": 1,
+    "3991": 1,
+    "3937": 1,
+    "3823": 1,
+    "3964": 1,
+    "4028": 1,
+    "3940": 1,
+    "3941": 1,
+    "3946": 1,
+    "4022": 1,
+    "3863": 1,
+    "3826": 1,
+    "3915": 1,
+    "3824": 1,
+    "4005": 1,
+    "3938": 1,
+    "3921": 1,
+    "3961": 1,
+    "3924": 1,
+    "3999": 1,
+    "4078": 1,
+    "3929": 1,
+    "3831": 1,
+    "3927": 1,
+    "3825": 1,
+    "3859": 1,
+    "3943": 1,
+    "3913": 1,
+    "3835": 1,
+    "3911": 1,
+    "3912": 1,
+    "3853": 1,
+    "3894": 1,
+    "3970": 1,
+    "4012": 1,
+    "3872": 1,
+    "3846": 1,
+    "3923": 1,
+    "3857": 1,
+    "3899": 1,
+    "3850": 1,
+    "3848": 1,
+    "3916": 1,
+    "3932": 1,
+    "4024": 1,
+    "3945": 1,
+    "3861": 1,
+    "3972": 1,
+    "3838": 1,
+    "3852": 1,
+    "3982": 1,
+    "3842": 1,
+    "3931": 1,
+    "3822": 1,
+    "4030": 1,
+    "4077": 1,
+    "3930": 1,
+    "3942": 1,
+    "4079": 1,
+    "3984": 1,
+    "3858": 1,
+    "3870": 1,
+    "3855": 1,
+    "4020": 1,
+    "3944": 1,
+    "3906": 1,
+    "3907": 1,
+    "3873": 1,
+    "3939": 1,
+    "3914": 1,
+    "3935": 1,
+    "3758": 1,
+    "3712": 1,
+    "3812": 1,
+    "3691": 1,
+    "3949": 1,
+    "3705": 1,
+    "3706": 1,
+    "3639": 1,
+    "3737": 1,
+    "3693": 1,
+    "3865": 1,
+    "3700": 1,
+    "3685": 1,
+    "3630": 1,
+    "3789": 1,
+    "3687": 1,
+    "3814": 1,
+    "3711": 1,
+    "3983": 1,
+    "3637": 1,
+    "3795": 1,
+    "3697": 1,
+    "3799": 1,
+    "3981": 1,
+    "3632": 1,
+    "3636": 1,
+    "3627": 1,
+    "3844": 1,
+    "3677": 1,
+    "3631": 1,
+    "3950": 1,
+    "3710": 1,
+    "3702": 1,
+    "3742": 1,
+    "3663": 1,
+    "3638": 1,
+    "3714": 1,
+    "3704": 1,
+    "3766": 1,
+    "3684": 1,
+    "3628": 1,
+    "3676": 1,
+    "3798": 1,
+    "3808": 1,
+    "3815": 1,
+    "3664": 1,
+    "3778": 1,
+    "3774": 1,
+    "3817": 1,
+    "3739": 1,
+    "3901": 1,
+    "3640": 1,
+    "3656": 1,
+    "3749": 1,
+    "3680": 1,
+    "3871": 1,
+    "3688": 1,
+    "3768": 1,
+    "3653": 1,
+    "3694": 1,
+    "3763": 1,
+    "3904": 1,
+    "3745": 1,
+    "3755": 1,
+    "3800": 1,
+    "3629": 1,
+    "3366": 1,
+    "3451": 1,
+    "3427": 1,
+    "3818": 2,
+    "3494": 1,
+    "3851": 1,
+    "3499": 1,
+    "3359": 1,
+    "3535": 1,
+    "3517": 1,
+    "3533": 1,
+    "3556": 1,
+    "3348": 1,
+    "3456": 1,
+    "3377": 1,
+    "3588": 1,
+    "3933": 1,
+    "3707": 1,
+    "3821": 1,
+    "3504": 1,
+    "3398": 1,
+    "3557": 1,
+    "3357": 1,
+    "3579": 1,
+    "3425": 1,
+    "3433": 1,
+    "3805": 1,
+    "3362": 1,
+    "3994": 1,
+    "3352": 1,
+    "3368": 2,
+    "3534": 1,
+    "3370": 1,
+    "3369": 1,
+    "3410": 1,
+    "4003": 1,
+    "3356": 1,
+    "3372": 1,
+    "3440": 1,
+    "3403": 1,
+    "3358": 1,
+    "3869": 1,
+    "3444": 1,
+    "3491": 1,
+    "3353": 1,
+    "3794": 1,
+    "3378": 1,
+    "3806": 1,
+    "3566": 1,
+    "3902": 1,
+    "3442": 1,
+    "3553": 1,
+    "3399": 1,
+    "3903": 1,
+    "3446": 1,
+    "3420": 1,
+    "3364": 1,
+    "3483": 1,
+    "3365": 1,
+    "3347": 1,
+    "3452": 2,
+    "3354": 1,
+    "3847": 1,
+    "3614": 1,
+    "3371": 1,
+    "3522": 1,
+    "3441": 1,
+    "3510": 1,
+    "3788": 1,
+    "3402": 1,
+    "3375": 1,
+    "3415": 1,
+    "3516": 1,
+    "3376": 1,
+    "3407": 1,
+    "3436": 1,
+    "3445": 1,
+    "3520": 1,
+    "3346": 1,
+    "3349": 1,
+    "3459": 1,
+    "3554": 1,
+    "3810": 1,
+    "3411": 1,
+    "3498": 1,
+    "3422": 1,
+    "3471": 1,
+    "3832": 1,
+    "4019": 1,
+    "3990": 1,
+    "3926": 1,
+    "3839": 1,
+    "3948": 1,
+    "3919": 1,
+    "3905": 1,
+    "3892": 1,
+    "4026": 1,
+    "3953": 1,
+    "3910": 1,
+    "3875": 2,
+    "3996": 1,
+    "3960": 1,
+    "4029": 1,
+    "3973": 1,
+    "3895": 1,
+    "3837": 1,
+    "4037": 1,
+    "4023": 1,
+    "3862": 1,
+    "3864": 1,
+    "3884": 1,
+    "3951": 2,
+    "3987": 1,
+    "3975": 1,
+    "4001": 1,
+    "3966": 1,
+    "3965": 1,
+    "3969": 1,
+    "4014": 1,
+    "3979": 1,
+    "3856": 1,
+    "3898": 1,
+    "3896": 1,
+    "3955": 1,
+    "4011": 1,
+    "3997": 1,
+    "3876": 1,
+    "3887": 1,
+    "4031": 1,
+    "3874": 1,
+    "3959": 1,
+    "3860": 1,
+    "4032": 1,
+    "3877": 1,
+    "3840": 1,
+    "3891": 1,
+    "3866": 1,
+    "3917": 1,
+    "3928": 1,
+    "3976": 1,
+    "3956": 1,
+    "3989": 1,
+    "4002": 1,
+    "3925": 1,
+    "3827": 1,
+    "3879": 1,
+    "4021": 1,
+    "3882": 1,
+    "3908": 1,
+    "3909": 1,
+    "4083": 2,
+    "4025": 1,
+    "3967": 1,
+    "3885": 1,
+    "3980": 1,
+    "3886": 1,
+    "3867": 1,
+    "3881": 1,
+    "4000": 1,
+    "3833": 1,
+    "3883": 1,
+    "3995": 1,
+    "3977": 1,
+    "3958": 1,
+    "4008": 1,
+    "3841": 1,
+    "3878": 1,
+    "3893": 1,
+    "3828": 1,
+    "3971": 1,
+    "3880": 1,
+    "3936": 1,
+    "3974": 1,
+    "3920": 1,
+    "3952": 1,
+    "3992": 1,
+    "3830": 1,
+    "3834": 1,
+    "3918": 1,
+    "3889": 1,
+    "3843": 1,
+    "3978": 1,
+    "3957": 1,
+    "3890": 1,
+    "4081": 1,
+    "3968": 1,
+    "3954": 1,
+    "3922": 1,
+    "4013": 1,
+    "4033": 1,
+    "3836": 1,
+    "4036": 1,
+    "3829": 1,
+    "3988": 1,
+    "3659": 1,
+    "3785": 1,
+    "3730": 1,
+    "3718": 1,
+    "3673": 1,
+    "3993": 1,
+    "3666": 1,
+    "3661": 1,
+    "3648": 1,
+    "4080": 1,
+    "3732": 1,
+    "3679": 1,
+    "3683": 1,
+    "3717": 1,
+    "3733": 1,
+    "3760": 1,
+    "3786": 1,
+    "3725": 1,
+    "3650": 1,
+    "3651": 1,
+    "3748": 1,
+    "3726": 1,
+    "3770": 1,
+    "3845": 1,
+    "3764": 1,
+    "3625": 1,
+    "4007": 1,
+    "3727": 1,
+    "3782": 1,
+    "3777": 1,
+    "3779": 1,
+    "3734": 1,
+    "3686": 1,
+    "3690": 1,
+    "3769": 1,
+    "3719": 1,
+    "3729": 1,
+    "4017": 1,
+    "3674": 1,
+    "3682": 1,
+    "3780": 1,
+    "3743": 1,
+    "3807": 1,
+    "3675": 1,
+    "3740": 1,
+    "3791": 1,
+    "3699": 1,
+    "3787": 1,
+    "3696": 1,
+    "3695": 1,
+    "3735": 1,
+    "3644": 1,
+    "3660": 1,
+    "3723": 1,
+    "3649": 1,
+    "3736": 1,
+    "3802": 1,
+    "3647": 1,
+    "3868": 1,
+    "3681": 1,
+    "3665": 1,
+    "3801": 1,
+    "3645": 1,
+    "3646": 1,
+    "3731": 1,
+    "3658": 1,
+    "3771": 1,
+    "3762": 1,
+    "3756": 1,
+    "3761": 1,
+    "3781": 1,
+    "3667": 1,
+    "3811": 1,
+    "3722": 1,
+    "3672": 1,
+    "3668": 1,
+    "3897": 1,
+    "3765": 1,
+    "3669": 1,
+    "3671": 1,
+    "3720": 1,
+    "3741": 1,
+    "3747": 1,
+    "3790": 1,
+    "3724": 1,
+    "3816": 1,
+    "3641": 1,
+    "3537": 1,
+    "3460": 1,
+    "3485": 1,
+    "3804": 1,
+    "3467": 1,
+    "3576": 1,
+    "3423": 1,
+    "3458": 1,
+    "3470": 1,
+    "3609": 1,
+    "3544": 1,
+    "3562": 1,
+    "3380": 1,
+    "3482": 1,
+    "3572": 1,
+    "3508": 1,
+    "3531": 1,
+    "3439": 1,
+    "3618": 1,
+    "4016": 1,
+    "3521": 1,
+    "3400": 1,
+    "4018": 1,
+    "3385": 1,
+    "3754": 1,
+    "3387": 1,
+    "3563": 1,
+    "3490": 1,
+    "3783": 1,
+    "3450": 1,
+    "3391": 1,
+    "3776": 1,
+    "3589": 1,
+    "3481": 1,
+    "3393": 1,
+    "3477": 1,
+    "3527": 1,
+    "3389": 1,
+    "3573": 1,
+    "3813": 1,
+    "3584": 2,
+    "4082": 1,
+    "4015": 1,
+    "3803": 1,
+    "3624": 1,
+    "3523": 1,
+    "3550": 1,
+    "3489": 1,
+    "3469": 1,
+    "3538": 1,
+    "3526": 1,
+    "3601": 1,
+    "3381": 1,
+    "3525": 1,
+    "3455": 1,
+    "3480": 1,
+    "3382": 1,
+    "3383": 1,
+    "3475": 1,
+    "3986": 1,
+    "3703": 1,
+    "3809": 1,
+    "3476": 1,
+    "3587": 1,
+    "3753": 1,
+    "3457": 1,
+    "3426": 1,
+    "3530": 1,
+    "3388": 1,
+    "3622": 1,
+    "3567": 1,
+    "3392": 1,
+    "3473": 1,
+    "3434": 1,
+    "3558": 1,
+    "3479": 1,
+    "3574": 1,
+    "3379": 1,
+    "3412": 1,
+    "3545": 1,
+    "3591": 1,
+    "3560": 1,
+    "3443": 1,
+    "3565": 1,
+    "3511": 1,
+    "3501": 1,
+    "3384": 1,
+    "3570": 1,
+    "3547": 1,
+    "3461": 1,
+    "3561": 1,
+    "3546": 1,
+    "3431": 1,
+    "3297": 1,
+    "3394": 1,
+    "3463": 1,
+    "3559": 1,
+    "3417": 1,
+    "3414": 1,
+    "3532": 1,
+    "3619": 1,
+    "3397": 1,
+    "3478": 1,
+    "3396": 1
+  },
+  "students": [
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3849",
+      "full_name": "Adebayo Kayode Victor",
+      "gender": "Male",
+      "birth_date": "2016-01-14",
+      "address": "Behind LEA Primay School Ijayapi Kubwa",
+      "phone": "08067692091/08156454166",
+      "guardian": "Adebayo Victor"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4006",
+      "full_name": "`Alah MaryJane U",
+      "gender": "Female",
+      "birth_date": "2016-07-09",
+      "address": "183 Zone Byhazin Across",
+      "phone": "7039083988",
+      "guardian": "Alah James"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3985",
+      "full_name": "Akhabue Jethro Osaghale",
+      "gender": "Male",
+      "birth_date": "2015-03-03",
+      "address": "Peace layout Chikakore Kubwa",
+      "phone": "8080683178",
+      "guardian": "Akhabue Emmanuel"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4027",
+      "full_name": "Chinedu Elijah Osinachi",
+      "gender": "Male",
+      "birth_date": "2014-04-22",
+      "address": "20,Gospel Street Nepa Road Kubwa",
+      "phone": "08033493683/08037391156",
+      "guardian": "Chukwuma Chinedu"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4010",
+      "full_name": "Chinedu Omeje Akachukwu Juliet",
+      "gender": "Female",
+      "birth_date": "2015-02-15",
+      "address": "After Holy Spirit Catholic Church",
+      "phone": "07030285588/07046979057",
+      "guardian": "Omeje Chinedu"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3963",
+      "full_name": "Emeka Favour Osinachi",
+      "gender": "Female",
+      "birth_date": "2017-01-25",
+      "address": "Hil Top Behind Uncle Joe Supermarket",
+      "phone": "08035102380/08068388120",
+      "guardian": "Ifenkwe Emeka"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3947",
+      "full_name": "Emmanuel-Bidi PraiseGod Ebimobeare",
+      "gender": "Female",
+      "birth_date": "2015-02-08",
+      "address": "Orange Farm Byhazhin Across Kubwa",
+      "phone": "7070433876",
+      "guardian": "Bidi Emmanuel"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4004",
+      "full_name": "Ejeh Ihotu Josephine",
+      "gender": "Female",
+      "birth_date": "2015-11-04",
+      "address": "Cele Road Across Bhyazhin Kubwa",
+      "phone": "08147872488/08068101758",
+      "guardian": "Ejeh Peter Lawrence"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4009",
+      "full_name": "Ezeh Kenechukwu Chizi",
+      "gender": "Male",
+      "birth_date": "2015-12-07",
+      "address": "7, Yerima Street Byhazhin",
+      "phone": "07034995928/08030512161",
+      "guardian": "Eze Kingsley"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3998",
+      "full_name": "Ezeoma Chiamanda Sophia",
+      "gender": "Female",
+      "birth_date": "2016-03-03",
+      "address": "Paze Community",
+      "phone": "09129068434/09068965634",
+      "guardian": "Ezeoma Chinedu"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3962",
+      "full_name": "Ezemaduako Sophia Chinora",
+      "gender": "Female",
+      "birth_date": "2017-01-31",
+      "address": "4,Unity Street Byhazhin Across Before Redeem Church",
+      "phone": "070359483291/08030990516",
+      "guardian": "Ezemaduako Joseph"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3991",
+      "full_name": "Ezenwafor Trust Jahnaemerem",
+      "gender": "Male",
+      "birth_date": "2016-05-21",
+      "address": "74b Grow Home Estate",
+      "phone": "08131109400/",
+      "guardian": "Ezenwafor Ekene"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3937",
+      "full_name": "Felix David Oshione",
+      "gender": "Male",
+      "birth_date": "2017-11-19",
+      "address": "By Living Faith Church Kubwa",
+      "phone": "09065628458/09025782482",
+      "guardian": "Felix Samuel"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3823",
+      "full_name": "Femi-Oloko Grace Taiwo",
+      "gender": "Female",
+      "birth_date": "2016-06-11",
+      "address": "House 25, MosesKusa Street",
+      "phone": "07039505045/07063351775",
+      "guardian": "Oloko Oluwafemi"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3964",
+      "full_name": "IfeanyiChukwu Akuabata Treasure",
+      "gender": "Female",
+      "birth_date": "2016-05-17",
+      "address": "Good Neighbour Street Opp Chinedu Block Industry Byhazhin",
+      "phone": "08063313557/07062260881",
+      "guardian": "Levi Ifeanyichukwu"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4028",
+      "full_name": "Ihetu Adaobi Daniella",
+      "gender": "Female",
+      "birth_date": "2016-04-20",
+      "address": "House 49, Peters Str Opp Holy Spirit Cath Church Byhazhin",
+      "phone": "07068833757/08039661575",
+      "guardian": "Ihetu Chukwunonso"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3940",
+      "full_name": "Ikechukwu Gabriella Sochikaima",
+      "gender": "Female",
+      "birth_date": "2015-10-15",
+      "address": "Area 1 Behind Athaya Bakery Guilda opp NySc Kubwa",
+      "phone": "08037011556/08072448639",
+      "guardian": "Anugwoeje Ikechukwu"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3941",
+      "full_name": "Ikeokwu Kenny Chibueze",
+      "gender": "Male",
+      "birth_date": "2015-11-30",
+      "address": "2,Goodness Close Off I.g Shelter Farm Kubwa",
+      "phone": "08038692196/ 08038692196",
+      "guardian": "Ikeokwu Cletus"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3946",
+      "full_name": "Kaha Naddo Beatrice",
+      "gender": "Female",
+      "birth_date": "2015-05-08",
+      "address": "White Safari Guset Kubwa",
+      "phone": "",
+      "guardian": "Kaha Ternenge"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4022",
+      "full_name": "Leonard Pio Chinaechem",
+      "gender": "Male",
+      "birth_date": null,
+      "address": "447,old Royal Fast Food Kubwa",
+      "phone": "08064200645/08038251881",
+      "guardian": "Ihekuna Leonard"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3863",
+      "full_name": "Mbah Wisdom Chinweike",
+      "gender": "Male",
+      "birth_date": "2016-04-22",
+      "address": "7 Unity Street Kubwa Byhazhin Across",
+      "phone": "09025954444/08036110025",
+      "guardian": "Mbah Michael"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3826",
+      "full_name": "Meretin Daniel Mamuyowi",
+      "gender": "Male",
+      "birth_date": "2015-10-15",
+      "address": "2 Drive Bunity Street Byhazhin Across",
+      "phone": "07078607178/08032612428",
+      "guardian": "Meretin Henry"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3915",
+      "full_name": "Obey Abudance Eboh",
+      "gender": "Female",
+      "birth_date": "2017-04-03",
+      "address": "Shelter FARM kubwa Abuja",
+      "phone": "08033919474/08032503874",
+      "guardian": "Obeh James"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3824",
+      "full_name": "Oluchukwu Emmanuel Amamchi",
+      "gender": "Male",
+      "birth_date": "2016-03-08",
+      "address": "Back of Primary SCHOOL",
+      "phone": "08160511380/ 08069947610",
+      "guardian": "Ojoba Oluchukwu"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4005",
+      "full_name": "Olom Vivian Irenen",
+      "gender": "Female",
+      "birth_date": "2016-09-16",
+      "address": "Top Hill Uncle Joe Supermarket",
+      "phone": "08039720526/07032869479",
+      "guardian": "Olom Godwin"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3938",
+      "full_name": "Romeo Oghale Princess",
+      "gender": "Female",
+      "birth_date": null,
+      "address": "Bck Of Holy sporit",
+      "phone": "081608183655/0806156542",
+      "guardian": "Romeo Bright"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3921",
+      "full_name": "Samuel Marvellous Oluwadarasimi",
+      "gender": "Female",
+      "birth_date": "2014-05-21",
+      "address": "9,Imosi Close Shelter Farm",
+      "phone": "07068219771/07032378455",
+      "guardian": "Bamidele Samuel"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3961",
+      "full_name": "Patrick Emmanuella",
+      "gender": "Female",
+      "birth_date": "2014-12-26",
+      "address": "Chikakore",
+      "phone": "08056017155/ 08051563432",
+      "guardian": "Ola Patrick"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3924",
+      "full_name": "Sunday Mmesomachukwu Justice",
+      "gender": "Male",
+      "birth_date": "2016-10-20",
+      "address": "Plot Gbazango North Extention Arab Kubwa",
+      "phone": "08035056474/09070092342",
+      "guardian": "Sunday Chiedozie"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3999",
+      "full_name": "Yusuf Adesola Heekmat",
+      "gender": "Female",
+      "birth_date": "2015-04-11",
+      "address": "451, G Mary Son Street",
+      "phone": "08035898265/07032997999",
+      "guardian": "Yusuf Nasir"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "4078",
+      "full_name": "Abimbola Muhammed Mahi Onoru Oyiza",
+      "gender": "Male",
+      "birth_date": "2016-05-11",
+      "address": "Byhahzin",
+      "phone": "0810186845/09165689552",
+      "guardian": "Adewunmi Abimbola"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3929",
+      "full_name": "Adegbenro Adebola Gideon",
+      "gender": "Male",
+      "birth_date": "2015-12-16",
+      "address": "Plot692 Chikakore Angwan Fulani Kubwa",
+      "phone": "08130102507/08062330005",
+      "guardian": "Adegbenro Akintade"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3831",
+      "full_name": "Adewole Oluwadarasimi Divine Mercy",
+      "gender": "Female",
+      "birth_date": "2016-11-24",
+      "address": "Chikakore Kubwa",
+      "phone": "08034981221/08036939109",
+      "guardian": "Adewole Temitope"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3927",
+      "full_name": "Adigun Joseph Adedayo",
+      "gender": "Male",
+      "birth_date": "2015-12-01",
+      "address": "6 Ibiyemi Adenle Road Chikakore Kubwa Abuja",
+      "phone": "08186325996/08059705522",
+      "guardian": "Adigun Ademola"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3825",
+      "full_name": "Ajayiosho Ruby Ayomide",
+      "gender": "Male",
+      "birth_date": "2016-10-11",
+      "address": "56,Gods Own Street Byhazhin Across",
+      "phone": "09031347798/08038177098",
+      "guardian": "Ajayiosho Joshua"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3859",
+      "full_name": "Arasah Nathan Solomon",
+      "gender": "Male",
+      "birth_date": "2016-12-18",
+      "address": "2,Unity Road RockFace Arab",
+      "phone": "08065867429/ 08105183691",
+      "guardian": "Arasah Solomon"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3943",
+      "full_name": "Benjamin Benaiah Shimfuo",
+      "gender": "Male",
+      "birth_date": "2016-09-24",
+      "address": "17, Mba Street Byazhin",
+      "phone": "8166822740",
+      "guardian": "Bobai Eunice"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3913",
+      "full_name": "Chime Anthony Chibusonma",
+      "gender": "Female",
+      "birth_date": "2016-08-18",
+      "address": "Opp Byhazin Health Center Kubwa",
+      "phone": "07039684014/08135830029",
+      "guardian": "Chime-Obiekwe Patrick"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3835",
+      "full_name": "Ibiyomi Micheal Oluwatosin",
+      "gender": "Male",
+      "birth_date": "2015-02-08",
+      "address": "Zone E C36 Millionare Qtrs Byhazhin Kubwa",
+      "phone": "08051600724/08071922443",
+      "guardian": "Ibiyomi Kunle"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3911",
+      "full_name": "Idam GodsGlory Chizaram",
+      "gender": "Female",
+      "birth_date": "2015-07-10",
+      "address": "5,London Close Catholic Avenue Ijayapi",
+      "phone": "08034271621/08021000519",
+      "guardian": "Egwu Philip"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3912",
+      "full_name": "Igwe Amarachi Ellie",
+      "gender": "Female",
+      "birth_date": "2015-01-04",
+      "address": "Umce Joe Estate SHELTER Farm",
+      "phone": "8165456906",
+      "guardian": "Igwe Udodirim"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3853",
+      "full_name": "Itodo Divine Onduleya",
+      "gender": "Male",
+      "birth_date": "2016-11-28",
+      "address": "Behind Shelter Farm Leisure Palace",
+      "phone": "08057339903/08130926672",
+      "guardian": "Itodo Elias"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3894",
+      "full_name": "James Chisimdindu Michelle",
+      "gender": "Female",
+      "birth_date": "2015-03-10",
+      "address": "CD 131 Blue roof Estate Bhnd Daughters of Charity",
+      "phone": "07063351053/08066614167",
+      "guardian": "James Ikechukwu"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3970",
+      "full_name": "Johnson Deborah Agbenu",
+      "gender": "Female",
+      "birth_date": "2015-06-29",
+      "address": "Byhazhin Across",
+      "phone": "08163129811/08158547065",
+      "guardian": "Ebute Johnson"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "4012",
+      "full_name": "Muhammed Fatima Zarah",
+      "gender": "Female",
+      "birth_date": "2015-09-21",
+      "address": "Plot 173 Ext 2, Kubwa Relocation",
+      "phone": "08035980706/08036665306",
+      "guardian": "Alhassan Muhammed"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3872",
+      "full_name": "Nwobodo Kamsi Victor",
+      "gender": "Male",
+      "birth_date": "2016-05-30",
+      "address": "7,Ladan Str Chikakore",
+      "phone": "08035053953/08032423825",
+      "guardian": "Nwobodo Nnamdi"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3846",
+      "full_name": "Nwabuzor Amarachi Jessica",
+      "gender": "Female",
+      "birth_date": "2014-05-26",
+      "address": "Umce Joe Supermarket Before Livinf Faith",
+      "phone": "08061562499/08062391525",
+      "guardian": "Nwabueze Okwudili"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3923",
+      "full_name": "Obiechefu Emmanuella Uchenna Nnnenna",
+      "gender": "Female",
+      "birth_date": null,
+      "address": "Blk 110,Phase 2 Site 1 Kubwa",
+      "phone": "08055922038/07055601302",
+      "guardian": "Nwaeye Obiechefu"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3857",
+      "full_name": "Ogwuche Faith Ebo",
+      "gender": "Female",
+      "birth_date": "2016-08-09",
+      "address": "14b Richard Mba Str Behind Monica Cath Church",
+      "phone": "08062531373/08106941772",
+      "guardian": "Ogwuche Israel"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3899",
+      "full_name": "Onanwenyi Esther Ifeoma",
+      "gender": "Female",
+      "birth_date": "2015-05-07",
+      "address": "Plt 478 Chikakore BYHAZHIN",
+      "phone": "07035560240/07065470777",
+      "guardian": "Onanwenyi Arinze"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3850",
+      "full_name": "Saviour Edisana",
+      "gender": "Male",
+      "birth_date": "2016-12-03",
+      "address": "23,Gusau Street Byhazhin",
+      "phone": "07035003227/07066023468",
+      "guardian": "Umoette Saviour"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3848",
+      "full_name": "Sunday Bright Tolu",
+      "gender": "Female",
+      "birth_date": "2011-12-10",
+      "address": "BES Chief Palace Bck of Primary School",
+      "phone": "08063433812/08105797131",
+      "guardian": "Sunday Ajayi"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3916",
+      "full_name": "Timothy Portia Ijeoma",
+      "gender": "Female",
+      "birth_date": "2016-09-15",
+      "address": "Opposite Yoruba Mosque Shelter Farm",
+      "phone": "08033421180/07035860029",
+      "guardian": "Ezeoliaku Timothy"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3932",
+      "full_name": "Uzochukwu Ifeanyi Joshua",
+      "gender": "Male",
+      "birth_date": null,
+      "address": "Behind LEA Primary School Across",
+      "phone": "08038051721/08068092664",
+      "guardian": "Ojukwu Uzochukwu"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "4024",
+      "full_name": "Wilfred Joshua Ojimajo",
+      "gender": "Male",
+      "birth_date": "2014-12-21",
+      "address": "Leisure Palace Sheltar Farm",
+      "phone": "09137156615/",
+      "guardian": "Amopa Wlfred"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3945",
+      "full_name": "Abella Great Calistus",
+      "gender": "Male",
+      "birth_date": "2016-02-20",
+      "address": "Opposite Lea Pry School Byhazhin Kubwa Abuja",
+      "phone": "08068057165/",
+      "guardian": "Abella Wilfred"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3861",
+      "full_name": "Abiola Olaoluwa Enoch",
+      "gender": "Male",
+      "birth_date": "2015-09-20",
+      "address": "Opposite Madam Gulder Junction Byhazhin",
+      "phone": "08069754545/08065290557",
+      "guardian": "Abiola Tunde"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3972",
+      "full_name": "Aremu Feyisayo Emmanuella",
+      "gender": "Female",
+      "birth_date": "2016-10-12",
+      "address": "Plot 1337c Layout off leisure Palace Shelter Farm",
+      "phone": "07062051666/08088862668",
+      "guardian": "Aremu Oluwasegun"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3838",
+      "full_name": "Amani Daniella Ochanya",
+      "gender": "Female",
+      "birth_date": "2016-05-05",
+      "address": "29, Olayinka Awo Street Byhazhin Across Kubwa",
+      "phone": "08051817128/ 09169595634",
+      "guardian": "Amani James"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3852",
+      "full_name": "Chukwuma Akachukwu Grace",
+      "gender": "Female",
+      "birth_date": "2015-05-11",
+      "address": "Gideon Adasha Street Opposite Primary School",
+      "phone": "08036343392/08082235031",
+      "guardian": "Egwu Onyinye"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3982",
+      "full_name": "Damian Chisom Fortune",
+      "gender": "Female",
+      "birth_date": "2016-07-31",
+      "address": "Plot 1ECLOSE Unity Street",
+      "phone": "08036007 423/08136288726",
+      "guardian": "Damian Ogechi"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3842",
+      "full_name": "Eke Chinazaekpere Elvis",
+      "gender": "Male",
+      "birth_date": "2016-02-23",
+      "address": "6,AmobiAgusi Close By Liberty",
+      "phone": "08033155594/08039503099",
+      "guardian": "Eke Cosmos"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3931",
+      "full_name": "Ezechi Emmanuella Chimsimdi",
+      "gender": "Female",
+      "birth_date": "2017-05-22",
+      "address": "38,Zone 1 Ijayapi Byhazhin",
+      "phone": "08166114175/08035026622",
+      "guardian": "Ezechi Austin"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3822",
+      "full_name": "Femi-Oloko Glory Kehinde",
+      "gender": "Female",
+      "birth_date": null,
+      "address": "House 25, Moses Kusa Street Opp Patriot School Byhazhin",
+      "phone": "07039505045/07063351775",
+      "guardian": "Oloko Oluwafemi"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "4030",
+      "full_name": "Haruna Simha Ahuoyiza",
+      "gender": "Female",
+      "birth_date": "2014-06-06",
+      "address": "13c Cooker Street Byhazhin Across",
+      "phone": "07053584119/09032742126",
+      "guardian": "Haruna Siyaka"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "4077",
+      "full_name": "Idachaba Justice Attah",
+      "gender": "Male",
+      "birth_date": "2016-11-05",
+      "address": "Nepa Road Kubwa Abuja",
+      "phone": "07038649772/07038837117",
+      "guardian": "Idachaba Shedrack"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3930",
+      "full_name": "Ifesie Ogechi Blessing",
+      "gender": "Female",
+      "birth_date": "2016-04-18",
+      "address": "Byhazhin Across",
+      "phone": "08032106212/08038112881",
+      "guardian": "Ifesie Chidiebere"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3942",
+      "full_name": "Jonah Gift Eleojo",
+      "gender": "Female",
+      "birth_date": "2016-06-23",
+      "address": "Opposite Health Center Byhazhin",
+      "phone": "8139452313",
+      "guardian": "Abuh Jonah"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "4079",
+      "full_name": "Michael Miracle Sunday",
+      "gender": "Male",
+      "birth_date": "2014-02-02",
+      "address": "Plot 660 Chikakore Layout",
+      "phone": "8032918859",
+      "guardian": "Igoche Enenche"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3984",
+      "full_name": "Monday Musa Marvellous Tishi",
+      "gender": "Female",
+      "birth_date": "2017-01-14",
+      "address": "3, Emma Nnajji Street",
+      "phone": "9030525740",
+      "guardian": "Musa Monday"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3858",
+      "full_name": "Momodu Onomhe Wealth",
+      "gender": "Female",
+      "birth_date": "2015-04-07",
+      "address": "Shelter Farm By Leisure Palace",
+      "phone": "07050251307/07036617906",
+      "guardian": "Monday Linus"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3870",
+      "full_name": "Nnakwu Bernice Chisom",
+      "gender": "Female",
+      "birth_date": "2016-08-14",
+      "address": "6,Old Living Faith Byhazhin",
+      "phone": "0804000971/08038269866",
+      "guardian": "Nnakwu John"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3855",
+      "full_name": "Noukounyekpon Sessi Myon",
+      "gender": "Female",
+      "birth_date": "2016-09-04",
+      "address": "Industrial Layout Naka Road Makurdi",
+      "phone": "08062244195/08063208013",
+      "guardian": "Noukounyekpon Cyprian"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "4020",
+      "full_name": "Okechukwu Kamsiyochukwu Daniel",
+      "gender": "Male",
+      "birth_date": "2015-10-28",
+      "address": "7 Ultimate Hotel STREET",
+      "phone": "07033002933/ 08035627355",
+      "guardian": "Ichoku Okechukwu"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3944",
+      "full_name": "Oladapo Olamide Fortune",
+      "gender": "Male",
+      "birth_date": "2016-08-12",
+      "address": "Opposite Patriot School",
+      "phone": "07068890072/",
+      "guardian": "Oladapo Stephen"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3906",
+      "full_name": "Olorunmotito Zion Temidire",
+      "gender": "Female",
+      "birth_date": null,
+      "address": "2,Zion closeo off Cele Rd By Police across",
+      "phone": "09064055492/07064827675",
+      "guardian": "olorunmotito Kayode"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3907",
+      "full_name": "Onidare Dorcas Ayobami",
+      "gender": "Female",
+      "birth_date": "2016-04-08",
+      "address": "House 27 ,Plot266 f Peace Estate",
+      "phone": "08035882186/0803499725",
+      "guardian": "Onidare Sunday"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3873",
+      "full_name": "Onuchukwu Essential Sochikaima",
+      "gender": "Female",
+      "birth_date": "2016-09-18",
+      "address": "15,Kunle Close Shelter Farm Byhazhin",
+      "phone": "08036449895/07030360120",
+      "guardian": "Onuchukwu Alex"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3939",
+      "full_name": "Ozonze Chidera David",
+      "gender": "Male",
+      "birth_date": "2017-05-19",
+      "address": "Zone F Byhazhin Across",
+      "phone": "08035009106/ 08163667254",
+      "guardian": "Ozonze Chukwuemeka"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3914",
+      "full_name": "Richard Chimeremeze Samuel",
+      "gender": "Male",
+      "birth_date": "2017-03-13",
+      "address": "Byhazhin Across",
+      "phone": "08032970411/08032758997",
+      "guardian": "Richard Gongur"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3935",
+      "full_name": "Paschal Valetine Somadina",
+      "gender": "Male",
+      "birth_date": "2015-11-02",
+      "address": "Behind Wisdom College Masaka",
+      "phone": "08039116644/08137727622",
+      "guardian": "Ojobor Paschal"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3949",
+      "full_name": "David Eyamba Melissa Ibiorembo",
+      "gender": "Female",
+      "birth_date": "2015-12-10",
+      "address": "7, Dorchs AkindeEst behind deeper life church Byhazhin",
+      "phone": "08028178388//0806949694",
+      "guardian": "Eyamba David"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3865",
+      "full_name": "Ishola Racheal Ayonitemi",
+      "gender": "Female",
+      "birth_date": "2014-05-28",
+      "address": "20, Nnaomi Olafisoye Crescent Chikakore",
+      "phone": "09029861649/07033143874",
+      "guardian": "Olukayode Ishola"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3983",
+      "full_name": "Stephen Desire Uredo-ojo",
+      "gender": "Female",
+      "birth_date": "2015-07-09",
+      "address": "2,Kuchibuyi Extention Zone D Chikakore Kubwa",
+      "phone": "08064465050/08064465023",
+      "guardian": "Jacob Stephen"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3981",
+      "full_name": "Adejoh Destiny Ufedo",
+      "gender": "Male",
+      "birth_date": "2015-11-18",
+      "address": "18, Maranatha Close Phase 2 Site 1 Kubwa Abuja",
+      "phone": "08136738296/08165574436",
+      "guardian": "Onyekwelu Nnaemeka"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3844",
+      "full_name": "Chika Andrew Esochala",
+      "gender": "Male",
+      "birth_date": "2015-04-17",
+      "address": "8,ini Bassey Street off Arab Road Kubwa",
+      "phone": "09099665566/07034010089",
+      "guardian": "Nwankwo Chika"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3950",
+      "full_name": "Felix Daniel Ahmanosi",
+      "gender": "Male",
+      "birth_date": "2014-03-16",
+      "address": "By Living Faith Church Byhazhin Kubwa",
+      "phone": "09065628458/09025782482",
+      "guardian": "Felix Samuel"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3901",
+      "full_name": "Emenike Emerald Chimamanda",
+      "gender": "Female",
+      "birth_date": "2015-03-02",
+      "address": "10,Ibiyemi Adenle Close",
+      "phone": "08032157333/08030611777",
+      "guardian": "Emenike Obinna"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3871",
+      "full_name": "Mela David Chibuike",
+      "gender": "Male",
+      "birth_date": "2015-12-05",
+      "address": "After Islamic School Millionaire qtrs",
+      "phone": "081679499/08064955639",
+      "guardian": "Mela Stanley"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3904",
+      "full_name": "Samson Hanannel Ojochegbe",
+      "gender": "Female",
+      "birth_date": "2016-01-20",
+      "address": "7,Esu Bwari Close Chikakore Kubwa Abuja",
+      "phone": "8033143426",
+      "guardian": "Samson Elizabeth"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3851",
+      "full_name": "Duvwiama Ogheneochukome Joshua",
+      "gender": "Male",
+      "birth_date": "2012-10-14",
+      "address": "Across Byhazhin Kubwa",
+      "phone": "08104065855/09131594314",
+      "guardian": "Ukoba Mercy"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3933",
+      "full_name": "Okafor Sochukwuma JohnPaul",
+      "gender": "Male",
+      "birth_date": "2014-01-30",
+      "address": "Favour of God Estate",
+      "phone": "08136570615/08023290873",
+      "guardian": "Okafor Arinze"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3994",
+      "full_name": "Aforijuku Audrey Oritsetsayegbemi",
+      "gender": "Female",
+      "birth_date": "2013-09-23",
+      "address": "1 Tochuk St Catholic Avenue",
+      "phone": "07035292445/09048579869",
+      "guardian": "Aghoghovbia Ivy"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "4003",
+      "full_name": "Francis-Obozekhai Daniel Oshoma",
+      "gender": "Male",
+      "birth_date": "2014-12-13",
+      "address": "Chikakore Near Item 7 Joint",
+      "phone": "08032939882/08032689846",
+      "guardian": "Obozekhai Francis"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3869",
+      "full_name": "Meretin Fortune Rukevwe",
+      "gender": "Female",
+      "birth_date": "2013-05-11",
+      "address": "2,Drive B Unity Street Byhazhin Across",
+      "phone": "07078607178/08032612428",
+      "guardian": "Meretin Henry"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3902",
+      "full_name": "Samson Heritage Ojojenwuminyanyi",
+      "gender": "Male",
+      "birth_date": null,
+      "address": "7,Esu Bwari Close Chikakore",
+      "phone": "08033143426/",
+      "guardian": "Sason Elizabeth"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3903",
+      "full_name": "Adefu Victor Oche",
+      "gender": "Male",
+      "birth_date": "2014-06-03",
+      "address": "7,Esu Bwari Close Chikakore Kubwa",
+      "phone": "9010200137",
+      "guardian": "Adefu Miracle"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3847",
+      "full_name": "Duvwiama Okeoghene Victory",
+      "gender": "Male",
+      "birth_date": null,
+      "address": "Across Byhazhin",
+      "phone": "09131594314/08104065855",
+      "guardian": "Ukoba Mercy"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3832",
+      "full_name": "Adebayo Oluwatosin Peace",
+      "gender": "Female",
+      "birth_date": "2013-05-16",
+      "address": "Behind LEA Pry School Aross",
+      "phone": "08067692091/08156454166",
+      "guardian": "Adebayo Victor"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4019",
+      "full_name": "Adelabu Victory Adesola",
+      "gender": "Female",
+      "birth_date": "2014-04-03",
+      "address": "16 Riverside Behind Uncle Joe Byhazhin Kubwa FCT",
+      "phone": "08033213371/07068599511",
+      "guardian": "Adelabu Matthew"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3990",
+      "full_name": "Ahwi Obaro Andrew",
+      "gender": "Male",
+      "birth_date": "2012-02-06",
+      "address": "4B Bethel Close Chikakore",
+      "phone": "08036403585/08037198805",
+      "guardian": "Ahwi Hunphery"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3926",
+      "full_name": "Akobi Ugbada Owolehi",
+      "gender": "Female",
+      "birth_date": "2013-10-02",
+      "address": "Behind LEA Pry School ByhazhinAcross",
+      "phone": "08030815862/07072730570",
+      "guardian": "Onah Sylvester"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3839",
+      "full_name": "Alari Emmanuella Joy",
+      "gender": "Female",
+      "birth_date": "2013-10-30",
+      "address": "10, Kunkabokun Byhazhin Abujja",
+      "phone": "80337764625",
+      "guardian": "Alari Alex"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3948",
+      "full_name": "Babatunde Olamide Mubarak",
+      "gender": "Male",
+      "birth_date": "2014-04-28",
+      "address": "Plot 234, Flat Ext 2 Arab Rd Kubwa",
+      "phone": "7032177185",
+      "guardian": "Falade Gift"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3919",
+      "full_name": "Bello Mustapha Daniel",
+      "gender": "Male",
+      "birth_date": "2012-10-30",
+      "address": "ByHAZHIN Across Kubwa",
+      "phone": "09026885612/8036002610",
+      "guardian": "Bello Emmanuel"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3905",
+      "full_name": "Chuwuma Ebubechukwu Michael",
+      "gender": "Male",
+      "birth_date": "2013-08-24",
+      "address": "Beside Water Board",
+      "phone": "08037344996/ 08035851636",
+      "guardian": "Eze Clement"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3892",
+      "full_name": "Emmanuel Chinaza Emmanuella",
+      "gender": "Female",
+      "birth_date": "2012-12-18",
+      "address": "64 Gods own street Byhazhin Across",
+      "phone": "07067221196/08134261929",
+      "guardian": "Ifionu Emmanuel"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4026",
+      "full_name": "Emenike Angel Chimemerie",
+      "gender": "Female",
+      "birth_date": "2013-07-07",
+      "address": "Opposite Patriot School Byhazhin",
+      "phone": "08033350347/ 08032915968",
+      "guardian": "Odoh Simon"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3953",
+      "full_name": "Emenike Genesis Ezinne",
+      "gender": "Female",
+      "birth_date": "2013-04-17",
+      "address": "Shelter Farm Yoruba Mosque",
+      "phone": "08035879087/ 07082397322",
+      "guardian": "Okereke Emenike"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3910",
+      "full_name": "Emeka Shantel Chinwedu",
+      "gender": "Female",
+      "birth_date": "2013-01-05",
+      "address": "C22 Chikakore Kubwa Abuja",
+      "phone": "08036754559/08030928442",
+      "guardian": "Ohaeri Henry"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3875",
+      "full_name": "Emiola Divine Modupe",
+      "gender": "",
+      "birth_date": "2013-08-09",
+      "address": "56,Zone E Byhazhin Kubwa",
+      "phone": "08068236381/ 15",
+      "guardian": "Emiola Babatunde"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3996",
+      "full_name": "Etadaferua Uvieroghene Ivan",
+      "gender": "Male",
+      "birth_date": "2013-12-02",
+      "address": "Across Kubwa",
+      "phone": "07043349816/ 09157495172",
+      "guardian": "Esquire Ebakota"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3960",
+      "full_name": "Eze Emelda Amarachukwu",
+      "gender": "Female",
+      "birth_date": "2012-08-17",
+      "address": "2,Yerima Street Kubwa Abuja",
+      "phone": "07034995928/08030512161",
+      "guardian": "Eze Kingsley"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4029",
+      "full_name": "Haruna Eneye King",
+      "gender": "Male",
+      "birth_date": "2012-04-17",
+      "address": "13 c Coker Street Byhazhin",
+      "phone": "07053584119/08058602667",
+      "guardian": "Siyaka Haruna"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3973",
+      "full_name": "Ifeanyichukwu Ozichukwu Prosper",
+      "gender": "Female",
+      "birth_date": "2013-06-25",
+      "address": "GNS Opp Block Industry Byhazhin Kubwa",
+      "phone": "08063313557/ 07062260881",
+      "guardian": "Levi Ifeanyichukwu"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3895",
+      "full_name": "James Chimamanda Claire",
+      "gender": "Female",
+      "birth_date": "2013-05-18",
+      "address": "Cp 131 Blueroof Estate Estate Kubwa",
+      "phone": "07063351053/08066614167",
+      "guardian": "James Ikechukwu"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3837",
+      "full_name": "James Marvellous Oyiza",
+      "gender": "Female",
+      "birth_date": "2013-09-08",
+      "address": "Behind Favour of God Estate",
+      "phone": "08065507675/08036472144",
+      "guardian": "Sani James"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4037",
+      "full_name": "Joshua Emmanuella Kamsiyochi",
+      "gender": "Female",
+      "birth_date": "2013-03-13",
+      "address": "Jossy Brown Str Paze Byhazhin Kubwa",
+      "phone": "09068757665/09066916320",
+      "guardian": "Chinwuba Joshua"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4023",
+      "full_name": "Leonard Christabel Chinwemeri",
+      "gender": "Female",
+      "birth_date": "2014-02-23",
+      "address": "447, Old RoyalFast Food Pipe line Kubwa",
+      "phone": "08064200645/08038251881",
+      "guardian": "Ihekuna Leonard"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3862",
+      "full_name": "Maduko Chimamanda Emmanuella",
+      "gender": "Female",
+      "birth_date": null,
+      "address": "Beside Joyful Academy Before New Living Faith Chikako",
+      "phone": "08136990151/08030917484",
+      "guardian": "Maduko Stephen"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3864",
+      "full_name": "Mbah Princess Chinemerem",
+      "gender": "Female",
+      "birth_date": "2012-03-11",
+      "address": "Byhazhin Across",
+      "phone": "09025954444/08036110625",
+      "guardian": "Mbah Michael"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3884",
+      "full_name": "Momodu David Oghenebumhe",
+      "gender": "Female",
+      "birth_date": "2013-02-10",
+      "address": "Leisure Palace Gate Shelter FARM",
+      "phone": "07050251307/07036617906",
+      "guardian": "Momodu Linus"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3951",
+      "full_name": "Nnamdi Isabelle Adaeze",
+      "gender": "Female",
+      "birth_date": "2013-06-18",
+      "address": "17, Rabbi Crescent Behind Favour Of God Estate",
+      "phone": "09039664638/09035091090",
+      "guardian": "Ebere Jude"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3987",
+      "full_name": "Obichebelu Treasure Kosisochukwu",
+      "gender": "Female",
+      "birth_date": "2013-06-16",
+      "address": "Millionaire QTR Hillside Byhazhin",
+      "phone": "08065905882/08055834194",
+      "guardian": "Obichebelu Anthony"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3975",
+      "full_name": "Ochotukpo Samuel Faithful",
+      "gender": "Male",
+      "birth_date": "2013-06-20",
+      "address": "15 Tochukwu Street Catholic Church Byhazhin Kubwa",
+      "phone": "09060651349/07063400636",
+      "guardian": "Ochotukpo Israel"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4001",
+      "full_name": "Offor Emmanuel Chibuike",
+      "gender": "Male",
+      "birth_date": "2013-04-27",
+      "address": "Saminaka Kaduna Estate",
+      "phone": "08039395001/08065778320",
+      "guardian": "Offor Remigns"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3966",
+      "full_name": "Ogbonnaya David Kelechi",
+      "gender": "Male",
+      "birth_date": "2014-12-10",
+      "address": "St Peter Street Opp Catholic Church Byhazhn Across",
+      "phone": "08084977780/08021371307",
+      "guardian": "Eta Ogbonnaya"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3965",
+      "full_name": "Okolo Joshua Osizogie",
+      "gender": "Male",
+      "birth_date": "2013-03-28",
+      "address": "St Peter Street Opp Catholic Church Byhazhn Across",
+      "phone": "08036073943/08106420836",
+      "guardian": "Okolo Thomas"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3969",
+      "full_name": "Oladipo Eyinjujesu Mercy",
+      "gender": "Female",
+      "birth_date": "2012-11-07",
+      "address": "Phase4 Junior Navy QTRS",
+      "phone": "08069423969/08129047492",
+      "guardian": "Oladipo Oluseye"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4014",
+      "full_name": "Olayeni David Anjola",
+      "gender": "Male",
+      "birth_date": "2013-09-21",
+      "address": "14, Kunle Close Shelter Farm Byhazhin Kubwa",
+      "phone": "08055357371/08032408720",
+      "guardian": "Olayeni Muyiwa"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3979",
+      "full_name": "Oluwafemi Oluwabukunmi Goodness",
+      "gender": "Female",
+      "birth_date": "2012-12-29",
+      "address": "18,Coker Street Bhyazhin Extension Kubwa",
+      "phone": "08030487700/08063559544",
+      "guardian": "Ajayi Oluwafemi"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3856",
+      "full_name": "Omokaro Gianna Iwinosa",
+      "gender": "Female",
+      "birth_date": "2012-09-16",
+      "address": "Pacific Home Estate Arab Road Kubwa",
+      "phone": "0813501533/08055512063",
+      "guardian": "Omokaro Andrew"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3898",
+      "full_name": "Onidare Grace Ayooluwa",
+      "gender": "Female",
+      "birth_date": "2013-04-21",
+      "address": "House 27 Gold Crescent Peace Layout Chikakore",
+      "phone": "08035882186/08034997256",
+      "guardian": "Onidare Sunday"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3896",
+      "full_name": "Onyebujor Kingsley Kosisochukwu",
+      "gender": "Male",
+      "birth_date": "2012-07-10",
+      "address": "7 Samuel Crescent Arab Road Kubwa",
+      "phone": "08136335099/",
+      "guardian": "Onyebujor FIDELIS"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3955",
+      "full_name": "Osobase Richmond",
+      "gender": "Male",
+      "birth_date": "2012-09-28",
+      "address": "Beside LEA Pry School Byhazhin",
+      "phone": "07062369966/08072837663",
+      "guardian": "0sobase JOEL"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4011",
+      "full_name": "Paul Deborah Idango Ozioma",
+      "gender": "Female",
+      "birth_date": "2013-10-27",
+      "address": "75, Zion Str Cele Road Byhazhin",
+      "phone": "08060868177/08166882206",
+      "guardian": "Paul Michael"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3997",
+      "full_name": "Samuel God's will Abia",
+      "gender": "Female",
+      "birth_date": "2013-03-13",
+      "address": "Catholic Church No 39",
+      "phone": "08065604939/07036589159",
+      "guardian": "Sunday Samuel"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3876",
+      "full_name": "Simon Christabel Kanyinsola",
+      "gender": "Female",
+      "birth_date": "2013-08-16",
+      "address": "6, Zone D Cele Road",
+      "phone": "7066180105/08038528028",
+      "guardian": "Abogunde Simon"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3887",
+      "full_name": "Yusuf Nura Selam",
+      "gender": "Female",
+      "birth_date": "2012-09-08",
+      "address": "Kubwa Dantata Estate",
+      "phone": "8119896533",
+      "guardian": "Yusuf Ibrahim"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4031",
+      "full_name": "Zibiri Jesuone Ogiefo",
+      "gender": "Male",
+      "birth_date": "2014-05-13",
+      "address": "13, Hill Top Avenue Byhazhin",
+      "phone": "08036780427/",
+      "guardian": "Zibiri Omokhowa"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3874",
+      "full_name": "Abdullahi Hannifa Ajifa",
+      "gender": "Female",
+      "birth_date": "2014-03-23",
+      "address": "A16 Orange Farm Byhazhin Across Ijayapi Kubwa",
+      "phone": "08035199782/08039769406",
+      "guardian": "Abdullahi Tahir"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3959",
+      "full_name": "Abdulrahaman Ridwanillahi Chidubem",
+      "gender": "Male",
+      "birth_date": "2013-01-06",
+      "address": "5,Diamond Street Across",
+      "phone": "08065366676/ 08161246872",
+      "guardian": "Abu Abdulrahaman"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3860",
+      "full_name": "Abiola Collins Oluwagbenga",
+      "gender": "Male",
+      "birth_date": "2012-09-14",
+      "address": "Byhazhin Across By Madam Gulder Junction Kubwa",
+      "phone": "08069754545/08065290557",
+      "guardian": "Abiola Tunde"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4032",
+      "full_name": "Adeleke Iyin Michelle",
+      "gender": "Female",
+      "birth_date": "2014-11-30",
+      "address": "6,Orange Farm Byhazhin Kubwa Abuja",
+      "phone": "08033621181/ 07037370200",
+      "guardian": "Adeleke Sheyi"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3877",
+      "full_name": "AdeKunle Adebusola Oreoluwa",
+      "gender": "Female",
+      "birth_date": "2012-11-20",
+      "address": "Hillside Chikakore Kubwa",
+      "phone": "07061008318/ 08130925034",
+      "guardian": "Adekunle Adewale"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3840",
+      "full_name": "Ajadi Emmanuel Oluwakorede",
+      "gender": "Male",
+      "birth_date": "2013-05-08",
+      "address": "Living Fith Junction Byhazhin Kubwa Abuja",
+      "phone": "08036382984/ 08032732025",
+      "guardian": "Ajadi Moses"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3891",
+      "full_name": "Aruma Onyedikachi Emmanuella",
+      "gender": "Female",
+      "birth_date": "2013-06-02",
+      "address": "Plot 390 Katampe Street",
+      "phone": "08036454998/08085505421",
+      "guardian": "Aruma Emaka"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3866",
+      "full_name": "Clement Success Oghenemaro",
+      "gender": "Female",
+      "birth_date": "2013-03-06",
+      "address": "Chikakore Byhazhin Kubwa",
+      "phone": "08037664105/08131553044",
+      "guardian": "Clement Oghenero"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3917",
+      "full_name": "Dada Oluwanifemi Praise",
+      "gender": "Male",
+      "birth_date": "2013-03-11",
+      "address": "8,Agha Emmanuel Avenue Chikakore",
+      "phone": "08037538511/ 07061824105",
+      "guardian": "Dada Oluwashola"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3928",
+      "full_name": "Daniel Emmanuel Ekemini",
+      "gender": "Male",
+      "birth_date": "2013-12-11",
+      "address": "Behind Uncle Joe Supermarket HillTop",
+      "phone": "08023618573/080363727909",
+      "guardian": "David Ekemini"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3976",
+      "full_name": "Elechi Praise Chimela",
+      "gender": "Female",
+      "birth_date": "2013-12-11",
+      "address": "6 Unity Street Byhazhin Across Kubwa",
+      "phone": "08036414555/ 08036169705",
+      "guardian": "Ajah Benson"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3956",
+      "full_name": "Emenike Geneieve Eziwanne",
+      "gender": "Female",
+      "birth_date": "2013-04-17",
+      "address": "Plot17b Shelter Farm",
+      "phone": "08035879087/07082397322",
+      "guardian": "Okereke Emenike"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3875",
+      "full_name": "Emiola Divine Modupe",
+      "gender": "",
+      "birth_date": "2013-08-09",
+      "address": "56,Zone E Byhazhin Kubwa",
+      "phone": "08068236381/ 15",
+      "guardian": "Emiola Babatunde"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3989",
+      "full_name": "Ekpemi Joshua Oyakhamo",
+      "gender": "Male",
+      "birth_date": "2012-09-18",
+      "address": "Block D8 Broadline Est Byhazhin Kubwa Abuja",
+      "phone": "08053475992/07057378707",
+      "guardian": "OMOGBEME Bernadine"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4002",
+      "full_name": "Eshimnigwe Gift Chidinma",
+      "gender": "Female",
+      "birth_date": "2012-03-26",
+      "address": "Kungaboku Back Of Health Center Kubuwa Abuja",
+      "phone": "08065552422/07068882554",
+      "guardian": "Eshimnigwe Festus"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3925",
+      "full_name": "Ifesie Chidiebere David",
+      "gender": "Male",
+      "birth_date": "2013-06-19",
+      "address": "Byhazhin Across after Muflak Hotel",
+      "phone": "08032106212/08038112881",
+      "guardian": "Ifesie Chidiebere"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3827",
+      "full_name": "Igunnu Oluwadamola Edmond",
+      "gender": "Male",
+      "birth_date": "2013-02-09",
+      "address": "Plt 29, Chikakore Layout Kubwa",
+      "phone": "08035870417/ 08033900768",
+      "guardian": "Igunnu Eniola"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3879",
+      "full_name": "Joshua Kayode Emmanuella",
+      "gender": "Male",
+      "birth_date": "2013-09-19",
+      "address": "53, Bzone Chikakorie Kubwa Abuja",
+      "phone": "08053914410/08065553858",
+      "guardian": "Joshua Temitope"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4021",
+      "full_name": "Josiah Shulamite Ajifa",
+      "gender": "Female",
+      "birth_date": "2012-10-28",
+      "address": "11, Peter Okonkwo Street Chikakore",
+      "phone": "08065710460/08030733622",
+      "guardian": "Ochika Josiah"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3882",
+      "full_name": "Kehinde Ayodeji Lawal",
+      "gender": "Male",
+      "birth_date": "2013-11-07",
+      "address": "6 Hakeem Square Phase 4",
+      "phone": "07031940948/",
+      "guardian": "Lawal Kehinde"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3908",
+      "full_name": "Michael Wisdom Ojile",
+      "gender": "Male",
+      "birth_date": "2013-10-13",
+      "address": "10 Opposite Redeem Church Paze Byhazhin",
+      "phone": "0806847 4462/07063705471",
+      "guardian": "Michael Ladan"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3909",
+      "full_name": "Moyuho Joshua Felix",
+      "gender": "Male",
+      "birth_date": "2013-03-04",
+      "address": "Engr Kazeem Close Byhazhin Across Kubwa",
+      "phone": "08025438380/ 07026721557",
+      "guardian": "Akpaidip Felix"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4083",
+      "full_name": "Nwafor Francis Chiagozie",
+      "gender": "Male",
+      "birth_date": "2013-06-25",
+      "address": "Behind Govt Sec School Byhazhin Kubwa",
+      "phone": "08035054195/08067988730",
+      "guardian": "Nwafor Victor"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4025",
+      "full_name": "Nwabueze Emmanuel Olamide",
+      "gender": "Male",
+      "birth_date": "2013-10-19",
+      "address": "Byhazhin Across Before Madam Ed",
+      "phone": "08036533864/08148074324",
+      "guardian": "Uweh Nwabueze"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3951",
+      "full_name": "Nnamdi Isabelle Adaeze",
+      "gender": "Female",
+      "birth_date": "2013-06-18",
+      "address": "17, Rabbi Crescent Behind Favour Of God Estate",
+      "phone": "09039664638/09035091090",
+      "guardian": "Ebere Jude"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3967",
+      "full_name": "Nwankwo Elijah Cheidozie",
+      "gender": "Male",
+      "birth_date": null,
+      "address": "1,Revival Street",
+      "phone": "08034728692/",
+      "guardian": "Nwankwo Christian"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3885",
+      "full_name": "Nzan David Offah",
+      "gender": "Male",
+      "birth_date": "2013-09-17",
+      "address": "6 Pat Oyem Close Kubwa Abuja",
+      "phone": "08032124491/07069249523",
+      "guardian": "Nzan Osim"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3980",
+      "full_name": "Ochum Jane Ihotu",
+      "gender": "Female",
+      "birth_date": "2013-07-31",
+      "address": "Uncle Joe Avenue",
+      "phone": "08028431634/ 07066815501",
+      "guardian": "Ochum Emmanuel"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3886",
+      "full_name": "Ogbuagu David Abbott",
+      "gender": "Male",
+      "birth_date": "2013-06-19",
+      "address": "Blk 35c Sam Adah Close Zone C Millionaire Qtr",
+      "phone": "/0806226691280695521625",
+      "guardian": "Ude Abbot"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3867",
+      "full_name": "Okechukwu Nmesoma Claire",
+      "gender": "Female",
+      "birth_date": "2012-10-12",
+      "address": "Cele Rd by Police Station Kubwa Gold",
+      "phone": "8037414517",
+      "guardian": "Okechukwu Chika"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3881",
+      "full_name": "Okoh Destiny Eneh",
+      "gender": "Female",
+      "birth_date": "2012-09-22",
+      "address": "Opp Police Station Byhazhin Across Kubwa Abuja",
+      "phone": "8035926276/ 08168408416",
+      "guardian": "Okoh Cletus"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4000",
+      "full_name": "Okoye Kamsyochukwu Matthew",
+      "gender": "Male",
+      "birth_date": "2013-11-09",
+      "address": "Muflac Street Byhazhin Across",
+      "phone": "07010889359, 08101072716",
+      "guardian": "Okoye Emeka"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3833",
+      "full_name": "Oladosu Toluwalase Michael",
+      "gender": "Male",
+      "birth_date": "2013-02-10",
+      "address": "GN037 Tunga Wakali Deidei",
+      "phone": "8050992810",
+      "guardian": "Attah Orighomisan"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3883",
+      "full_name": "Oloche Elijah Oloche",
+      "gender": "Male",
+      "birth_date": "2013-03-31",
+      "address": "452 Byhazhin Chikakore",
+      "phone": "08036943605/08069554507",
+      "guardian": "Oloche Audu"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3995",
+      "full_name": "Onwuegbusi Munachi Zenith",
+      "gender": "Female",
+      "birth_date": "2013-10-16",
+      "address": "Beside Deeper Life Church Chikakore",
+      "phone": "08032550798//08037394802",
+      "guardian": "Onwuegbusi Prince"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3977",
+      "full_name": "Oyekanmi Oluwatobiloba Sarah",
+      "gender": "Female",
+      "birth_date": "2012-06-22",
+      "address": "C4 Oramge Farm Kubwa Abuja",
+      "phone": "08155984679/08100922633",
+      "guardian": "Oyekanmi Shola"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3958",
+      "full_name": "Salmon Sharon Folasade",
+      "gender": "Female",
+      "birth_date": "2014-09-04",
+      "address": "2,Leisure Palace HOTEL Shelter Farm Kubwa",
+      "phone": "08038174868/07035154913",
+      "guardian": "Salmon Samuel"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4008",
+      "full_name": "Samuel Michelle Iniobong",
+      "gender": "Female",
+      "birth_date": "2012-01-04",
+      "address": "Dantata Estate Kubwa Abuja",
+      "phone": "7059144594",
+      "guardian": "Patricia Samuel"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3841",
+      "full_name": "Stephen Dorcas Ogochukwu",
+      "gender": "Female",
+      "birth_date": "2012-10-07",
+      "address": "Village Market Beside New Health Pharmacy",
+      "phone": "08028815415/09045823090",
+      "guardian": "Nwite Nwafor"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3878",
+      "full_name": "Sule Veralyn Ojo-Agefu",
+      "gender": "Female",
+      "birth_date": "2013-05-08",
+      "address": "11, Ebenezer Crescent Byhazhin Across Kubwa",
+      "phone": "08036003031/07036111595",
+      "guardian": "Sule Ambrose"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3893",
+      "full_name": "Sunday Victor Ojomona",
+      "gender": "Male",
+      "birth_date": "2012-03-23",
+      "address": "Beside Chief Palace Mosque",
+      "phone": "08067822210/ 08101629190",
+      "guardian": "Alih Sunday"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3828",
+      "full_name": "Uguru Emmanuel Martins",
+      "gender": "Male",
+      "birth_date": "2014-12-05",
+      "address": "6, Agha Emmanuel Street Chikakore Kubwa Abuja",
+      "phone": "09077091371/07063485790",
+      "guardian": "Ndukwe Martins"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3971",
+      "full_name": "Ugurueke John Destiny",
+      "gender": "Male",
+      "birth_date": "2013-12-05",
+      "address": "Byhazhin Across Before Patriot School",
+      "phone": "08036492778/ 08067851939",
+      "guardian": "Ugurueke Victor"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3880",
+      "full_name": "Uzorka Priestly Chukwuyenum",
+      "gender": "Male",
+      "birth_date": null,
+      "address": "Plot 6 Unity Street Off Bwari Access Road Ijayapi",
+      "phone": "08130519356/08030829204",
+      "guardian": "Uzorka Moses"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3936",
+      "full_name": "Valetine Favour Nmachisom",
+      "gender": "Female",
+      "birth_date": "2013-03-29",
+      "address": "19, Agha Emmanuel Avenue Chikakore",
+      "phone": "07066599796/09060149287",
+      "guardian": "Anikweh Valetine"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3974",
+      "full_name": "Yakubu Mustapha",
+      "gender": "Male",
+      "birth_date": "2013-04-03",
+      "address": "176, Chikakore Zone C Kubwa",
+      "phone": "08031589397/09055349202",
+      "guardian": "Ahiaba Yakubu"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3920",
+      "full_name": "Akinyele Daniel Ayokunle",
+      "gender": "Male",
+      "birth_date": "2013-11-21",
+      "address": "Plot 385, Us Goivwa Street Chikakore Layout Kubwa",
+      "phone": "08038034669/09035751036",
+      "guardian": "Akinyele Oluwatoyin"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3952",
+      "full_name": "Agwu Victor Eke",
+      "gender": "Male",
+      "birth_date": "2011-06-21",
+      "address": "Shelter Farm Chikakore",
+      "phone": "08082351654/08169716832",
+      "guardian": "Agwu Eke"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3992",
+      "full_name": "Alizor Destiny Ifeoma",
+      "gender": "Female",
+      "birth_date": "2008-08-05",
+      "address": "Hse 7, Zone C Salvation Avenue Ijayapi Kubwa",
+      "phone": "08036018023/08051921700",
+      "guardian": "Alizor Chuks"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3830",
+      "full_name": "Are Favour Oluwasekemi",
+      "gender": "Female",
+      "birth_date": null,
+      "address": "Arab Road by Joseph Jorin Intl School",
+      "phone": "08056831410/ 08059291125",
+      "guardian": "Are Nureni"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3834",
+      "full_name": "Aremu Fiyin-Funoluwa Esther",
+      "gender": "Female",
+      "birth_date": "2013-11-07",
+      "address": "Plot 1337 Layout Opp Leisure Palace Shelter Farm",
+      "phone": "07062051666/ 08088862668",
+      "guardian": "Aremu Olwasegun"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3918",
+      "full_name": "Daniel Evelyn",
+      "gender": "Female",
+      "birth_date": "2026-09-27",
+      "address": "Kubwa",
+      "phone": "07044982809/09091935885",
+      "guardian": "Shaibu Daniel"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3889",
+      "full_name": "Ezema Ogechukwu Sarah",
+      "gender": "Female",
+      "birth_date": "2013-03-24",
+      "address": "Behind Holy Spirit Catheolic Church Byhazhin Kubwa",
+      "phone": "08035877013/09132034690",
+      "guardian": "Ezema Chijioke"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3843",
+      "full_name": "Gadzama Victor Philemon",
+      "gender": "Male",
+      "birth_date": "2013-09-28",
+      "address": "25,Muflak Street Byhazhin Across",
+      "phone": "08134084101/08134313117",
+      "guardian": "Gadzama Philemon"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3978",
+      "full_name": "Gbolagade Esther Oluwafunmilayo",
+      "gender": "Female",
+      "birth_date": "2013-04-04",
+      "address": "Kubwa Paze",
+      "phone": "8078907558",
+      "guardian": "Salisu Sola"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3957",
+      "full_name": "Irenoa Destiny Okpeku",
+      "gender": "Male",
+      "birth_date": "2013-02-19",
+      "address": "Plot H175 Chikakore Zone C",
+      "phone": "08060219988/08033735620",
+      "guardian": "Irenoa Patrick"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3890",
+      "full_name": "Itua Zion Oseahumen",
+      "gender": "Male",
+      "birth_date": "2013-04-03",
+      "address": "3, Uti Close Ijayapi Byhazhin Kubwa",
+      "phone": "07026658566/08080447648",
+      "guardian": "Unuame Paul"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "4081",
+      "full_name": "Nnachetam Chimamanda Martha",
+      "gender": "Female",
+      "birth_date": "2013-10-28",
+      "address": "Opp HolySpirit Catholic Church Across",
+      "phone": "08035092533/08144253278",
+      "guardian": "Ezema Nnachetam"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3968",
+      "full_name": "Nwankwo Elizabeth Chinaza",
+      "gender": "Female",
+      "birth_date": "2014-05-20",
+      "address": "13,Goodness Close Shelter Farm Byhazhin",
+      "phone": "08037891844/07065655658",
+      "guardian": "Nwankwo Matthew"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3954",
+      "full_name": "Odiaga Gilbert Isei",
+      "gender": "Male",
+      "birth_date": "2013-09-03",
+      "address": "Chikakore livin Faith Street Kubwa Abuja",
+      "phone": "8036332123",
+      "guardian": "Irueghe Samuel"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3922",
+      "full_name": "Ojeiwa Breakthrough Osewe",
+      "gender": "Male",
+      "birth_date": "2013-03-10",
+      "address": "10,Umoru Close Byhazhin",
+      "phone": "07067672325/08023611515",
+      "guardian": "Ojeiwa Chris"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "4013",
+      "full_name": "Olom Pascal Ashiwere",
+      "gender": "Male",
+      "birth_date": "2013-06-20",
+      "address": "Top Hill Uncle Joe Supermarket",
+      "phone": "08039720526/07032869479",
+      "guardian": "Olom Godwin"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "4033",
+      "full_name": "Omale Oche Eden",
+      "gender": "Male",
+      "birth_date": "2013-07-09",
+      "address": "House 2 Zone C Byhazhin Across",
+      "phone": "08188773322/09036654223",
+      "guardian": "Oko Omale"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3836",
+      "full_name": "Onyekesi Samuel Oluchukwu",
+      "gender": "Male",
+      "birth_date": "2013-03-27",
+      "address": "8,Coker Street Shelter Farm",
+      "phone": "8037006726 O8025560271",
+      "guardian": "Onyekesi EMMANUEL"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "4036",
+      "full_name": "Orinya James",
+      "gender": "Male",
+      "birth_date": "2010-09-13",
+      "address": "Across Back Of Chief Palace",
+      "phone": "08138668805/0906424182",
+      "guardian": "Joseph Mba"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3829",
+      "full_name": "Ojelade Enoch Darasimi",
+      "gender": "Male",
+      "birth_date": "2012-12-07",
+      "address": "Favour EstateUp Hill",
+      "phone": "8036480108",
+      "guardian": "Ojelade Blessings"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "4083",
+      "full_name": "Samuel Iyanu Tosin",
+      "gender": "Female",
+      "birth_date": "2012-11-08",
+      "address": "Zone C Layout Chikakore Kubwa",
+      "phone": "08103001309/07064353071",
+      "guardian": "Olorunfemi Samuel"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3988",
+      "full_name": "Shedrack Emmanuel Chimeremeze",
+      "gender": "Male",
+      "birth_date": "2012-07-08",
+      "address": "Chikakore Byhazhin",
+      "phone": "08038643344/08100875277",
+      "guardian": "Shedrack Sunday"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3993",
+      "full_name": "Aforijuku Gabrielle Oritsetimeyin",
+      "gender": "Female",
+      "birth_date": "2012-07-01",
+      "address": "1 Tochuk St Catholic Avenue",
+      "phone": "07035292445/09048579869",
+      "guardian": "Aghoghovbia Ivy"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "4080",
+      "full_name": "Awoniyi Oluwaseyi Fortune",
+      "gender": "Female",
+      "birth_date": "2012-12-09",
+      "address": "Flat 3B Union Homes Estate Byhazhin",
+      "phone": "08056282957/08030403688",
+      "guardian": "Awoniyi Idowu"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3845",
+      "full_name": "Chika Ebubedike Allwell",
+      "gender": "Male",
+      "birth_date": "2012-12-01",
+      "address": "8,Ini Bassey St Off Arab Rd Kubwa",
+      "phone": "09099665566/07034070089",
+      "guardian": "Nwankwo Chika"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "4007",
+      "full_name": "Esiaba Chika Precious",
+      "gender": "Female",
+      "birth_date": "2013-03-06",
+      "address": "Opp Dantata Estate 3 Amobiclose Liberty Junction",
+      "phone": "08130117462/08138562917",
+      "guardian": "Esiaba Nnaemeka"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3868",
+      "full_name": "Meretin David Ogheneruno",
+      "gender": "Male",
+      "birth_date": "2012-04-22",
+      "address": "2, Drive B UNITY Street Byhazhin",
+      "phone": "07078607178/08032612428",
+      "guardian": "Meretin Henry"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3897",
+      "full_name": "Jinadu Naimat Yetunde",
+      "gender": "Female",
+      "birth_date": "2011-03-05",
+      "address": "Freedom Avenue Community",
+      "phone": "08069566377/0813453012",
+      "guardian": "Jinadu Alani"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "4016",
+      "full_name": "Igwilo Praise Chinemerem",
+      "gender": "Male",
+      "birth_date": "2010-10-29",
+      "address": "Zone A After Muflak Hotel Byhazhin",
+      "phone": "08027056915/ 08164444051",
+      "guardian": "Igwilo Elozona"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "4018",
+      "full_name": "Ikechukwu Marvellous Ozioma",
+      "gender": "Female",
+      "birth_date": "2012-05-10",
+      "address": "Opp Talent Academy Kubwa",
+      "phone": "09035994076/09137752983",
+      "guardian": "Ikechukwu Onyemaechi"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3584",
+      "full_name": "Tommy Greatness Omoshuwa",
+      "gender": "Female",
+      "birth_date": "2012-08-18",
+      "address": "17 ZoneB Ijayapi Across",
+      "phone": "08083047669/08035632312",
+      "guardian": "Tommy Adeleke"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "4082",
+      "full_name": "Ugbanaja Jackie Ifechukwude",
+      "gender": "Female",
+      "birth_date": "2009-03-13",
+      "address": "Shelter Farm Byhazhin Kubwa",
+      "phone": "08035879087/ 07082397322",
+      "guardian": "Emenike Okereke"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "4015",
+      "full_name": "Ugwuanyi Kingsley Chikoba",
+      "gender": "Male",
+      "birth_date": "2007-11-09",
+      "address": "2,Edo Street ByhazhinAcross",
+      "phone": "08035964896/08060401816",
+      "guardian": "Ugwu Jude"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3986",
+      "full_name": "Inaede Bliss Omohkhepue",
+      "gender": "Male",
+      "birth_date": "2012-01-21",
+      "address": "3, Haj Estate David Okeke Street Off Arab Rd",
+      "phone": "08032434578/08035548331",
+      "guardian": "Clement Moses"
+    }
+  ],
+  "register": [
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3849",
+      "full_name": "Adebayo Kayode Victor"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4006",
+      "full_name": "`Alah MaryJane U"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3985",
+      "full_name": "Akhabue Jethro Osaghale"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4027",
+      "full_name": "Chinedu Elijah Osinachi"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4010",
+      "full_name": "Chinedu Omeje Akachukwu Juliet"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3963",
+      "full_name": "Emeka Favour Osinachi"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3947",
+      "full_name": "Emmanuel-Bidi PraiseGod Ebimobeare"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4004",
+      "full_name": "Ejeh Ihotu Josephine"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4009",
+      "full_name": "Ezeh Kenechukwu Chizi"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3998",
+      "full_name": "Ezeoma Chiamanda Sophia"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3962",
+      "full_name": "Ezemaduako Sophia Chinora"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3991",
+      "full_name": "Ezenwafor Trust Jahnaemerem"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3937",
+      "full_name": "Felix David Oshione"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3823",
+      "full_name": "Femi-Oloko Grace Taiwo"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3964",
+      "full_name": "IfeanyiChukwu Akuabata Treasure"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4028",
+      "full_name": "Ihetu Adaobi Daniella"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3940",
+      "full_name": "Ikechukwu Gabriella Sochikaima"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3941",
+      "full_name": "Ikeokwu Kenny Chibueze"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3946",
+      "full_name": "Kaha Naddo Beatrice"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4022",
+      "full_name": "Leonard Pio Chinaechem"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3863",
+      "full_name": "Mbah Wisdom Chinweike"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3826",
+      "full_name": "Meretin Daniel Mamuyowi"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3915",
+      "full_name": "Obey Abudance Eboh"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3824",
+      "full_name": "Oluchukwu Emmanuel Amamchi"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "4005",
+      "full_name": "Olom Vivian Irenen"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3938",
+      "full_name": "Romeo Oghale Princess"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3921",
+      "full_name": "Samuel Marvellous Oluwadarasimi"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3961",
+      "full_name": "Patrick Emmanuella"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3924",
+      "full_name": "Sunday Mmesomachukwu Justice"
+    },
+    {
+      "level": "JS1",
+      "arm": "Diamond",
+      "index": "3999",
+      "full_name": "Yusuf Adesola Heekmat"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "4078",
+      "full_name": "Abimbola Muhammed Mahi Onoru Oyiza"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3929",
+      "full_name": "Adegbenro Adebola Gideon"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3831",
+      "full_name": "Adewole Oluwadarasimi Divine Mercy"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3927",
+      "full_name": "Adigun Joseph Adedayo"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3825",
+      "full_name": "Ajayiosho Ruby Ayomide"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3859",
+      "full_name": "Arasah Nathan Solomon"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3943",
+      "full_name": "Benjamin Benaiah Shimfuo"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3913",
+      "full_name": "Chime Anthony Chibusonma"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3835",
+      "full_name": "Ibiyomi Micheal Oluwatosin"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3911",
+      "full_name": "Idam GodsGlory Chizaram"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3912",
+      "full_name": "Igwe Amarachi Ellie"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3853",
+      "full_name": "Itodo Divine Onduleya"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3894",
+      "full_name": "James Chisimdindu Michelle"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3970",
+      "full_name": "Johnson Deborah Agbenu"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "4012",
+      "full_name": "Muhammed Fatima Zarah"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3872",
+      "full_name": "Nwobodo Kamsi Victor"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3846",
+      "full_name": "Nwabuzor Amarachi Jessica"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3923",
+      "full_name": "Obiechefu Emmanuella Uchenna Nnnenna"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3857",
+      "full_name": "Ogwuche Faith Ebo"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3899",
+      "full_name": "Onanwenyi Esther Ifeoma"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3850",
+      "full_name": "Saviour Edisana"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3848",
+      "full_name": "Sunday Bright Tolu"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3916",
+      "full_name": "Timothy Portia Ijeoma"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "3932",
+      "full_name": "Uzochukwu Ifeanyi Joshua"
+    },
+    {
+      "level": "JS1",
+      "arm": "Gold",
+      "index": "4024",
+      "full_name": "Wilfred Joshua Ojimajo"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3945",
+      "full_name": "Abella Great Calistus"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3861",
+      "full_name": "Abiola Olaoluwa Enoch"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3972",
+      "full_name": "Aremu Feyisayo Emmanuella"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3838",
+      "full_name": "Amani Daniella Ochanya"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3852",
+      "full_name": "Chukwuma Akachukwu Grace"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3982",
+      "full_name": "Damian Chisom Fortune"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3842",
+      "full_name": "Eke Chinazaekpere Elvis"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3931",
+      "full_name": "Ezechi Emmanuella Chimsimdi"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3822",
+      "full_name": "Femi-Oloko Glory Kehinde"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "4030",
+      "full_name": "Haruna Simha Ahuoyiza"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "4077",
+      "full_name": "Idachaba Justice Attah"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3930",
+      "full_name": "Ifesie Ogechi Blessing"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3942",
+      "full_name": "Jonah Gift Eleojo"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "4079",
+      "full_name": "Michael Miracle Sunday"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3984",
+      "full_name": "Monday Musa Marvellous Tishi"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3858",
+      "full_name": "Momodu Onomhe Wealth"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3870",
+      "full_name": "Nnakwu Bernice Chisom"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3855",
+      "full_name": "Noukounyekpon Sessi Myon"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "4020",
+      "full_name": "Okechukwu Kamsiyochukwu Daniel"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3944",
+      "full_name": "Oladapo Olamide Fortune"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3906",
+      "full_name": "Olorunmotito Zion Temidire"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3907",
+      "full_name": "Onidare Dorcas Ayobami"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3873",
+      "full_name": "Onuchukwu Essential Sochikaima"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3939",
+      "full_name": "Ozonze Chidera David"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3914",
+      "full_name": "Richard Chimeremeze Samuel"
+    },
+    {
+      "level": "JS1",
+      "arm": "Pearl",
+      "index": "3935",
+      "full_name": "Paschal Valetine Somadina"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3758",
+      "full_name": "Amabebe Fortune David"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3712",
+      "full_name": "Amaifeobu-Ndubuisi Destiny Ebubechukwu"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3812",
+      "full_name": "Akor Emmanuel Jude"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3691",
+      "full_name": "Chidozie MaryAngel Chidalu"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3949",
+      "full_name": "David Eyamba Melissa Ibiorembo"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3705",
+      "full_name": "Eleje Chisom Emmanuel"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3706",
+      "full_name": "Emmanuel Ele-ojo Ellis"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3639",
+      "full_name": "Ezeh Collins Onyedikachi"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3737",
+      "full_name": "Ezema Chimamanda Anita"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3693",
+      "full_name": "Ihenwosu Favour Ozioma"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3865",
+      "full_name": "Ishola Racheal Ayonitemi"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3700",
+      "full_name": "Ikpe David Ijeoma Solomon"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3685",
+      "full_name": "Kingsley-Ohen Jason Ijenewere"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3630",
+      "full_name": "Muoneke Chimamanda Jane"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3789",
+      "full_name": "Muhammed Zainab"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3687",
+      "full_name": "Obey Promise Ufeh"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3814",
+      "full_name": "Samuel Annointing Ojonugwa"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3711",
+      "full_name": "Solomon Omonivie Jovanna"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3983",
+      "full_name": "Stephen Desire Uredo-ojo"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3637",
+      "full_name": "Ugah Chindindu Martins"
+    },
+    {
+      "level": "JS2",
+      "arm": "Diamond",
+      "index": "3795",
+      "full_name": "Yusuf Ibrahim Nareen"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3697",
+      "full_name": "Abdulrahaman Rodiyyat Mma"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3799",
+      "full_name": "Adekunle Adebukola Ibukunoluwa"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3981",
+      "full_name": "Adejoh Destiny Ufedo"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3632",
+      "full_name": "Adeniyi Emmanuel Oluwasijibomi"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3636",
+      "full_name": "Babatunde Mercy Ayomide Aishat"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3627",
+      "full_name": "Chiaha Zion Akachukwu"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3844",
+      "full_name": "Chika Andrew Esochala"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3677",
+      "full_name": "Chukwuma Kamsiyochukwu Brendan"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3631",
+      "full_name": "Emmanuel Reuben Arome"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3950",
+      "full_name": "Felix Daniel Ahmanosi"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3710",
+      "full_name": "Igoche Margret Oyeneafu"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3702",
+      "full_name": "James Praise Ohinoyi"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3742",
+      "full_name": "Joshua Prince Prosper Owoicholofu"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3663",
+      "full_name": "Moyuho Esther Felix"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3638",
+      "full_name": "Nnamani Adaeze Esther"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3714",
+      "full_name": "Nwajiaku Iheoma Abudant Blessing"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3704",
+      "full_name": "Obinna-Onu Damian Chuwunonso"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3766",
+      "full_name": "Ochum Favour Ehi"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3684",
+      "full_name": "Okechukwu Chizaram Nita"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3628",
+      "full_name": "Okhaifo Praise Osamudiamen"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3676",
+      "full_name": "Omofuma Isreal Ehijie"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3798",
+      "full_name": "Shedrack Akachukwu Godwin"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3808",
+      "full_name": "Samuel Glory Ifeoma"
+    },
+    {
+      "level": "JS2",
+      "arm": "Gold",
+      "index": "3815",
+      "full_name": "Ugbanaja Mason Chijindu"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3664",
+      "full_name": "Afenyive David Greatman"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3778",
+      "full_name": "Adeshina Eunice Oluwatamilore"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3774",
+      "full_name": "Ajah Kamsiyochukwu Emmanuel"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3817",
+      "full_name": "Akparakwu Royal Egbe"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3739",
+      "full_name": "Dada Oluwaseun Victor"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3901",
+      "full_name": "Emenike Emerald Chimamanda"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3640",
+      "full_name": "Ezeh Sonia Nkechinyere"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3656",
+      "full_name": "Haruna Ojochenemi Paulgreat"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3749",
+      "full_name": "Irenoa Emmanuel Okpeku"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3680",
+      "full_name": "Maduko Chimdalu Modester"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3871",
+      "full_name": "Mela David Chibuike"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3688",
+      "full_name": "Odoko Favour Aniya"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3768",
+      "full_name": "Ogba Heavenly Amanda"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3653",
+      "full_name": "Ojukwu Amanda Adaeze"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3694",
+      "full_name": "Okoh John Owoicho"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3763",
+      "full_name": "Okpe Comfort Sawami"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3904",
+      "full_name": "Samson Hanannel Ojochegbe"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3745",
+      "full_name": "Simon Oluwadamilare Raymond"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3755",
+      "full_name": "Tambari Trust Jah Lenusira"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3800",
+      "full_name": "Ugochukwu Esther Onyinyechukwu"
+    },
+    {
+      "level": "JS2",
+      "arm": "Pearl",
+      "index": "3629",
+      "full_name": "Uche Adaeze Chinemerem"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3366",
+      "full_name": "Akpoge Onazi Praise"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3451",
+      "full_name": "Chidiebere Christina Amarachi"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3427",
+      "full_name": "Chime Chigozie Rapheal"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3818",
+      "full_name": "Chima David Chuwkuma"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3494",
+      "full_name": "Daniel Joshua"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3851",
+      "full_name": "Duvwiama Ogheneochukome Joshua"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3499",
+      "full_name": "Emeka Duke Chibueze"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3359",
+      "full_name": "Emegwali Blessing Chinonye"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3535",
+      "full_name": "Egbon Ebenezer Vincent"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3517",
+      "full_name": "Emmanuel David Aluaye"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3533",
+      "full_name": "Eze Chimeremeze David"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3556",
+      "full_name": "Ikeokwu Chinonso Princess"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3348",
+      "full_name": "Khalid Taibat"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3456",
+      "full_name": "Moses Davina Somtochi"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3377",
+      "full_name": "Nelson Destiny"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3588",
+      "full_name": "Odekanyin Victoria Ifeoluwa"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3933",
+      "full_name": "Okafor Sochukwuma JohnPaul"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3707",
+      "full_name": "Oke Ogo-Oluwa Praise"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3821",
+      "full_name": "Oko Thankgod Chizurumoke"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3504",
+      "full_name": "Olarewaju Macaria Damilola"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3398",
+      "full_name": "Onwuasoanya Emmanuel Ebubechukwu"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3557",
+      "full_name": "Sadiq Princess Rashidat Adewunmi"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3357",
+      "full_name": "Saviour Eti-Abasi"
+    },
+    {
+      "level": "JS3",
+      "arm": "Diamond",
+      "index": "3579",
+      "full_name": "Yusuf Hauwa"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3425",
+      "full_name": "Aaron Chukwuebuka Paul"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3433",
+      "full_name": "Adams Tarela Deborah"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3805",
+      "full_name": "Adisa Oluwagbemiga Ayomide"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3362",
+      "full_name": "Alimi Mariam Joy"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3994",
+      "full_name": "Aforijuku Audrey Oritsetsayegbemi"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3352",
+      "full_name": "Chijioke Benjamin Somtochukwu"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3368",
+      "full_name": "Chinedu Esther Chineye"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3534",
+      "full_name": "Damian Wisdom Akachukwu"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3370",
+      "full_name": "Emmanuel Joshua Ayodele"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3369",
+      "full_name": "Ezenwajiaku Chiziterem Wonderful"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3410",
+      "full_name": "Femi-Oloko Othniel Oluwagbejami"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "4003",
+      "full_name": "Francis-Obozekhai Daniel Oshoma"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3356",
+      "full_name": "Idachaba David Ojochegbe"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3372",
+      "full_name": "Ifesinachi Mercy Chinwemeri"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3440",
+      "full_name": "Itodo Destiny Ondutun"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3403",
+      "full_name": "Kingsley-Ohen Jadyn Somtochukwu"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3358",
+      "full_name": "Maduabuchi Shalom Chimamanda"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3869",
+      "full_name": "Meretin Fortune Rukevwe"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3444",
+      "full_name": "Moses Favour Omaojo Nancy"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3491",
+      "full_name": "Ngene Immaculate Chiamaka"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3353",
+      "full_name": "Nnamani Chukwudubemu Promise Promise"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3794",
+      "full_name": "Nwobodo Esther Chidiebube"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3378",
+      "full_name": "Olorunmotito Boluwatife Zoe"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3806",
+      "full_name": "Opeyemi Olamide Ebunoluwa"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3566",
+      "full_name": "Samuel Bright Toluwanimi"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3902",
+      "full_name": "Samson Heritage Ojojenwuminyanyi"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3442",
+      "full_name": "Sunday Mirabel Chinecherem"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3553",
+      "full_name": "Terwase Terdoo Jacob"
+    },
+    {
+      "level": "JS3",
+      "arm": "Gold",
+      "index": "3399",
+      "full_name": "Ukana Praise Oizamisi"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3903",
+      "full_name": "Adefu Victor Oche"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3446",
+      "full_name": "Ademodi Michael Olamide"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3420",
+      "full_name": "Ajadi Esther Oluwasemilore"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3364",
+      "full_name": "Alah John Unimuyi"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3483",
+      "full_name": "Ajogwu Oche Micheal"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3365",
+      "full_name": "Aluh Esther Ada"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3347",
+      "full_name": "Aziati Bright Kekeli"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3452",
+      "full_name": "Eke Ihuoma Joan"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3354",
+      "full_name": "Chiaha Dominion Somutochukwu"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3368",
+      "full_name": "Chinedu Esther Chineye"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3847",
+      "full_name": "Duvwiama Okeoghene Victory"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3452",
+      "full_name": "Eke IHUOMA Joan"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3614",
+      "full_name": "Emeka Charles Onyedikachi"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3371",
+      "full_name": "Emeka Fortune Ezinne"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3522",
+      "full_name": "Emenike Bliss Ivuoma"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3441",
+      "full_name": "Irevhoje Ehijie Aaron"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3510",
+      "full_name": "Joseph Blessing Ijafiya"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3788",
+      "full_name": "Joshua Daraobong Pleasant"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3402",
+      "full_name": "Josiah Justice Adeojo"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3375",
+      "full_name": "Khalid Zayyaundeen"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3415",
+      "full_name": "Martins Uguru Victor"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3516",
+      "full_name": "Nwali Cherish Sochima"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3376",
+      "full_name": "Nwobodo Christabel Somtochukwu"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3407",
+      "full_name": "Ohiemu Paul Eleojo"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3436",
+      "full_name": "Ochoche Ene Happiness"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3445",
+      "full_name": "Okorie Chimamanda Success"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3520",
+      "full_name": "Oladapo Ayomide Emmanuel"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3346",
+      "full_name": "Olaoye Daniel Temitope"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3349",
+      "full_name": "Olatunji Isaac Ogo-oluwa"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3459",
+      "full_name": "Onyeka Gabriel Orji"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3554",
+      "full_name": "Olofin Abdulmalik Bolaji"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3810",
+      "full_name": "Quadri Umar-Faruq Olamiposi"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3411",
+      "full_name": "Raheem Isabel Abosede"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3498",
+      "full_name": "Sanni Roqueebat Omolara"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3422",
+      "full_name": "Stephen Marbel Uchechi"
+    },
+    {
+      "level": "JS3",
+      "arm": "Pearl",
+      "index": "3471",
+      "full_name": "Ugo-Obi Chimamaka Nmesoma Victory"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3832",
+      "full_name": "Adebayo Oluwatosin Peace"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4019",
+      "full_name": "Adelabu Victory Adesola"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3990",
+      "full_name": "Ahwi Obaro Andrew"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3926",
+      "full_name": "Akobi Ugbada Owolehi"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3839",
+      "full_name": "Alari Emmanuella Joy"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3948",
+      "full_name": "Babatunde Olamide Mubarak"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3919",
+      "full_name": "Bello Mustapha Daniel"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3905",
+      "full_name": "Chuwuma Ebubechukwu Michael"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3892",
+      "full_name": "Emmanuel Chinaza Emmanuella"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4026",
+      "full_name": "Emenike Angel Chimemerie"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3953",
+      "full_name": "Emenike Genesis Ezinne"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3910",
+      "full_name": "Emeka Shantel Chinwedu"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3875",
+      "full_name": "Emiola Divine Modupe"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3996",
+      "full_name": "Etadaferua Uvieroghene Ivan"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3960",
+      "full_name": "Eze Emelda Amarachukwu"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4029",
+      "full_name": "Haruna Eneye King"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3973",
+      "full_name": "Ifeanyichukwu Ozichukwu Prosper"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3895",
+      "full_name": "James Chimamanda Claire"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3837",
+      "full_name": "James Marvellous Oyiza"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4037",
+      "full_name": "Joshua Emmanuella Kamsiyochi"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4023",
+      "full_name": "Leonard Christabel Chinwemeri"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3862",
+      "full_name": "Maduko Chimamanda Emmanuella"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3864",
+      "full_name": "Mbah Princess Chinemerem"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3884",
+      "full_name": "Momodu David Oghenebumhe"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3951",
+      "full_name": "Nnamdi Isabelle Adaeze"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3987",
+      "full_name": "Obichebelu Treasure Kosisochukwu"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3975",
+      "full_name": "Ochotukpo Samuel Faithful"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4001",
+      "full_name": "Offor Emmanuel Chibuike"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3966",
+      "full_name": "Ogbonnaya David Kelechi"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3965",
+      "full_name": "Okolo Joshua Osizogie"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3969",
+      "full_name": "Oladipo Eyinjujesu Mercy"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4014",
+      "full_name": "Olayeni David Anjola"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3979",
+      "full_name": "Oluwafemi Oluwabukunmi Goodness"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3856",
+      "full_name": "Omokaro Gianna Iwinosa"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3898",
+      "full_name": "Onidare Grace Ayooluwa"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3896",
+      "full_name": "Onyebujor Kingsley Kosisochukwu"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3955",
+      "full_name": "Osobase Richmond"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4011",
+      "full_name": "Paul Deborah Idango Ozioma"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3997",
+      "full_name": "Samuel God's will Abia"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3876",
+      "full_name": "Simon Christabel Kanyinsola"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "3887",
+      "full_name": "Yusuf Nura Selam"
+    },
+    {
+      "level": "SS1",
+      "arm": "Diamond",
+      "index": "4031",
+      "full_name": "Zibiri Jesuone Ogiefo"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3874",
+      "full_name": "Abdullahi Hannifa Ajifa"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3959",
+      "full_name": "Abdulrahaman Ridwanillahi Chidubem"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3860",
+      "full_name": "Abiola Collins Oluwagbenga"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4032",
+      "full_name": "Adeleke Iyin Michelle"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3877",
+      "full_name": "AdeKunle Adebusola Oreoluwa"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3840",
+      "full_name": "Ajadi Emmanuel Oluwakorede"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3891",
+      "full_name": "Aruma Onyedikachi Emmanuella"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3866",
+      "full_name": "Clement Success Oghenemaro"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3917",
+      "full_name": "Dada Oluwanifemi Praise"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3928",
+      "full_name": "Daniel Emmanuel Ekemini"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3976",
+      "full_name": "Elechi Praise Chimela"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3956",
+      "full_name": "Emenike Geneieve Eziwanne"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3875",
+      "full_name": "Emiola Divine Modupe"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3989",
+      "full_name": "Ekpemi Joshua Oyakhamo"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4002",
+      "full_name": "Eshimnigwe Gift Chidinma"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3925",
+      "full_name": "Ifesie Chidiebere David"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3827",
+      "full_name": "Igunnu Oluwadamola Edmond"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3879",
+      "full_name": "Joshua Kayode Emmanuella"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4021",
+      "full_name": "Josiah Shulamite Ajifa"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3882",
+      "full_name": "Kehinde Ayodeji Lawal"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3908",
+      "full_name": "Michael Wisdom Ojile"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3909",
+      "full_name": "Moyuho Joshua Felix"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4083",
+      "full_name": "Nwafor Francis Chiagozie"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4025",
+      "full_name": "Nwabueze Emmanuel Olamide"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3951",
+      "full_name": "Nnamdi Isabelle Adaeze"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3967",
+      "full_name": "Nwankwo Elijah Cheidozie"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3885",
+      "full_name": "Nzan David Offah"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3980",
+      "full_name": "Ochum Jane Ihotu"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3886",
+      "full_name": "Ogbuagu David Abbott"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3867",
+      "full_name": "Okechukwu Nmesoma Claire"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3881",
+      "full_name": "Okoh Destiny Eneh"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4000",
+      "full_name": "Okoye Kamsyochukwu Matthew"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3833",
+      "full_name": "Oladosu Toluwalase Michael"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3883",
+      "full_name": "Oloche Elijah Oloche"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3995",
+      "full_name": "Onwuegbusi Munachi Zenith"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3977",
+      "full_name": "Oyekanmi Oluwatobiloba Sarah"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3958",
+      "full_name": "Salmon Sharon Folasade"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "4008",
+      "full_name": "Samuel Michelle Iniobong"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3841",
+      "full_name": "Stephen Dorcas Ogochukwu"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3878",
+      "full_name": "Sule Veralyn Ojo-Agefu"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3893",
+      "full_name": "Sunday Victor Ojomona"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3828",
+      "full_name": "Uguru Emmanuel Martins"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3971",
+      "full_name": "Ugurueke John Destiny"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3880",
+      "full_name": "Uzorka Priestly Chukwuyenum"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3936",
+      "full_name": "Valetine Favour Nmachisom"
+    },
+    {
+      "level": "SS1",
+      "arm": "Gold",
+      "index": "3974",
+      "full_name": "Yakubu Mustapha"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3920",
+      "full_name": "Akinyele Daniel Ayokunle"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3952",
+      "full_name": "Agwu Victor Eke"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3992",
+      "full_name": "Alizor Destiny Ifeoma"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3830",
+      "full_name": "Are Favour Oluwasekemi"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3834",
+      "full_name": "Aremu Fiyin-Funoluwa Esther"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3918",
+      "full_name": "Daniel Evelyn"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3889",
+      "full_name": "Ezema Ogechukwu Sarah"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3843",
+      "full_name": "Gadzama Victor Philemon"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3978",
+      "full_name": "Gbolagade Esther Oluwafunmilayo"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3957",
+      "full_name": "Irenoa Destiny Okpeku"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3890",
+      "full_name": "Itua Zion Oseahumen"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "4081",
+      "full_name": "Nnachetam Chimamanda Martha"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3968",
+      "full_name": "Nwankwo Elizabeth Chinaza"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3954",
+      "full_name": "Odiaga Gilbert Isei"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3922",
+      "full_name": "Ojeiwa Breakthrough Osewe"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "4013",
+      "full_name": "Olom Pascal Ashiwere"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "4033",
+      "full_name": "Omale Oche Eden"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3836",
+      "full_name": "Onyekesi Samuel Oluchukwu"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "4036",
+      "full_name": "Orinya James"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3829",
+      "full_name": "Ojelade Enoch Darasimi"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "4083",
+      "full_name": "Samuel Iyanu Tosin"
+    },
+    {
+      "level": "SS1",
+      "arm": "Pearl",
+      "index": "3988",
+      "full_name": "Shedrack Emmanuel Chimeremeze"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3659",
+      "full_name": "Abraham Joy Oluwasubomi"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3785",
+      "full_name": "Adah Beverly Onma"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3730",
+      "full_name": "Adebisi Tabitha Adetola"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3718",
+      "full_name": "Adams lois Preye"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3673",
+      "full_name": "Agbonkonkon Aisosa Praise"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3993",
+      "full_name": "Aforijuku Gabrielle Oritsetimeyin"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3666",
+      "full_name": "Amao Joshua Jomiloju"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3661",
+      "full_name": "Amsain Oluwagbemisola Ann"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3648",
+      "full_name": "Awatt Destiny Okon"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "4080",
+      "full_name": "Awoniyi Oluwaseyi Fortune"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3732",
+      "full_name": "Abdullahi Amira Ele-ojo"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3679",
+      "full_name": "Adigun Damilola Dorcas"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3683",
+      "full_name": "Agada Mirabel Amanda"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3717",
+      "full_name": "Akinjolie Margaret Miracle"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3733",
+      "full_name": "Aiyekusehin Charis Iremide"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3760",
+      "full_name": "Ali Faridah Arbello"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3786",
+      "full_name": "Ayodele Ayomide Favour"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3725",
+      "full_name": "Bate Eeredumbenaata Bate"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3650",
+      "full_name": "Bolanle ELLIOT Anuoluwa"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3651",
+      "full_name": "Clement Joanne Adriel"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3748",
+      "full_name": "Chidebere Serena Adaugo"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3726",
+      "full_name": "Chiaha Praise Chinenye"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3770",
+      "full_name": "Chibuike Chinonye Maryam"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3845",
+      "full_name": "Chika Ebubedike Allwell"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3764",
+      "full_name": "Dirisu Mubarak Kasimu"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3625",
+      "full_name": "Ejike Favour Chiemeziem"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "4007",
+      "full_name": "Esiaba Chika Precious"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3727",
+      "full_name": "Husseini Sherifat Ojo-chenemi"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3782",
+      "full_name": "Isreal PraiseGod"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3777",
+      "full_name": "Ibekwe Collete Ifechukwu"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3779",
+      "full_name": "Jonah Destiny Ojonugwa"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3734",
+      "full_name": "Moyuho Jephita Felix"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3686",
+      "full_name": "Obey Godstime Nkere"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3690",
+      "full_name": "Ogbujuabor Angel Munachimso"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3769",
+      "full_name": "Obidiegwu Christabel Chidiomimi"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3719",
+      "full_name": "Obiefuna Marvellous Joshua"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3729",
+      "full_name": "Ohunyon Ethel Obehi"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "4017",
+      "full_name": "Okafor Kamsiyochukwu Jose-Maria"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3674",
+      "full_name": "Okhaifoh Princess Onomen"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3682",
+      "full_name": "Oladele Esther Oluwafunmilayo"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3780",
+      "full_name": "Victor Isaiah Clement"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3743",
+      "full_name": "Salaudeen Sultan Abidemi"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3807",
+      "full_name": "Sunday Emmanuel Oyakhire"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3675",
+      "full_name": "Ugwu Michael Ebube"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3740",
+      "full_name": "Uwaezuoke Christabel Chinecherem"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3791",
+      "full_name": "Yagba Aondodoo David"
+    },
+    {
+      "level": "SS2",
+      "arm": "Diamond",
+      "index": "3699",
+      "full_name": "Zarami Aishatu Ibrahim"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3787",
+      "full_name": "Adeniji Grace Iyanuoluwa"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3696",
+      "full_name": "Augustine Prince Ajabo"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3695",
+      "full_name": "Ameh Victory Ihotu"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3735",
+      "full_name": "Chinedu Gideon Ebube"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3644",
+      "full_name": "Eke Chimobi David"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3660",
+      "full_name": "Emeka Emmanuel Chigozie"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3723",
+      "full_name": "Emegwali Faith Chioma"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3649",
+      "full_name": "Ezeh Jesse Kasiyamobi"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3736",
+      "full_name": "God Day Great Oghenemaroh"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3818",
+      "full_name": "Garba Mamman"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3802",
+      "full_name": "Joseph Ukeme Victor"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3647",
+      "full_name": "Maduabuchi Divinefavour Chidalu"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3868",
+      "full_name": "Meretin David Ogheneruno"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3681",
+      "full_name": "Nwachukwu Wisdom Chikamso"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3665",
+      "full_name": "Nwankwo Divinefavour Chidiebube"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3801",
+      "full_name": "Nwobodo Victor Okwuchukwu"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3645",
+      "full_name": "Ogunmola Semiat Oyinwonuola"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3646",
+      "full_name": "Ohiemi Franklin Umaojo"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3731",
+      "full_name": "Okoro Emmanuel Chukwunonso"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3658",
+      "full_name": "Omofuma Jeremiah Osemudiahmeh"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3771",
+      "full_name": "Orji Victor Chinonso"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3762",
+      "full_name": "Osemhanre David Mathias"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3756",
+      "full_name": "Sunday Mayor Chiedozie"
+    },
+    {
+      "level": "SS2",
+      "arm": "Gold",
+      "index": "3761",
+      "full_name": "Tambari Adel Baridana"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3781",
+      "full_name": "Abdulraheem Alameen"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3667",
+      "full_name": "Abobi Stephanie Uhie"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3811",
+      "full_name": "Akor Somtochukwu Jude"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3722",
+      "full_name": "Emmanuel Enemona Excel"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3672",
+      "full_name": "Eru Divine Ogbaji"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3668",
+      "full_name": "Ibega Chigozirim Redeem"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3897",
+      "full_name": "Jinadu Naimat Yetunde"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3765",
+      "full_name": "Leke Samuel Olusegun"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3669",
+      "full_name": "Nnaji Noble Chibuike"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3671",
+      "full_name": "Nwachukwu Precious Chinenye"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3720",
+      "full_name": "Obiefuna Excellent Caleb"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3741",
+      "full_name": "Ocheche Ohepor Igoche"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3747",
+      "full_name": "Okeke Ebubechukwu Miracle"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3790",
+      "full_name": "Onuorah Ngozi Ore-Oluwa"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3724",
+      "full_name": "Raimi Aisha Excel"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3816",
+      "full_name": "Salisu Comfort Amanosi"
+    },
+    {
+      "level": "SS2",
+      "arm": "Pearl",
+      "index": "3641",
+      "full_name": "Timothy Christian"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3537",
+      "full_name": "Adelabu Joel Adebayo"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3460",
+      "full_name": "Adeshina Heritage Aderomola"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3485",
+      "full_name": "Adewumi Ewaoluwa Kudirat"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3804",
+      "full_name": "Adisa Oluwatobiloba Ayowale"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3467",
+      "full_name": "Afolabi Blessing Olajumoke"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3576",
+      "full_name": "Amabebe Confidence Mathew"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3423",
+      "full_name": "Arogundade Omotoke Precious"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3458",
+      "full_name": "Audu Danielle Ojonugwa"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3470",
+      "full_name": "Aziati Amen Grace"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3609",
+      "full_name": "Babatunde Treasure Onyinkonsola"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3544",
+      "full_name": "Chibuike Mmesoma Precious"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3562",
+      "full_name": "Christian Oluchi Favour"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3380",
+      "full_name": "David Jesuoluwatofunmi Sharon"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3482",
+      "full_name": "Ekwurumadu Uchechukwu Mercy"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3572",
+      "full_name": "Fanope Marvelous Opemipo"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3508",
+      "full_name": "Hassan Abdulsallam"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3531",
+      "full_name": "Ibiyomi Peter Jesutofunmi"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3439",
+      "full_name": "Idachaba Anibe Godswill"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3618",
+      "full_name": "Igunnu Oluwadamilola Jemima"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "4016",
+      "full_name": "Igwilo Praise Chinemerem"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3521",
+      "full_name": "Ikechukwu Joshua Chibuike"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3400",
+      "full_name": "Ikechukwu Samuel Chiemerie"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "4018",
+      "full_name": "Ikechukwu Marvellous Ozioma"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3385",
+      "full_name": "Imooje Rhema Etioisebua"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3754",
+      "full_name": "Mohammed Safina Whitney"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3387",
+      "full_name": "Moses Mercy Ugbede-Ojo"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3563",
+      "full_name": "Musa Mubarak Olakunle"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3490",
+      "full_name": "Ngene Deberechukwu Evlyn"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3783",
+      "full_name": "Nwabueze Favour Uche"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3450",
+      "full_name": "Nwachukwu Precious Onyinyechi"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3391",
+      "full_name": "Obey Gift Eyere"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3776",
+      "full_name": "Obichebelu Judah Ekenedilichukwu"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3589",
+      "full_name": "Odekanyin Agbaraoluwa Joseph"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3481",
+      "full_name": "Odoko James Miracle"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3393",
+      "full_name": "Okoye Akachukwu Emmanuel"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3477",
+      "full_name": "Onokakpor Favour Nkemnacho"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3527",
+      "full_name": "Onuh Hafsat Enyo-ojo"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3389",
+      "full_name": "Opara Blessing Chizaramekpere"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3573",
+      "full_name": "Philip Eze Princewill Nnachebe"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3813",
+      "full_name": "Samuel Praise Unekwuojo"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3584",
+      "full_name": "Tommy Greatness Omoshuwa"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3584",
+      "full_name": "Udeh Destiny Amaka"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "4082",
+      "full_name": "Ugbanaja Jackie Ifechukwude"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "4015",
+      "full_name": "Ugwuanyi Kingsley Chikoba"
+    },
+    {
+      "level": "SS3",
+      "arm": "Diamond",
+      "index": "3803",
+      "full_name": "Umar Rahma Uba"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3624",
+      "full_name": "Adeleke Jemimah Opeyemi"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3523",
+      "full_name": "Adeniran Ibrahim Adeshina"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3550",
+      "full_name": "Agboola Divine Isreal"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3489",
+      "full_name": "Ayodele Daniel Oluwatomiwa"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3469",
+      "full_name": "Aziati Rejoice Joy"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3538",
+      "full_name": "Baakel Daniella Eunice"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3526",
+      "full_name": "Bamgbade Ifeoluwa Glory"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3601",
+      "full_name": "Clement Joseph With-God"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3381",
+      "full_name": "Eke Francis Chinaza"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3525",
+      "full_name": "Emmanuel Favour Olamote"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3455",
+      "full_name": "Ezema ChukwuEbuka Emmanuel"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3480",
+      "full_name": "Fagbemi Tofunmi Precious"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3382",
+      "full_name": "Franklin Natasha Ibe"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3383",
+      "full_name": "Hassan Precious Hawa"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3475",
+      "full_name": "Ikechukwu Emmanuel"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3986",
+      "full_name": "Inaede Bliss Omohkhepue"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3703",
+      "full_name": "James Faithful Ozovehe"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3809",
+      "full_name": "John Mark Emmanuel Eshioseme"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3476",
+      "full_name": "Kamardeen Khadijat Adetiniola"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3587",
+      "full_name": "Kazeem AbdulFareed Ismaila"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3753",
+      "full_name": "Mohammed Safiya Brithney"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3457",
+      "full_name": "Moses Bright Oyesinachi"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3426",
+      "full_name": "Nwankwo Ifeoma Precious"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3530",
+      "full_name": "Olatunji Isreal Olajuwon"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3388",
+      "full_name": "Okenwa Chisimdi Peace"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3622",
+      "full_name": "Omokaro Eseosa Hani"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3567",
+      "full_name": "Orji David Kamsiyochukwu"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3392",
+      "full_name": "Otoikhian Destiny Atale"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3473",
+      "full_name": "Oyeleye Segun Gracious"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3434",
+      "full_name": "Oyewole Ifeoluwa Philip"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3558",
+      "full_name": "Uchenna Divine Umeh"
+    },
+    {
+      "level": "SS3",
+      "arm": "Gold",
+      "index": "3479",
+      "full_name": "Ugwu Rejoice Chinemerem"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3574",
+      "full_name": "Acham Abraham"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3379",
+      "full_name": "Adekunle Adebola Ifeoluwa"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3412",
+      "full_name": "Amuta Regina Ochanyai"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3545",
+      "full_name": "Amaifeobu-Ndubuisi Oluomachukwu Blossom"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3591",
+      "full_name": "Ataigho Gracious"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3560",
+      "full_name": "Bolaji Chimobi Bliss"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3443",
+      "full_name": "Clement Gabriel Hendrix"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3565",
+      "full_name": "David Jewel Akpan"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3511",
+      "full_name": "Dami Daniella Oluwakemi"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3501",
+      "full_name": "Daniel Faith Ehikowooicho"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3384",
+      "full_name": "Iguh Chidiebube Jane"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3570",
+      "full_name": "Johnson Divine Estaoghene"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3547",
+      "full_name": "Nelson Wisdom"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3461",
+      "full_name": "Nduka Chidiebere Victor"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3561",
+      "full_name": "Obinna Michael Kelechi"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3546",
+      "full_name": "Offor Henry Chinanza"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3431",
+      "full_name": "Ojeiwa Divine Osewonamen"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3297",
+      "full_name": "Olanrewaju Quadry Bukola"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3394",
+      "full_name": "Olopade Tobiloba Daniella"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3463",
+      "full_name": "Okpe Ruth Alex"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3559",
+      "full_name": "Omale David Ohakondu"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3417",
+      "full_name": "Osobase Purity Ese"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3414",
+      "full_name": "Samuel Esther Olamide"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3532",
+      "full_name": "Solomon Favour"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3619",
+      "full_name": "Sunday Chloe Ufedojo"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3397",
+      "full_name": "Ukpong Godswill Nkereuwem"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3478",
+      "full_name": "Wilfred Shalom Eyojo"
+    },
+    {
+      "level": "SS3",
+      "arm": "Pearl",
+      "index": "3396",
+      "full_name": "Yusuf Lemis"
+    }
+  ]
+}

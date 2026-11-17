@@ -162,7 +162,7 @@ class EnrolmentService
 
     // ------------------------------------------------------------------ Place
 
-    public function place(string $studentId, string $classId): Enrolment
+    public function place(string $studentId, string $classId, bool $closeOtherSessions = true): Enrolment
     {
         $student = Student::query()->where('status', 'ACTIVE')->find($studentId)
             ?? throw new DomainException('Student not found or no longer active.');
@@ -178,7 +178,7 @@ class EnrolmentService
             throw new DomainException("{$student->full_name} is already in a class this session. Use Move on their row.");
         }
 
-        $enrolment = DB::transaction(function () use ($student, $class, $existing) {
+        $enrolment = DB::transaction(function () use ($student, $class, $existing, $closeOtherSessions) {
             if ($existing) { // LEFT -> back again
                 $existing->update(['class_id' => $class->getKey(), 'status' => 'ACTIVE', 'outcome' => null]);
                 EnrolmentSubject::query()->where('enrolment_id', $existing->getKey())->delete();
@@ -193,7 +193,9 @@ class EnrolmentService
             }
 
             $this->attach($enrolment, $this->compulsoryIds($class->getKey()));
-            $this->closeOtherSessions([$student->getKey()], $class->session_id);
+            if ($closeOtherSessions) {
+                $this->closeOtherSessions([$student->getKey()], $class->session_id);
+            }
 
             return $enrolment;
         });
