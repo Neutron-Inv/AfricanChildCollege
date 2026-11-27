@@ -24,6 +24,8 @@ use App\Models\TermReport;
 use App\Models\User;
 use App\Support\Tenant;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class ExamsTest extends TestCase
@@ -768,5 +770,40 @@ class ExamsTest extends TestCase
         $this->as(Role::TEACHER, ['staff_id' => $this->maths->id])
             ->get(self::HOST.'/exams?class='.$hidden->id)
             ->assertForbidden();
+    }
+
+    public function test_report_preview_shows_signatures_only_when_the_second_one_is_complete(): void
+    {
+        Storage::fake('local');
+        $this->seedScores();
+
+        $preview = self::HOST.'/exams/report.pdf?term='.$this->term->id.'&enrolment='.$this->kay->id.'&preview=html';
+
+        $this->as(Role::ADMIN)->put(self::HOST.'/settings', [
+            'name' => 'Exam School',
+            'primary_color' => '#a01010',
+            'principal_signature' => UploadedFile::fake()->image('principal.png', 200, 80),
+            'second_signature' => UploadedFile::fake()->image('director.png', 200, 80),
+            'second_signature_label' => '',
+        ])->assertRedirect();
+
+        $this->get($preview)
+            ->assertOk()
+            ->assertSee('class="for-screen"', false)
+            ->assertSee('alt="Principal\'s signature"', false)
+            ->assertSee('data:image/png;base64,', false)
+            ->assertDontSee('Director&#039;s signature', false)
+            ->assertDontSee("Director's signature", false);
+
+        $this->put(self::HOST.'/settings', [
+            'name' => 'Exam School',
+            'primary_color' => '#a01010',
+            'second_signature_label' => "Director's signature",
+        ])->assertRedirect();
+
+        $this->get($preview)
+            ->assertOk()
+            ->assertSee("Director's signature")
+            ->assertSee('alt="Director&#039;s signature"', false);
     }
 }

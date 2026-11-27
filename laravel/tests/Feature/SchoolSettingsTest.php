@@ -88,6 +88,45 @@ class SchoolSettingsTest extends TestCase
         $this->assertSame(0, StoredFile::query()->count());
     }
 
+    public function test_admin_can_save_a_second_signature_with_a_label(): void
+    {
+        $admin = User::factory()->create(['school_id' => $this->school->id, 'role' => Role::ADMIN]);
+
+        $this->actingAs($admin)->get(self::HOST.'/settings')
+            ->assertOk()
+            ->assertSee('Second signature')
+            ->assertSee('Both the label and the image are required');
+
+        $this->actingAs($admin)->put(self::HOST.'/settings', [
+            'name' => 'Secondary',
+            'primary_color' => '#a01010',
+            'second_signature' => UploadedFile::fake()->image('director.png', 200, 80),
+            'second_signature_label' => "Director's signature",
+        ])->assertRedirect(route('settings'));
+
+        $school = $this->school->fresh();
+        $this->assertNotNull($school->second_signature_file_id);
+        $this->assertSame("Director's signature", $school->second_signature_label);
+        Storage::disk('local')->assertExists($school->secondSignature->storage_key);
+
+        $this->actingAs($admin)->get(self::HOST.'/settings')
+            ->assertOk()
+            ->assertSee('Remove second signature')
+            ->assertSee("Director's signature");
+
+        $this->actingAs($admin)->put(self::HOST.'/settings', [
+            'name' => 'Secondary',
+            'primary_color' => '#a01010',
+            'second_signature_label' => "Director's signature",
+            'clear_second_signature' => '1',
+        ])->assertRedirect(route('settings'));
+
+        $school = $this->school->fresh();
+        $this->assertNull($school->second_signature_file_id);
+        $this->assertSame("Director's signature", $school->second_signature_label);
+        $this->assertSame(0, StoredFile::query()->count());
+    }
+
     public function test_broadsheet_paper_widens_for_many_subjects(): void
     {
         $service = app(ExamsService::class);

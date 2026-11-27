@@ -24,6 +24,8 @@ class School extends Model
         'primary_color',
         'logo_file_id',
         'principal_signature_file_id',
+        'second_signature_file_id',
+        'second_signature_label',
     ];
 
     public function logo(): BelongsTo
@@ -34,6 +36,11 @@ class School extends Model
     public function principalSignature(): BelongsTo
     {
         return $this->belongsTo(StoredFile::class, 'principal_signature_file_id');
+    }
+
+    public function secondSignature(): BelongsTo
+    {
+        return $this->belongsTo(StoredFile::class, 'second_signature_file_id');
     }
 
     public function users(): HasMany

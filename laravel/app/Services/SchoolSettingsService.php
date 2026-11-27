@@ -22,6 +22,8 @@ class SchoolSettingsService
 
     public const PURPOSE_SIGNATURE = 'PRINCIPAL_SIGNATURE';
 
+    public const PURPOSE_SECOND_SIGNATURE = 'SECOND_SIGNATURE';
+
     public const MAX_IMAGE_KB = 2048;
 
     /** @var list<string> */
@@ -30,9 +32,17 @@ class SchoolSettingsService
     /**
      * @param  array{name:string,address?:string,email?:string,phone?:string,motto?:string,primary_color:string}  $data
      */
-    public function update(School $school, array $data, ?UploadedFile $logo = null, ?UploadedFile $signature = null, bool $clearLogo = false, bool $clearSignature = false): School
-    {
-        return DB::transaction(function () use ($school, $data, $logo, $signature, $clearLogo, $clearSignature) {
+    public function update(
+        School $school,
+        array $data,
+        ?UploadedFile $logo = null,
+        ?UploadedFile $signature = null,
+        bool $clearLogo = false,
+        bool $clearSignature = false,
+        ?UploadedFile $secondSignature = null,
+        bool $clearSecondSignature = false,
+    ): School {
+        return DB::transaction(function () use ($school, $data, $logo, $signature, $clearLogo, $clearSignature, $secondSignature, $clearSecondSignature) {
             if ($clearLogo) {
                 $this->detachImage($school, 'logo_file_id');
             } elseif ($logo) {
@@ -45,13 +55,20 @@ class SchoolSettingsService
                 $this->replaceImage($school, 'principal_signature_file_id', $signature, self::PURPOSE_SIGNATURE);
             }
 
+            if ($clearSecondSignature) {
+                $this->detachImage($school, 'second_signature_file_id');
+            } elseif ($secondSignature) {
+                $this->replaceImage($school, 'second_signature_file_id', $secondSignature, self::PURPOSE_SECOND_SIGNATURE);
+            }
+
             $school->update($data);
-            $school->refresh()->load(['logo', 'principalSignature']);
+            $school->refresh()->load(['logo', 'principalSignature', 'secondSignature']);
 
             AuditService::record('school.settings_updated', 'School', $school->getKey(), [
                 'fields' => array_keys($data),
                 'logo' => $logo ? 'replaced' : ($clearLogo ? 'cleared' : 'unchanged'),
                 'signature' => $signature ? 'replaced' : ($clearSignature ? 'cleared' : 'unchanged'),
+                'second_signature' => $secondSignature ? 'replaced' : ($clearSecondSignature ? 'cleared' : 'unchanged'),
             ]);
 
             return $school;
@@ -111,7 +128,11 @@ class SchoolSettingsService
     private function storeImage(UploadedFile $file, string $purpose): StoredFile
     {
         $extension = strtolower($file->getClientOriginalExtension() ?: $file->guessExtension() ?: 'png');
-        $folder = $purpose === self::PURPOSE_LOGO ? 'logo' : 'signature';
+        $folder = match ($purpose) {
+            self::PURPOSE_LOGO => 'logo',
+            self::PURPOSE_SECOND_SIGNATURE => 'second-signature',
+            default => 'signature',
+        };
         $key = 'schools/'.Tenant::id().'/branding/'.$folder.'/'.Str::ulid().'.'.$extension;
 
         $meta = [

@@ -145,16 +145,31 @@
             position: fixed;
             right: 0;
             bottom: -20mm;
-            width: 62mm;
+            width: 124mm;
             text-align: center;
         }
+        .sign-block.single { width: 62mm; }
+        .sign-table { width: 100%; border-collapse: collapse; margin-left: auto; }
+        .sign-table td { width: 50%; vertical-align: bottom; text-align: center; }
+        .sign-block.single .sign-table td { width: 100%; }
         .sign-img { height: 36px; margin-bottom: 1px; }
         .sign-line {
             border-top: 1px solid #9ca3af;
-            margin: 0 8mm;
+            margin: 0 6mm;
             padding-top: 2px;
             color: #4b5563;
             font-size: 7.5pt;
+        }
+        body.for-screen .sign-block {
+            position: static;
+            width: 100%;
+            margin-top: 16px;
+        }
+        body.for-screen .sign-table { width: 124mm; }
+        body.for-screen .sign-block.single .sign-table { width: 62mm; }
+        body.for-screen .footer {
+            position: static;
+            margin-top: 10px;
         }
         .footer {
             position: fixed;
@@ -169,7 +184,7 @@
         .footer-table { width: 100%; }
     </style>
 </head>
-<body>
+<body @class(['for-screen' => $forScreen ?? false])>
     <div class="header">
         <table class="header-table">
             <tr>
@@ -368,11 +383,24 @@
         </table>
     </div>
 
-    <div class="sign-block">
-        @if ($signatureDataUri ?? null)
-            <img class="sign-img" src="{{ $signatureDataUri }}" alt="Principal's signature">
-        @endif
-        <div class="sign-line">Principal's signature</div>
+    @php $showSecondSignature = ($secondSignatureDataUri ?? null) && ($secondSignatureLabel ?? '') !== ''; @endphp
+    <div @class(['sign-block', 'single' => ! $showSecondSignature])>
+        <table class="sign-table">
+            <tr>
+                <td>
+                    @if ($signatureDataUri ?? null)
+                        <img class="sign-img" src="{{ $signatureDataUri }}" alt="Principal's signature">
+                    @endif
+                    <div class="sign-line">Principal's signature</div>
+                </td>
+                @if ($showSecondSignature)
+                    <td>
+                        <img class="sign-img" src="{{ $secondSignatureDataUri }}" alt="{{ $secondSignatureLabel }}">
+                        <div class="sign-line">{{ $secondSignatureLabel }}</div>
+                    </td>
+                @endif
+            </tr>
+        </table>
     </div>
 
     <div class="footer">

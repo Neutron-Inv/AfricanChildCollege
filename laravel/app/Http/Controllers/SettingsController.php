@@ -16,12 +16,13 @@ class SettingsController extends Controller
     public function show(): View
     {
         $school = Tenant::get();
-        $school?->load(['logo', 'principalSignature']);
+        $school?->load(['logo', 'principalSignature', 'secondSignature']);
 
         return view('settings', [
             'school' => $school,
             'logoPreview' => $this->settings->dataUri($school?->logo),
             'signaturePreview' => $this->settings->dataUri($school?->principalSignature),
+            'secondSignaturePreview' => $this->settings->dataUri($school?->secondSignature),
             'maxImageKb' => SchoolSettingsService::MAX_IMAGE_KB,
         ]);
     }
@@ -37,8 +38,11 @@ class SettingsController extends Controller
             'primary_color' => ['required', 'regex:/^#[0-9a-fA-F]{6}$/'],
             'logo' => ['nullable', 'file', 'image', 'max:'.SchoolSettingsService::MAX_IMAGE_KB],
             'principal_signature' => ['nullable', 'file', 'image', 'max:'.SchoolSettingsService::MAX_IMAGE_KB],
+            'second_signature' => ['nullable', 'file', 'image', 'max:'.SchoolSettingsService::MAX_IMAGE_KB],
+            'second_signature_label' => ['nullable', 'string', 'max:80'],
             'clear_logo' => ['sometimes', 'boolean'],
             'clear_signature' => ['sometimes', 'boolean'],
+            'clear_second_signature' => ['sometimes', 'boolean'],
         ]);
 
         foreach (['address', 'email', 'phone', 'motto'] as $field) {
@@ -46,9 +50,12 @@ class SettingsController extends Controller
         }
         $data['primary_color'] = strtolower($data['primary_color']);
 
+        $data['second_signature_label'] = trim($data['second_signature_label'] ?? '');
+
         $clearLogo = $request->boolean('clear_logo');
         $clearSignature = $request->boolean('clear_signature');
-        unset($data['logo'], $data['principal_signature'], $data['clear_logo'], $data['clear_signature']);
+        $clearSecondSignature = $request->boolean('clear_second_signature');
+        unset($data['logo'], $data['principal_signature'], $data['second_signature'], $data['clear_logo'], $data['clear_signature'], $data['clear_second_signature']);
 
         try {
             $this->settings->update(
@@ -58,6 +65,8 @@ class SettingsController extends Controller
                 $request->file('principal_signature'),
                 $clearLogo,
                 $clearSignature,
+                $request->file('second_signature'),
+                $clearSecondSignature,
             );
         } catch (DomainException $e) {
             return back()->withInput()->with('error', $e->getMessage());

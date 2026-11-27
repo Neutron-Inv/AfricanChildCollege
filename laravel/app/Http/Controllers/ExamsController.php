@@ -337,6 +337,8 @@ class ExamsController extends Controller
             'school' => $brand['school'],
             'logoDataUri' => $brand['logo_data_uri'],
             'signatureDataUri' => $brand['signature_data_uri'],
+            'secondSignatureDataUri' => $brand['second_signature_data_uri'],
+            'secondSignatureLabel' => $brand['second_signature_label'],
             'primary' => $brand['primary'],
             'generatedAt' => $brand['generated_at'],
             'generatedBy' => $user->email,
@@ -346,6 +348,7 @@ class ExamsController extends Controller
             'classLabel' => $classLabel,
             'bands' => $this->exams->bands(),
             'starDataUri' => $this->exams->highestStarDataUri(),
+            'forScreen' => $request->query('preview') === 'html',
         ];
 
         if ($request->query('preview') === 'html') {

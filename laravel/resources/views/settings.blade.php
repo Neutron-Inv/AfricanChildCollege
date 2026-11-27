@@ -5,7 +5,7 @@
 
         <div>
             <h2 class="text-lg font-semibold">School profile</h2>
-            <p class="text-sm text-gray-500">Name, contact details, brand colour, logo and principal signature for documents.</p>
+            <p class="text-sm text-gray-500">Name, contact details, brand colour, logo and signatures for documents.</p>
         </div>
 
         <div>
@@ -79,6 +79,24 @@
                 @endif
                 <input id="principal_signature" type="file" name="principal_signature" accept="image/jpeg,image/png,image/webp,image/gif" class="form-input mt-3 text-sm file:mr-3 file:rounded file:border-0 file:bg-gray-100 file:px-3 file:py-1.5 file:text-sm">
                 <x-input-error :messages="$errors->get('principal_signature')" class="mt-1" />
+            </div>
+
+            <div class="sm:col-span-2">
+                <x-input-label for="second_signature_label" value="Second signature" />
+                <p class="mt-0.5 text-xs text-gray-500">Bottom right of the report card. Both the label and the image are required before it is printed.</p>
+                <x-text-input id="second_signature_label" name="second_signature_label" class="mt-2" maxlength="80" :value="old('second_signature_label', $school->second_signature_label)" placeholder="e.g. Director's signature" />
+                <x-input-error :messages="$errors->get('second_signature_label')" class="mt-1" />
+                @if ($secondSignaturePreview)
+                    <div class="mt-3 flex items-end gap-3">
+                        <img src="{{ $secondSignaturePreview }}" alt="Current second signature" class="h-16 max-w-[10rem] rounded-md border border-black/10 object-contain bg-white p-1">
+                        <label class="flex items-center gap-2 text-xs text-gray-600">
+                            <input type="checkbox" name="clear_second_signature" value="1" class="rounded border-gray-300">
+                            Remove second signature
+                        </label>
+                    </div>
+                @endif
+                <input id="second_signature" type="file" name="second_signature" accept="image/jpeg,image/png,image/webp,image/gif" class="form-input mt-3 text-sm file:mr-3 file:rounded file:border-0 file:bg-gray-100 file:px-3 file:py-1.5 file:text-sm">
+                <x-input-error :messages="$errors->get('second_signature')" class="mt-1" />
             </div>
         </div>
 
