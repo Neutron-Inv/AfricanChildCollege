@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function () {
         Route::middleware('role:ADMIN,PLATFORM_OWNER')->group(function () {
             Route::post('/people/staff', [StaffController::class, 'store'])->name('people.staff.store');
             Route::put('/people/staff/{staff}', [StaffController::class, 'update'])->name('people.staff.update');
+            Route::delete('/people/staff/{staff}', [StaffController::class, 'destroy'])->name('people.staff.destroy');
             Route::put('/people/guardians/{guardian}/password', [GuardianController::class, 'password'])->name('people.guardians.password');
         });
 

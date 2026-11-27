@@ -33,4 +33,17 @@ class StaffController extends Controller
             ->route('people', ['tab' => 'staff', 'staff' => $saved->getKey()])
             ->with('success', "Staff member {$saved->full_name} updated.");
     }
+
+    public function destroy(string $staff): RedirectResponse
+    {
+        $record = $this->people->findStaff($staff);
+        abort_unless($record, 404);
+
+        $name = $record->full_name;
+        $this->people->deleteStaff($record);
+
+        return redirect()
+            ->route('people', ['tab' => 'staff'])
+            ->with('success', "Staff member {$name} deleted.");
+    }
 }

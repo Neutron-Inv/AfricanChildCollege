@@ -15,7 +15,7 @@
     $sVal = fn (string $field, mixed $default = null) => $editingStudent ? old($field, $default) : $default;
 @endphp
 
-<div class="card space-y-5" x-data="{ editing: {{ $editingStudent ? 'true' : 'false' }} }">
+<div class="card space-y-5" x-data="{ editing: {{ $editingStudent ? 'true' : 'false' }}, deleting: false, deletePhrase: '' }">
     <div class="flex items-start justify-between gap-2">
         <div>
             <h2 class="text-base font-semibold">{{ $student->full_name }}</h2>
@@ -32,13 +32,10 @@
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                     <span class="pointer-events-none absolute right-0 top-full z-10 mt-1 whitespace-nowrap rounded bg-gray-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow group-hover:opacity-100">Edit student</span>
                 </button>
-                <form method="POST" action="{{ route('people.students.destroy', $student->id) }}" onsubmit="return confirm(@js('Delete '.$student->full_name.' ('.$student->index_number.')? This removes their login, class enrolments, scores, attendance and invoices. This cannot be undone.'))">
-                    @csrf @method('DELETE')
-                    <button type="submit" class="group relative inline-flex h-8 w-8 items-center justify-center rounded-md text-red-700 hover:bg-red-50" title="Delete student" aria-label="Delete student">
-                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                        <span class="pointer-events-none absolute right-0 top-full z-10 mt-1 whitespace-nowrap rounded bg-gray-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow group-hover:opacity-100">Delete student</span>
-                    </button>
-                </form>
+                <button type="button" class="group relative inline-flex h-8 w-8 items-center justify-center rounded-md text-red-700 hover:bg-red-50" title="Delete student" aria-label="Delete student" @click="deletePhrase = ''; deleting = true; $nextTick(() => $refs.deleteInput?.focus())">
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                    <span class="pointer-events-none absolute right-0 top-full z-10 mt-1 whitespace-nowrap rounded bg-gray-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow group-hover:opacity-100">Delete student</span>
+                </button>
             </div>
         @endif
     </div>
@@ -191,5 +188,23 @@
             </div>
             <x-primary-button>Add guardian</x-primary-button>
         </form>
+    @endif
+
+    @if ($canEditStudents)
+        <div x-show="deleting" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" @keydown.escape.window="deleting = false" @click.self="deleting = false">
+            <form method="POST" action="{{ route('people.students.destroy', $student->id) }}" class="card w-full max-w-md space-y-4" @click.stop>
+                @csrf @method('DELETE')
+                <h3 class="text-base font-semibold">Delete {{ $student->full_name }}?</h3>
+                <p class="text-sm text-gray-600">This removes their login, class enrolments, scores, attendance and invoices. Guardian profiles are kept. This cannot be undone.</p>
+                <div>
+                    <label for="confirm-delete-student" class="block text-xs font-medium text-gray-600">Type delete to confirm</label>
+                    <input id="confirm-delete-student" x-ref="deleteInput" x-model="deletePhrase" class="form-input mt-1" autocomplete="off" placeholder="delete" aria-label="Type delete to confirm">
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" class="btn-secondary" @click="deleting = false; deletePhrase = ''">Cancel</button>
+                    <button class="rounded-md bg-red-700 px-4 py-2 text-sm font-semibold text-white hover:bg-red-800 disabled:opacity-40" :disabled="deletePhrase.trim().toLowerCase() !== 'delete'">Delete student</button>
+                </div>
+            </form>
+        </div>
     @endif
 </div>

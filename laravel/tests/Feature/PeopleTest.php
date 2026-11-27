@@ -633,7 +633,8 @@ class PeopleTest extends TestCase
             ->get(self::HOST.'/people?student='.$student->id)
             ->assertOk()
             ->assertSee('aria-label="Delete student"', false)
-            ->assertSee('This cannot be undone', false);
+            ->assertSee('This cannot be undone', false)
+            ->assertSee('Type delete to confirm', false);
 
         $this->as(Role::TEACHER)
             ->delete(self::HOST.'/people/students/'.$student->id)
@@ -662,6 +663,55 @@ class PeopleTest extends TestCase
         $this->withTenant(function () use ($forAdmin, $forPlatform) {
             $this->assertNull(Student::find($forAdmin->id));
             $this->assertNull(Student::find($forPlatform->id));
+        });
+    }
+
+    public function test_an_administrator_can_delete_a_staff_member(): void
+    {
+        $staff = $this->withTenant(function () {
+            $staff = Staff::create([
+                'index_number' => 'T9',
+                'first_name' => 'Ada',
+                'last_name' => 'Delete',
+                'email' => 'ada.delete@example.com',
+                'is_teacher' => true,
+                'status' => 'ACTIVE',
+            ]);
+            User::factory()->create([
+                'school_id' => $this->school->id,
+                'email' => 'ada.delete@example.com',
+                'role' => Role::TEACHER,
+                'staff_id' => $staff->id,
+            ]);
+            $this->class->update(['form_teacher_id' => $staff->id]);
+            $this->compulsory->update(['teacher_id' => $staff->id]);
+            LegacyLink::create(['entity' => 'teacher', 'legacy_key' => 'T9', 'record_id' => $staff->id]);
+
+            return $staff;
+        });
+
+        $this->as(Role::ADMIN)
+            ->get(self::HOST.'/people?tab=staff&staff='.$staff->id)
+            ->assertOk()
+            ->assertSee('aria-label="Delete staff"', false)
+            ->assertSee('Type delete to confirm', false);
+
+        $this->as(Role::REGISTRAR)
+            ->delete(self::HOST.'/people/staff/'.$staff->id)
+            ->assertForbidden();
+
+        $this->as(Role::ADMIN)
+            ->delete(self::HOST.'/people/staff/'.$staff->id)
+            ->assertRedirect(self::HOST.'/people?tab=staff');
+
+        $this->withTenant(function () use ($staff) {
+            $this->assertNull(Staff::find($staff->id));
+            $this->assertSame(0, User::where('staff_id', $staff->id)->count());
+            $this->assertSame(0, LegacyLink::where('record_id', $staff->id)->count());
+            $this->assertNull($this->class->fresh()->form_teacher_id);
+            $this->assertNull($this->compulsory->fresh()->teacher_id);
+            $this->assertNotNull(SchoolClass::find($this->class->id));
+            $this->assertNotNull(ClassSubject::find($this->compulsory->id));
         });
     }
 }

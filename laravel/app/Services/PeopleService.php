@@ -603,6 +603,27 @@ class PeopleService
         });
     }
 
+    /**
+     * Remove a staff member and their login. Classes, subjects, and departments
+     * they were assigned to stay, with that assignment cleared.
+     */
+    public function deleteStaff(Staff $staff): void
+    {
+        $id = $staff->getKey();
+        $name = $staff->full_name;
+        $index = $staff->index_number;
+
+        DB::transaction(function () use ($staff, $id) {
+            LegacyLink::query()->whereIn('entity', ['staff', 'teacher'])->where('record_id', $id)->delete();
+            $staff->delete();
+        });
+
+        AuditService::record('delete', 'Staff', $id, [
+            'full_name' => $name,
+            'index_number' => $index,
+        ]);
+    }
+
     public function updateStaff(Staff $staff, array $data): Staff
     {
         return DB::transaction(function () use ($staff, $data) {
