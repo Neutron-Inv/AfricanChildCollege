@@ -24,6 +24,7 @@ class School extends Model
         'primary_color',
         'logo_file_id',
         'principal_signature_file_id',
+        'principal_signature_label',
         'second_signature_file_id',
         'second_signature_label',
     ];

@@ -383,16 +383,22 @@
         </table>
     </div>
 
-    @php $showSecondSignature = ($secondSignatureDataUri ?? null) && ($secondSignatureLabel ?? '') !== ''; @endphp
-    <div @class(['sign-block', 'single' => ! $showSecondSignature])>
+    @php
+        $showFirstSignature = trim((string) ($signatureLabel ?? '')) !== '';
+        $showSecondSignature = ($secondSignatureDataUri ?? null) && ($secondSignatureLabel ?? '') !== '';
+    @endphp
+    @if ($showFirstSignature || $showSecondSignature)
+    <div @class(['sign-block', 'single' => ! ($showFirstSignature && $showSecondSignature)])>
         <table class="sign-table">
             <tr>
-                <td>
-                    @if ($signatureDataUri ?? null)
-                        <img class="sign-img" src="{{ $signatureDataUri }}" alt="Principal's signature">
-                    @endif
-                    <div class="sign-line">Principal's signature</div>
-                </td>
+                @if ($showFirstSignature)
+                    <td>
+                        @if ($signatureDataUri ?? null)
+                            <img class="sign-img" src="{{ $signatureDataUri }}" alt="{{ $signatureLabel }}">
+                        @endif
+                        <div class="sign-line">{{ $signatureLabel }}</div>
+                    </td>
+                @endif
                 @if ($showSecondSignature)
                     <td>
                         <img class="sign-img" src="{{ $secondSignatureDataUri }}" alt="{{ $secondSignatureLabel }}">
@@ -402,6 +408,7 @@
             </tr>
         </table>
     </div>
+    @endif
 
     <div class="footer">
         <table class="footer-table">

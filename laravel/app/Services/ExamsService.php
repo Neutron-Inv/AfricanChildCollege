@@ -749,13 +749,14 @@ class ExamsService
     /**
      * Branding payload for printed / PDF exam documents.
      *
-     * @return array{school: \App\Models\School, logo_data_uri: ?string, signature_data_uri: ?string, second_signature_data_uri: ?string, second_signature_label: string, primary: string, generated_at: \Illuminate\Support\Carbon}
+     * @return array{school: \App\Models\School, logo_data_uri: ?string, signature_data_uri: ?string, signature_label: string, second_signature_data_uri: ?string, second_signature_label: string, primary: string, generated_at: \Illuminate\Support\Carbon}
      */
     public function documentBrand(): array
     {
         $school = Tenant::get() ?? throw new DomainException('No school context.');
         $school->loadMissing(['logo', 'principalSignature', 'secondSignature']);
 
+        $signatureLabel = trim((string) $school->principal_signature_label);
         $secondLabel = trim((string) $school->second_signature_label);
         $secondUri = $this->storedFileDataUri($school->secondSignature);
         $showSecond = $secondUri !== null && $secondLabel !== '';
@@ -763,7 +764,8 @@ class ExamsService
         return [
             'school' => $school,
             'logo_data_uri' => $this->storedFileDataUri($school->logo),
-            'signature_data_uri' => $this->storedFileDataUri($school->principalSignature),
+            'signature_data_uri' => $signatureLabel !== '' ? $this->storedFileDataUri($school->principalSignature) : null,
+            'signature_label' => $signatureLabel,
             'second_signature_data_uri' => $showSecond ? $secondUri : null,
             'second_signature_label' => $showSecond ? $secondLabel : '',
             'primary' => $school->primary_color ?: '#a01010',

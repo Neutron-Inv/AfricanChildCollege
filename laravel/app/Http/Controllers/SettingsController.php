@@ -38,6 +38,7 @@ class SettingsController extends Controller
             'primary_color' => ['required', 'regex:/^#[0-9a-fA-F]{6}$/'],
             'logo' => ['nullable', 'file', 'image', 'max:'.SchoolSettingsService::MAX_IMAGE_KB],
             'principal_signature' => ['nullable', 'file', 'image', 'max:'.SchoolSettingsService::MAX_IMAGE_KB],
+            'principal_signature_label' => ['nullable', 'string', 'max:80'],
             'second_signature' => ['nullable', 'file', 'image', 'max:'.SchoolSettingsService::MAX_IMAGE_KB],
             'second_signature_label' => ['nullable', 'string', 'max:80'],
             'clear_logo' => ['sometimes', 'boolean'],
@@ -50,6 +51,7 @@ class SettingsController extends Controller
         }
         $data['primary_color'] = strtolower($data['primary_color']);
 
+        $data['principal_signature_label'] = trim($data['principal_signature_label'] ?? '');
         $data['second_signature_label'] = trim($data['second_signature_label'] ?? '');
 
         $clearLogo = $request->boolean('clear_logo');

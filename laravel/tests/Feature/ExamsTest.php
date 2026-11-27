@@ -783,6 +783,7 @@ class ExamsTest extends TestCase
             'name' => 'Exam School',
             'primary_color' => '#a01010',
             'principal_signature' => UploadedFile::fake()->image('principal.png', 200, 80),
+            'principal_signature_label' => 'Head of school',
             'second_signature' => UploadedFile::fake()->image('director.png', 200, 80),
             'second_signature_label' => '',
         ])->assertRedirect();
@@ -790,14 +791,17 @@ class ExamsTest extends TestCase
         $this->get($preview)
             ->assertOk()
             ->assertSee('class="for-screen"', false)
-            ->assertSee('alt="Principal\'s signature"', false)
+            ->assertSee('Head of school')
+            ->assertSee('alt="Head of school"', false)
             ->assertSee('data:image/png;base64,', false)
+            ->assertDontSee("Principal's signature")
             ->assertDontSee('Director&#039;s signature', false)
             ->assertDontSee("Director's signature", false);
 
         $this->put(self::HOST.'/settings', [
             'name' => 'Exam School',
             'primary_color' => '#a01010',
+            'principal_signature_label' => 'Head of school',
             'second_signature_label' => "Director's signature",
         ])->assertRedirect();
 

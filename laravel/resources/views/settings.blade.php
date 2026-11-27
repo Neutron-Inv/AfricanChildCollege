@@ -66,8 +66,10 @@
             </div>
 
             <div>
-                <x-input-label for="principal_signature" value="Principal signature" />
-                <p class="mt-0.5 text-xs text-gray-500">Transparent PNG works best · max {{ $maxImageKb }} KB. Printed on exported documents.</p>
+                <x-input-label for="principal_signature_label" value="First signature" />
+                <p class="mt-0.5 text-xs text-gray-500">The label is printed under the signature. Leave it blank to leave this signature off the report card.</p>
+                <x-text-input id="principal_signature_label" name="principal_signature_label" class="mt-2" maxlength="80" :value="old('principal_signature_label', $school->principal_signature_label)" placeholder="e.g. Principal's signature" />
+                <x-input-error :messages="$errors->get('principal_signature_label')" class="mt-1" />
                 @if ($signaturePreview)
                     <div class="mt-3 flex items-end gap-3">
                         <img src="{{ $signaturePreview }}" alt="Current signature" class="h-16 max-w-[10rem] rounded-md border border-black/10 object-contain bg-white p-1">

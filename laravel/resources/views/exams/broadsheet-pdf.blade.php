@@ -322,10 +322,14 @@
                     <div class="sign-line">Form teacher{{ $teacherName ? ' · '.$teacherName : '' }}</div>
                 </td>
                 <td>
-                    @if ($signatureDataUri ?? null)
-                        <img class="sign-img" src="{{ $signatureDataUri }}" alt="Principal signature">
+                    @if (($signatureLabel ?? '') !== '')
+                        @if ($signatureDataUri ?? null)
+                            <img class="sign-img" src="{{ $signatureDataUri }}" alt="{{ $signatureLabel }}">
+                        @endif
+                        <div class="sign-line" @if ($signatureDataUri ?? null) style="margin-top: 2px;" @endif>{{ $signatureLabel }}</div>
+                    @else
+                        <div class="sign-line"></div>
                     @endif
-                    <div class="sign-line" @if ($signatureDataUri ?? null) style="margin-top: 2px;" @endif>Principal</div>
                 </td>
                 <td>
                     <div class="sign-line">Date</div>

@@ -42,7 +42,8 @@ class SchoolSettingsTest extends TestCase
             ->get(self::HOST.'/settings')
             ->assertOk()
             ->assertSee('School logo')
-            ->assertSee('Principal signature');
+            ->assertSee('First signature')
+            ->assertSee("Principal's signature");
 
         $logo = UploadedFile::fake()->image('logo.png', 120, 120);
         $signature = UploadedFile::fake()->image('sign.png', 200, 80);
@@ -52,7 +53,10 @@ class SchoolSettingsTest extends TestCase
             'primary_color' => '#a01010',
             'logo' => $logo,
             'principal_signature' => $signature,
+            'principal_signature_label' => 'Head of school',
         ])->assertRedirect(route('settings'));
+
+        $this->assertSame('Head of school', $this->school->fresh()->principal_signature_label);
 
         $school = $this->school->fresh();
         $this->assertNotNull($school->logo_file_id);
