@@ -6,6 +6,7 @@ use App\Enums\Role;
 use App\Models\AcademicSession;
 use App\Models\Arm;
 use App\Models\ClassSubject;
+use App\Models\Department;
 use App\Models\Enrolment;
 use App\Models\EnrolmentSubject;
 use App\Models\GradingBand;
@@ -329,7 +330,8 @@ class AcademicsTest extends TestCase
             ->assertSee('cannot be undone', false)
             ->assertSee('aria-label="Edit session"', false)
             ->assertSee('aria-label="Mark current"', false)
-            ->assertSee('aria-label="Delete session"', false);
+            ->assertSee('aria-label="Delete session"', false)
+            ->assertSee('Type delete to confirm', false);
 
         $this->delete(self::HOST.'/academics/sessions/'.$this->session->id)
             ->assertRedirect()
@@ -683,6 +685,31 @@ class AcademicsTest extends TestCase
     {
         $this->as(Role::REGISTRAR);
         $this->post(self::HOST.'/academics/departments', ['name' => 'Science', 'hod_id' => $this->teacher->id])->assertSessionHas('success');
+
+        $science = $this->tenant(fn () => Department::where('name', 'Science')->firstOrFail());
+        $this->get(self::HOST.'/academics?tab=departments')
+            ->assertOk()
+            ->assertSee('aria-label="Edit department"', false)
+            ->assertSee('aria-label="Delete department"', false)
+            ->assertSee('Type delete to confirm', false);
+
+        $this->put(self::HOST.'/academics/departments/'.$science->id, ['name' => 'Sciences', 'hod_id' => ''])
+            ->assertRedirect()
+            ->assertSessionHas('success');
+        $this->assertSame('Sciences', $science->fresh()->name);
+        $this->assertNull($science->fresh()->hod_id);
+
+        $this->put(self::HOST.'/academics/departments/'.$science->id, ['name' => 'Sciences'])->assertSessionHas('success');
+        $this->post(self::HOST.'/academics/departments', ['name' => 'Sciences'])->assertSessionHas('error');
+
+        $this->tenant(fn () => $this->subject->update(['department_id' => $science->id]));
+        $this->delete(self::HOST.'/academics/departments/'.$science->id)
+            ->assertRedirect()
+            ->assertSessionHas('success');
+        $this->assertNull($this->tenant(fn () => Department::find($science->id)));
+        $this->assertNull($this->subject->fresh()->department_id);
+
+        $this->as(Role::TEACHER)->put(self::HOST.'/academics/departments/'.$science->id, ['name' => 'Nope'])->assertForbidden();
         $this->post(self::HOST.'/academics/subjects', ['name' => 'Physics', 'department_id' => $this->tenant(fn () => \App\Models\Department::first()->id)])->assertSessionHas('success');
         $this->post(self::HOST.'/academics/subjects', ['name' => 'Physics'])->assertSessionHas('error');
 
