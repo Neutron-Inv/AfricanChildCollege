@@ -28,7 +28,9 @@
                         <input type="number" min="0" max="100" :name="`bands[${i}][max_score]`" x-model="row.max_score" class="form-input col-span-3 sm:col-span-2" aria-label="Maximum score" required>
                         <input maxlength="4" :name="`bands[${i}][letter]`" x-model="row.letter" class="form-input col-span-3 sm:col-span-2" aria-label="Letter" required>
                         <input maxlength="40" :name="`bands[${i}][remark]`" x-model="row.remark" class="form-input col-span-9 sm:col-span-5" aria-label="Remark" required>
-                        <button type="button" @click="rows.splice(i, 1)" class="col-span-3 text-xs font-semibold text-red-700 hover:underline sm:col-span-1" :disabled="rows.length === 1">Remove</button>
+                        <button type="button" @click="rows.splice(i, 1)" class="col-span-3 inline-flex h-8 w-8 items-center justify-center justify-self-start rounded-md text-red-700 hover:bg-red-50 disabled:opacity-40 sm:col-span-1" :disabled="rows.length === 1" aria-label="Remove band" title="Remove band">
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                        </button>
                     </div>
                 </template>
 
