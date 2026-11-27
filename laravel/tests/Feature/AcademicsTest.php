@@ -681,7 +681,7 @@ class AcademicsTest extends TestCase
             ->assertForbidden();
     }
 
-    public function test_catalogues_and_grading(): void
+    public function test_a_department_can_be_edited_and_deleted(): void
     {
         $this->as(Role::REGISTRAR);
         $this->post(self::HOST.'/academics/departments', ['name' => 'Science', 'hod_id' => $this->teacher->id])->assertSessionHas('success');
@@ -699,7 +699,6 @@ class AcademicsTest extends TestCase
         $this->assertSame('Sciences', $science->fresh()->name);
         $this->assertNull($science->fresh()->hod_id);
 
-        $this->put(self::HOST.'/academics/departments/'.$science->id, ['name' => 'Sciences'])->assertSessionHas('success');
         $this->post(self::HOST.'/academics/departments', ['name' => 'Sciences'])->assertSessionHas('error');
 
         $this->tenant(fn () => $this->subject->update(['department_id' => $science->id]));
@@ -710,6 +709,12 @@ class AcademicsTest extends TestCase
         $this->assertNull($this->subject->fresh()->department_id);
 
         $this->as(Role::TEACHER)->put(self::HOST.'/academics/departments/'.$science->id, ['name' => 'Nope'])->assertForbidden();
+    }
+
+    public function test_catalogues_and_grading(): void
+    {
+        $this->as(Role::REGISTRAR);
+        $this->post(self::HOST.'/academics/departments', ['name' => 'Science', 'hod_id' => $this->teacher->id])->assertSessionHas('success');
         $this->post(self::HOST.'/academics/subjects', ['name' => 'Physics', 'department_id' => $this->tenant(fn () => \App\Models\Department::first()->id)])->assertSessionHas('success');
         $this->post(self::HOST.'/academics/subjects', ['name' => 'Physics'])->assertSessionHas('error');
 
