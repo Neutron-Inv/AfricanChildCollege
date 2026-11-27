@@ -18,16 +18,29 @@ class ClassSubjectController extends Controller
 
     public function store(Request $request, string $class): RedirectResponse|JsonResponse
     {
-        $data = $request->validate([
-            'subject_id' => ['required', 'string'],
-            'teacher_id' => ['nullable', 'string'],
-            'kind' => ['required', Rule::in([AcademicsService::KIND_COMPULSORY, AcademicsService::KIND_ELECTIVE])],
-        ]);
+        $kind = ['required', Rule::in([AcademicsService::KIND_COMPULSORY, AcademicsService::KIND_ELECTIVE])];
+
+        if ($request->exists('subjects')) {
+            $data = $request->validate([
+                'subjects' => ['required', 'array', 'min:1'],
+                'subjects.*.subject_id' => ['required', 'string'],
+                'subjects.*.teacher_id' => ['nullable', 'string'],
+                'subjects.*.kind' => $kind,
+            ]);
+            $rows = $data['subjects'];
+        } else {
+            $data = $request->validate([
+                'subject_id' => ['required', 'string'],
+                'teacher_id' => ['nullable', 'string'],
+                'kind' => $kind,
+            ]);
+            $rows = [$data];
+        }
 
         return $this->attempt(
-            fn () => $this->academics->createClassSubject($data + ['class_id' => $class]),
-            'Subject added to class.',
-            json: fn () => ['panel' => $this->academics->presentClassPanel($class)],
+            fn () => $this->academics->addSubjectsToClass($class, $rows),
+            count($rows) === 1 ? 'Subject added to class.' : 'Subjects added to class.',
+            json: fn (array $panel) => ['panel' => $panel],
         );
     }
 

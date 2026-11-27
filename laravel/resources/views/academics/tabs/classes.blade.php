@@ -29,6 +29,7 @@
             panelUrlTemplate: @js(route('academics.classes.panel', ['class' => '__CLASS__'])),
             syncUrlTemplate: @js(route('academics.classes.subjects.sync', ['class' => '__CLASS__'])),
             updateUrlTemplate: @js(route('academics.classes.update', ['class' => '__CLASS__'])),
+            destroyClassUrlTemplate: @js(route('academics.classes.destroy', ['class' => '__CLASS__'])),
             levels: @js($levels->map(fn ($l) => ['id' => $l->id, 'name' => $l->name])->values()),
             arms: @js($arms->map(fn ($a) => ['id' => $a->id, 'name' => $a->name])->values()),
             storeSubjectUrlTemplate: @js(route('academics.class-subjects.store', ['class' => '__CLASS__'])),
@@ -124,6 +125,11 @@
                         <div class="min-w-0 flex-1">
                             <div class="flex flex-wrap items-center gap-2">
                                 <h3 class="text-xl font-semibold" x-text="panel.name"></h3>
+                                @if ($canEdit)
+                                    <button type="button" class="inline-flex h-8 w-8 items-center justify-center rounded-md text-red-700 hover:bg-red-50" @click="askToDelete()" title="Delete class" aria-label="Delete class">
+                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                    </button>
+                                @endif
                                 <button type="button" class="group relative inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-600 hover:bg-black/5" x-show="canEdit && !editingDetails" @click="startDetails()" title="Edit class" aria-label="Edit class">
                                     <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                                     <span class="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 whitespace-nowrap rounded bg-gray-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow group-hover:opacity-100">Edit class</span>
@@ -245,8 +251,12 @@
 
                                         <button type="button"
                                                 x-show="canEdit"
-                                                class="rounded-md px-2 py-1 text-xs font-semibold text-red-700 hover:bg-red-50"
-                                                @click="removeSubject(row)">Remove</button>
+                                                class="inline-flex h-8 w-8 items-center justify-center rounded-md text-red-700 hover:bg-red-50"
+                                                :aria-label="'Remove ' + row.subject_name"
+                                                :title="'Remove ' + row.subject_name"
+                                                @click="removeSubject(row)">
+                                            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                        </button>
                                     </div>
                                 </div>
                             </article>
@@ -266,34 +276,57 @@
 
                         <div class="rounded-lg border border-dashed border-gray-200 p-4">
                             <button type="button" class="text-sm font-semibold" style="color: var(--primary)" @click="showAssign = !showAssign" x-text="showAssign ? 'Hide add subject' : 'Add subject'"></button>
-                            <form x-show="showAssign" x-cloak class="mt-3 grid gap-3 sm:grid-cols-4 sm:items-end" @submit.prevent="assignSubject()">
-                                <div>
-                                    <label class="block text-xs font-medium text-gray-600">Subject</label>
-                                    <select class="form-input mt-1" x-model="assign.subject_id" required>
-                                        <option value="">Choose…</option>
-                                        <template x-for="s in availableSubjects" :key="s.id">
-                                            <option :value="s.id" x-text="s.name"></option>
-                                        </template>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-medium text-gray-600">Teacher</label>
-                                    <select class="form-input mt-1" x-model="assign.teacher_id">
-                                        <option value="">Unassigned</option>
-                                        <template x-for="t in teachers" :key="t.id">
-                                            <option :value="t.id" x-text="t.name"></option>
-                                        </template>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-medium text-gray-600">Kind</label>
-                                    <div class="mt-1 inline-flex rounded-lg bg-gray-100 p-0.5">
-                                        <button type="button" class="rounded-md px-2.5 py-1.5 text-xs font-semibold" :class="assign.kind === 'COMPULSORY' ? 'bg-emerald-600 text-white' : 'text-gray-600'" @click="assign.kind = 'COMPULSORY'">Compulsory</button>
-                                        <button type="button" class="rounded-md px-2.5 py-1.5 text-xs font-semibold" :class="assign.kind === 'ELECTIVE' ? 'bg-amber-500 text-white' : 'text-gray-600'" @click="assign.kind = 'ELECTIVE'">Elective</button>
+                            <form x-show="showAssign" x-cloak class="mt-3 space-y-3" @submit.prevent="assignSubjects()">
+                                <template x-for="(row, index) in pending" :key="row.key">
+                                    <div class="grid gap-3 sm:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_auto_auto] sm:items-end">
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-600">Subject</label>
+                                            <select class="form-input mt-1" x-model="row.subject_id">
+                                                <option value="">Choose…</option>
+                                                <template x-for="subject in subjectsFor(index)" :key="subject.id">
+                                                    <option :value="subject.id" x-text="subject.name"></option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-600">Teacher</label>
+                                            <select class="form-input mt-1" x-model="row.teacher_id">
+                                                <option value="">Unassigned</option>
+                                                <template x-for="t in teachers" :key="t.id">
+                                                    <option :value="t.id" x-text="t.name"></option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-medium text-gray-600">Kind</label>
+                                            <div class="mt-1 inline-flex rounded-lg bg-gray-100 p-0.5">
+                                                <button type="button" class="rounded-md px-2.5 py-1.5 text-xs font-semibold" :class="row.kind === 'COMPULSORY' ? 'bg-emerald-600 text-white' : 'text-gray-600'" @click="row.kind = 'COMPULSORY'">Compulsory</button>
+                                                <button type="button" class="rounded-md px-2.5 py-1.5 text-xs font-semibold" :class="row.kind === 'ELECTIVE' ? 'bg-amber-500 text-white' : 'text-gray-600'" @click="row.kind = 'ELECTIVE'">Elective</button>
+                                            </div>
+                                        </div>
+                                        <button type="button"
+                                                class="inline-flex h-9 w-9 items-center justify-center rounded-md text-red-700 hover:bg-red-50"
+                                                x-show="pending.length > 1"
+                                                @click="pending.splice(index, 1)"
+                                                aria-label="Remove this row"
+                                                title="Remove this row">
+                                            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                                        </button>
                                     </div>
+                                </template>
+                                <div class="flex items-center justify-between gap-3">
+                                    <button type="button"
+                                            class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-black/10 text-gray-700 hover:bg-gray-50 disabled:opacity-40"
+                                            @click="addPendingRow()"
+                                            :disabled="!anotherSubjectAvailable"
+                                            aria-label="Add another subject"
+                                            title="Add another subject">
+                                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                                    </button>
+                                    <button class="btn-primary" :disabled="assigning || !hasPendingSubject" x-text="assigning ? 'Adding…' : (pendingCount > 1 ? 'Assign subjects' : 'Assign subject')"></button>
                                 </div>
-                                <button class="btn-primary" :disabled="assigning || !assign.subject_id" x-text="assigning ? 'Adding…' : 'Assign subject'"></button>
                             </form>
+                            <p class="mt-2 text-xs text-gray-500" x-show="showAssign && !anotherSubjectAvailable && !hasPendingSubject" x-cloak>Every subject is already in this class.</p>
                         </div>
                     @endif
                 </section>
@@ -307,5 +340,22 @@
                 @endif
             </div>
         </div>
+
+        @if ($canEdit)
+            <div x-show="askDelete" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" @keydown.escape.window="cancelDelete()" @click.self="cancelDelete()">
+                <form class="card w-full max-w-md space-y-4" @submit.prevent="confirmDelete()" @click.stop>
+                    <h3 class="text-base font-semibold">Delete <span x-text="panel?.name"></span>?</h3>
+                    <p class="text-sm text-gray-600">Students in this class are taken off it for this session, and its subjects, scores, timetable, fees, and lesson notes are removed. This cannot be undone.</p>
+                    <div>
+                        <label for="confirm-delete-class" class="block text-xs font-medium text-gray-600">Type delete to confirm</label>
+                        <input id="confirm-delete-class" x-ref="deleteInput" x-model="deletePhrase" class="form-input mt-1" autocomplete="off" placeholder="delete" aria-label="Type delete to confirm">
+                    </div>
+                    <div class="flex justify-end gap-2">
+                        <button type="button" class="btn-secondary" @click="cancelDelete()">Cancel</button>
+                        <button class="rounded-md bg-red-700 px-4 py-2 text-sm font-semibold text-white hover:bg-red-800 disabled:opacity-40" :disabled="deletePhrase.trim().toLowerCase() !== 'delete' || deleting" x-text="deleting ? 'Deleting…' : 'Delete class'"></button>
+                    </div>
+                </form>
+            </div>
+        @endif
     </div>
 @endif

@@ -69,6 +69,15 @@ class ClassController extends Controller
         );
     }
 
+    public function destroy(string $class): RedirectResponse|JsonResponse
+    {
+        return $this->attempt(
+            fn () => $this->academics->deleteClass($class),
+            'Class deleted.',
+            ['tab' => 'classes'],
+        );
+    }
+
     public function updateFormTeacher(Request $request, string $class): RedirectResponse|JsonResponse
     {
         $data = $request->validate(['form_teacher_id' => ['nullable', 'string']]);

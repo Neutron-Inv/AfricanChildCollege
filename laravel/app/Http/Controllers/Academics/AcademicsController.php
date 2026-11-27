@@ -82,12 +82,16 @@ class AcademicsController extends Controller
     private function subjectsData(Request $request, AcademicsService $academics): array
     {
         [$sessions, $selected] = $this->selectedSession($request, $academics);
+        $user = $request->user();
+        $office = $user->isPlatformOwner() || $user->hasRole('ADMIN', 'REGISTRAR');
 
         return [
             'sessions' => $sessions,
             'selectedSession' => $selected,
             'catalogue' => $academics->subjectCatalogue($selected?->getKey()),
             'departments' => $academics->departments(),
+            'classes' => $office ? $academics->classes($selected?->getKey()) : collect(),
+            'teachers' => $office ? $academics->teachers() : collect(),
             'selectedSubjectId' => $request->query('subject'),
         ];
     }

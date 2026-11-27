@@ -10,6 +10,7 @@
     $logoUrl = $school ? $schoolLogo : asset('img/logo.png');
     $logoAlt = $school ? $school->name.' logo' : config('app.name').' logo';
     $headline = $school ? 'The school day, in one place.' : 'One desk for every school.';
+    $metaTitle = $school ? 'Sign in' : 'Platform sign in';
     $points = $school
         ? ['Report cards and scores', 'Attendance and the timetable', 'Fees, lessons, and notices']
         : ['Open any school from one list', 'See its people, classes, and results', 'Step back out when you are done'];
@@ -21,7 +22,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ $school ? 'Sign in' : 'Platform sign in' }} - {{ $name }}</title>
+        @include('partials.meta')
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />

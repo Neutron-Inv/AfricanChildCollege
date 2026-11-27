@@ -63,6 +63,7 @@ document.addEventListener('alpine:init', () => {
         panelUrlTemplate: config.panelUrlTemplate,
         syncUrlTemplate: config.syncUrlTemplate,
         updateUrlTemplate: config.updateUrlTemplate,
+        destroyClassUrlTemplate: config.destroyClassUrlTemplate,
         levels: config.levels || [],
         arms: config.arms || [],
         editingDetails: false,
@@ -81,10 +82,14 @@ document.addEventListener('alpine:init', () => {
         showAssign: false,
         subjectFilter: 'all',
         subjectQuery: '',
-        assign: { subject_id: '', teacher_id: '', kind: 'COMPULSORY' },
+        pending: [],
+        askDelete: false,
+        deletePhrase: '',
+        deleting: false,
         snapshot: '',
 
         init() {
+            this.pending = [this.blankRow()];
             this.snapshot = this.serialize();
             window.addEventListener('popstate', () => {
                 const params = new URLSearchParams(window.location.search);
@@ -117,10 +122,47 @@ document.addEventListener('alpine:init', () => {
             return this.panel && this.serialize() !== this.snapshot;
         },
 
-        get availableSubjects() {
-            const taken = new Set((this.panel?.subjects || []).map((s) => s.subject_id));
+        blankRow() {
+            return { key: `${Date.now()}-${Math.random()}`, subject_id: '', teacher_id: '', kind: 'COMPULSORY' };
+        },
 
-            return this.subjectsCatalogue.filter((s) => ! taken.has(s.id));
+        get hasPendingSubject() {
+            return this.pending.some((row) => row.subject_id);
+        },
+
+        get pendingCount() {
+            return this.pending.filter((row) => row.subject_id).length;
+        },
+
+        get anotherSubjectAvailable() {
+            const taken = this.takenSubjectIds();
+
+            return (this.subjectsCatalogue || []).some((subject) => ! taken.has(subject.id));
+        },
+
+        takenSubjectIds(exceptIndex = null) {
+            const taken = new Set((this.panel?.subjects || []).map((subject) => subject.subject_id));
+            this.pending.forEach((row, index) => {
+                if (index !== exceptIndex && row.subject_id) {
+                    taken.add(row.subject_id);
+                }
+            });
+
+            return taken;
+        },
+
+        subjectsFor(index) {
+            const taken = this.takenSubjectIds(index);
+            const current = this.pending[index]?.subject_id;
+
+            return (this.subjectsCatalogue || []).filter((subject) => subject.id === current || ! taken.has(subject.id));
+        },
+
+        addPendingRow() {
+            if (! this.anotherSubjectAvailable) {
+                return;
+            }
+            this.pending.push(this.blankRow());
         },
 
         get compulsoryCount() {
@@ -171,6 +213,10 @@ document.addEventListener('alpine:init', () => {
             return this.updateUrlTemplate.replace('__CLASS__', classId);
         },
 
+        destroyClassUrl(classId) {
+            return this.destroyClassUrlTemplate.replace('__CLASS__', classId);
+        },
+
         startDetails() {
             this.detailBackup = {
                 level_id: this.panel.level_id,
@@ -207,7 +253,8 @@ document.addEventListener('alpine:init', () => {
                 this.classId = classId;
                 this.panel = data;
                 this.snapshot = this.serialize();
-                this.assign = { subject_id: '', teacher_id: '', kind: 'COMPULSORY' };
+                this.pending = [this.blankRow()];
+                this.cancelDelete();
                 this.subjectFilter = 'all';
                 this.subjectQuery = '';
                 this.showAssign = false;
@@ -265,6 +312,23 @@ document.addEventListener('alpine:init', () => {
             }
         },
 
+        async persistPanel() {
+            const data = await window.schoolFetch(this.syncUrl(this.panel.id), {
+                method: 'PUT',
+                body: {
+                    form_teacher_id: this.panel.form_teacher_id || null,
+                    subjects: (this.panel.subjects || []).map((s) => ({
+                        id: s.id,
+                        kind: s.kind,
+                        teacher_id: s.teacher_id || null,
+                    })),
+                },
+            });
+            this.applyPanel(data.panel);
+
+            return data;
+        },
+
         async save() {
             if (! this.panel || this.saving) {
                 return;
@@ -272,18 +336,7 @@ document.addEventListener('alpine:init', () => {
 
             this.saving = true;
             try {
-                const data = await window.schoolFetch(this.syncUrl(this.panel.id), {
-                    method: 'PUT',
-                    body: {
-                        form_teacher_id: this.panel.form_teacher_id || null,
-                        subjects: (this.panel.subjects || []).map((s) => ({
-                            id: s.id,
-                            kind: s.kind,
-                            teacher_id: s.teacher_id || null,
-                        })),
-                    },
-                });
-                this.applyPanel(data.panel);
+                const data = await this.persistPanel();
                 Alpine.store('toasts').success(data.message || 'Class saved.');
             } catch (error) {
                 Alpine.store('toasts').error(error.message);
@@ -292,28 +345,74 @@ document.addEventListener('alpine:init', () => {
             }
         },
 
-        async assignSubject() {
-            if (! this.panel || this.assigning || ! this.assign.subject_id) {
+        async assignSubjects() {
+            const rows = this.pending.filter((row) => row.subject_id);
+            if (! this.panel || this.assigning || ! rows.length) {
                 return;
             }
 
             this.assigning = true;
             try {
+                if (this.dirty) {
+                    await this.persistPanel();
+                }
                 const data = await window.schoolFetch(this.storeSubjectUrl(this.panel.id), {
                     method: 'POST',
                     body: {
-                        subject_id: this.assign.subject_id,
-                        teacher_id: this.assign.teacher_id || null,
-                        kind: this.assign.kind,
+                        subjects: rows.map((row) => ({
+                            subject_id: row.subject_id,
+                            teacher_id: row.teacher_id || null,
+                            kind: row.kind,
+                        })),
                     },
                 });
                 this.applyPanel(data.panel);
-                this.assign = { subject_id: '', teacher_id: '', kind: 'COMPULSORY' };
-                Alpine.store('toasts').success(data.message || 'Subject added.');
+                this.pending = [this.blankRow()];
+                Alpine.store('toasts').success(data.message || 'Subjects added.');
             } catch (error) {
                 Alpine.store('toasts').error(error.message);
             } finally {
                 this.assigning = false;
+            }
+        },
+
+        askToDelete() {
+            if (! this.panel) {
+                return;
+            }
+            this.deletePhrase = '';
+            this.askDelete = true;
+            this.$nextTick(() => this.$refs.deleteInput?.focus());
+        },
+
+        cancelDelete() {
+            this.askDelete = false;
+            this.deletePhrase = '';
+        },
+
+        async confirmDelete() {
+            if (! this.panel || this.deleting || this.deletePhrase.trim().toLowerCase() !== 'delete') {
+                return;
+            }
+
+            this.deleting = true;
+            const classId = this.panel.id;
+            try {
+                const data = await window.schoolFetch(this.destroyClassUrl(classId), { method: 'DELETE' });
+                this.classes = this.classes.filter((card) => card.id !== classId);
+                this.panel = null;
+                this.classId = null;
+                this.editingDetails = false;
+                this.cancelDelete();
+                const url = new URL(this.academicsUrl, window.location.origin);
+                url.searchParams.set('tab', 'classes');
+                url.searchParams.set('session', this.sessionId);
+                window.history.pushState({}, '', url);
+                Alpine.store('toasts').success(data.message || 'Class deleted.');
+            } catch (error) {
+                Alpine.store('toasts').error(error.message);
+            } finally {
+                this.deleting = false;
             }
         },
 
@@ -345,21 +444,38 @@ document.addEventListener('alpine:init', () => {
         canEdit: config.canEdit,
         academicsUrl: config.academicsUrl,
         updateUrlTemplate: config.updateUrlTemplate,
+        destroySubjectUrlTemplate: config.destroySubjectUrlTemplate,
+        storeClassUrlTemplate: config.storeClassUrlTemplate,
+        destroyClassUrlTemplate: config.destroyClassUrlTemplate,
         subjects: config.subjects,
         departments: config.departments,
+        classes: config.classes || [],
+        teachers: config.teachers || [],
         selectedId: config.selectedId,
         sessionId: config.sessionId,
         query: '',
         departmentFilter: 'all',
         draft: { name: '', department_id: '' },
         snapshot: '',
+        offeringSnapshot: '',
         saving: false,
+        adding: false,
+        showAdd: false,
+        pending: [],
+        askDelete: false,
+        deletePhrase: '',
+        deleting: false,
 
         init() {
+            this.pending = [this.blankRow()];
             const initial = this.subjects.some((s) => s.id === this.selectedId) ? this.selectedId : null;
             if (initial) {
                 this.loadDraft(initial);
             }
+        },
+
+        blankRow() {
+            return { key: `${Date.now()}-${Math.random()}`, class_id: '', teacher_id: '', kind: 'COMPULSORY' };
         },
 
         get filtered() {
@@ -385,7 +501,54 @@ document.addEventListener('alpine:init', () => {
         },
 
         get dirty() {
-            return this.selected && JSON.stringify(this.draft) !== this.snapshot;
+            return this.selected && (JSON.stringify(this.draft) !== this.snapshot || this.serializeOfferings() !== this.offeringSnapshot);
+        },
+
+        get hasPendingClass() {
+            return this.pending.some((row) => row.class_id);
+        },
+
+        get pendingCount() {
+            return this.pending.filter((row) => row.class_id).length;
+        },
+
+        get anotherClassAvailable() {
+            const taken = this.takenClassIds();
+
+            return this.classes.some((schoolClass) => ! taken.has(schoolClass.id));
+        },
+
+        takenClassIds(exceptIndex = null) {
+            const taken = new Set((this.selected?.offerings || []).map((offer) => offer.class_id));
+            this.pending.forEach((row, index) => {
+                if (index !== exceptIndex && row.class_id) {
+                    taken.add(row.class_id);
+                }
+            });
+
+            return taken;
+        },
+
+        classesFor(index) {
+            const taken = this.takenClassIds(index);
+            const current = this.pending[index]?.class_id;
+
+            return this.classes.filter((schoolClass) => schoolClass.id === current || ! taken.has(schoolClass.id));
+        },
+
+        addPendingRow() {
+            if (! this.anotherClassAvailable) {
+                return;
+            }
+            this.pending.push(this.blankRow());
+        },
+
+        serializeOfferings() {
+            return JSON.stringify((this.selected?.offerings || []).map((offer) => ({
+                id: offer.id,
+                kind: offer.kind,
+                teacher_id: offer.teacher_id || '',
+            })));
         },
 
         loadDraft(id) {
@@ -397,6 +560,16 @@ document.addEventListener('alpine:init', () => {
             this.selectedId = id;
             this.draft = { name: subject.name, department_id: subject.department_id || '' };
             this.snapshot = JSON.stringify(this.draft);
+            this.offeringSnapshot = this.serializeOfferings();
+        },
+
+        replaceSubject(subject) {
+            const index = this.subjects.findIndex((row) => row.id === subject.id);
+            if (index >= 0) {
+                this.subjects.splice(index, 1, subject);
+                this.subjects.sort((a, b) => a.name.localeCompare(b.name));
+            }
+            this.loadDraft(subject.id);
         },
 
         select(id, push = true) {
@@ -404,6 +577,9 @@ document.addEventListener('alpine:init', () => {
                 return;
             }
             this.loadDraft(id);
+            this.pending = [this.blankRow()];
+            this.showAdd = false;
+            this.cancelDelete();
             if (push && this.selectedId) {
                 const url = new URL(this.academicsUrl, window.location.origin);
                 url.searchParams.set('tab', 'subjects');
@@ -415,31 +591,139 @@ document.addEventListener('alpine:init', () => {
             }
         },
 
+        async persistSubject() {
+            const data = await window.schoolFetch(this.updateUrlTemplate.replace('__ID__', this.selected.id), {
+                method: 'PUT',
+                body: {
+                    name: this.draft.name,
+                    department_id: this.draft.department_id || null,
+                    session_id: this.sessionId || null,
+                    offerings: (this.selected.offerings || []).map((offer) => ({
+                        id: offer.id,
+                        kind: offer.kind,
+                        teacher_id: offer.teacher_id || null,
+                    })),
+                },
+            });
+            this.replaceSubject(data.subject);
+
+            return data;
+        },
+
         async save() {
             if (! this.selected || this.saving) {
                 return;
             }
             this.saving = true;
             try {
-                const data = await window.schoolFetch(this.updateUrlTemplate.replace('__ID__', this.selected.id), {
-                    method: 'PUT',
-                    body: {
-                        name: this.draft.name,
-                        department_id: this.draft.department_id || null,
-                        session_id: this.sessionId || null,
-                    },
-                });
-                const index = this.subjects.findIndex((row) => row.id === this.selected.id);
-                if (index >= 0) {
-                    this.subjects.splice(index, 1, data.subject);
-                    this.subjects.sort((a, b) => a.name.localeCompare(b.name));
-                }
-                this.loadDraft(data.subject.id);
+                const data = await this.persistSubject();
                 Alpine.store('toasts').success(data.message || 'Subject saved.');
             } catch (error) {
                 Alpine.store('toasts').error(error.message);
             } finally {
                 this.saving = false;
+            }
+        },
+
+        async addClasses() {
+            const rows = this.pending.filter((row) => row.class_id);
+            if (! this.selected || this.adding || ! rows.length) {
+                return;
+            }
+
+            this.adding = true;
+            try {
+                if (this.dirty) {
+                    await this.persistSubject();
+                }
+                const data = await window.schoolFetch(this.storeClassUrlTemplate.replace('__ID__', this.selected.id), {
+                    method: 'POST',
+                    body: {
+                        session_id: this.sessionId || null,
+                        classes: rows.map((row) => ({
+                            class_id: row.class_id,
+                            teacher_id: row.teacher_id || null,
+                            kind: row.kind,
+                        })),
+                    },
+                });
+                this.replaceSubject(data.subject);
+                this.pending = [this.blankRow()];
+                Alpine.store('toasts').success(data.message || 'Classes added.');
+            } catch (error) {
+                Alpine.store('toasts').error(error.message);
+            } finally {
+                this.adding = false;
+            }
+        },
+
+        askToDelete() {
+            if (! this.selected) {
+                return;
+            }
+            this.deletePhrase = '';
+            this.askDelete = true;
+            this.$nextTick(() => this.$refs.deleteInput?.focus());
+        },
+
+        cancelDelete() {
+            this.askDelete = false;
+            this.deletePhrase = '';
+        },
+
+        async confirmDelete() {
+            if (! this.selected || this.deleting || this.deletePhrase.trim().toLowerCase() !== 'delete') {
+                return;
+            }
+
+            this.deleting = true;
+            const subjectId = this.selected.id;
+            try {
+                const data = await window.schoolFetch(this.destroySubjectUrlTemplate.replace('__ID__', subjectId), { method: 'DELETE' });
+                this.subjects = this.subjects.filter((subject) => subject.id !== subjectId);
+                this.selectedId = null;
+                this.pending = [this.blankRow()];
+                this.showAdd = false;
+                this.cancelDelete();
+                const url = new URL(this.academicsUrl, window.location.origin);
+                url.searchParams.set('tab', 'subjects');
+                if (this.sessionId) {
+                    url.searchParams.set('session', this.sessionId);
+                }
+                window.history.pushState({}, '', url);
+                Alpine.store('toasts').success(data.message || 'Subject deleted.');
+            } catch (error) {
+                Alpine.store('toasts').error(error.message);
+            } finally {
+                this.deleting = false;
+            }
+        },
+
+        async removeClass(offer) {
+            if (! this.selected || ! offer) {
+                return;
+            }
+            if (this.dirty) {
+                Alpine.store('toasts').error('Save your edits before removing a class.');
+                return;
+            }
+            const name = offer.class_name || 'this class';
+            if (! confirm(`Remove ${this.selected.name} from ${name}? Students in that class will no longer take it.`)) {
+                return;
+            }
+
+            try {
+                const url = this.destroyClassUrlTemplate
+                    .replace('__ID__', this.selected.id)
+                    .replace('__CLASS_SUBJECT__', offer.id);
+                const data = await window.schoolFetch(url, {
+                    method: 'DELETE',
+                    body: { session_id: this.sessionId || null },
+                });
+                this.replaceSubject(data.subject);
+                Alpine.store('toasts').success(data.message || 'Class removed.');
+            } catch (error) {
+                Alpine.store('toasts').error(error.message);
             }
         },
     }));

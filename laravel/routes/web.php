@@ -85,6 +85,7 @@ Route::middleware('auth')->group(function () {
 
             Route::post('/classes', [ClassController::class, 'store'])->name('classes.store');
             Route::put('/classes/{class}', [ClassController::class, 'update'])->name('classes.update');
+            Route::delete('/classes/{class}', [ClassController::class, 'destroy'])->name('classes.destroy');
             Route::put('/classes/{class}/form-teacher', [ClassController::class, 'updateFormTeacher'])->name('classes.form-teacher');
             Route::put('/classes/{class}/subjects', [ClassSubjectController::class, 'sync'])->name('classes.subjects.sync');
             Route::post('/classes/{class}/subjects', [ClassSubjectController::class, 'store'])->name('class-subjects.store');
@@ -94,7 +95,12 @@ Route::middleware('auth')->group(function () {
 
             Route::post('/subjects', [CatalogueController::class, 'storeSubject'])->name('subjects.store');
             Route::put('/subjects/{subject}', [CatalogueController::class, 'updateSubject'])->name('subjects.update');
+            Route::delete('/subjects/{subject}', [CatalogueController::class, 'destroySubject'])->name('subjects.destroy');
+            Route::post('/subjects/{subject}/classes', [CatalogueController::class, 'storeClass'])->name('subjects.classes.store');
+            Route::delete('/subjects/{subject}/classes/{classSubject}', [CatalogueController::class, 'destroyClass'])->name('subjects.classes.destroy');
             Route::post('/departments', [CatalogueController::class, 'storeDepartment'])->name('departments.store');
+            Route::put('/departments/{department}', [CatalogueController::class, 'updateDepartment'])->name('departments.update');
+            Route::delete('/departments/{department}', [CatalogueController::class, 'destroyDepartment'])->name('departments.destroy');
             Route::post('/rooms', [CatalogueController::class, 'storeRoom'])->name('rooms.store');
         });
 

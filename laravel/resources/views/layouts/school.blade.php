@@ -6,6 +6,7 @@
     $user = auth()->user();
     $color = preg_match('/^#[0-9a-fA-F]{6}$/', (string) $school?->primary_color) ? $school->primary_color : '#a01010';
 
+    $title = $title ?? 'Dashboard';
     $school?->loadMissing('logo');
     $logoFile = $school?->logo;
     $logoUrl = $logoFile && \Illuminate\Support\Facades\Storage::disk(\App\Services\SchoolSettingsService::DISK)->exists($logoFile->storage_key)
@@ -42,7 +43,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ $title ?? 'Dashboard' }} - {{ $school->name }}</title>
+        @include('partials.meta')
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />

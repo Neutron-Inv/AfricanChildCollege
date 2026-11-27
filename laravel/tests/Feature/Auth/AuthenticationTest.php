@@ -31,7 +31,14 @@ class AuthenticationTest extends TestCase
 
     public function test_login_screens_render_for_school_and_platform(): void
     {
-        $this->get('http://secondary.localhost/login')->assertOk()->assertSee('Sign in to Secondary')->assertDontSee('img/logo.png', false);
+        $this->get('http://secondary.localhost/login')
+            ->assertOk()
+            ->assertSee('Sign in to Secondary')
+            ->assertDontSee('img/logo.png', false)
+            ->assertSee('favicon/favicon-32x32.png', false)
+            ->assertSee('favicon/apple-touch-icon.png', false)
+            ->assertSee('Secondary. Report cards, attendance, timetable, fees, and notices.', false)
+            ->assertSee('rel="canonical"', false);
         config([
             'app.powered_by_email' => 'hello@wengineering.ng',
             'app.powered_by_phone' => '+234 800 000 0000',

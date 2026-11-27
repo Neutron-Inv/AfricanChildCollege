@@ -469,6 +469,31 @@ class AcademicsService
         return $this->presentClassPanel($class->getKey());
     }
 
+    /** Remove a class and the enrolment, scores, fees, and timetable that belong to it. */
+    public function deleteClass(string $classId): void
+    {
+        $class = $this->findOrFail(SchoolClass::query()->with(['level', 'arm']), $classId, 'Class not found.');
+        $name = $class->display_name;
+
+        DB::transaction(function () use ($class) {
+            $classSubjectIds = ClassSubject::query()->where('class_id', $class->getKey())->pluck('id');
+            $enrolmentIds = Enrolment::query()->where('class_id', $class->getKey())->pluck('id');
+
+            Invoice::query()->where('class_id', $class->getKey())->delete();
+
+            if ($classSubjectIds->isNotEmpty()) {
+                ClassSubject::query()->whereIn('id', $classSubjectIds)->delete();
+            }
+            if ($enrolmentIds->isNotEmpty()) {
+                Enrolment::query()->whereIn('id', $enrolmentIds)->delete();
+            }
+
+            $class->delete();
+        });
+
+        AuditService::record('delete', 'Class', $classId, ['name' => $name]);
+    }
+
     private function money(mixed $amount): string
     {
         if (! is_numeric($amount) || (float) $amount < 0) {
@@ -632,6 +657,35 @@ class AcademicsService
         return $classSubject;
     }
 
+    /**
+     * Offer several subjects to one class in a single step.
+     *
+     * @param  list<array{subject_id:string,teacher_id:?string,kind:string}>  $rows
+     * @return array<string, mixed>
+     */
+    public function addSubjectsToClass(string $classId, array $rows): array
+    {
+        $class = $this->findOrFail(SchoolClass::query(), $classId, 'Class not found.');
+        if ($rows === []) {
+            throw new DomainException('Choose a subject.');
+        }
+
+        DB::transaction(function () use ($class, $rows) {
+            $chosen = [];
+            foreach ($rows as $data) {
+                $subjectId = (string) ($data['subject_id'] ?? '');
+                if ($subjectId === '' || isset($chosen[$subjectId])) {
+                    throw new DomainException('Choose each subject once.');
+                }
+                $chosen[$subjectId] = true;
+
+                $this->createClassSubject($data + ['class_id' => $class->getKey()]);
+            }
+        });
+
+        return $this->presentClassPanel($class->getKey());
+    }
+
     public function setSubjectKind(string $classSubjectId, string $kind): ClassSubject
     {
         $classSubject = $this->findOrFail(ClassSubject::query(), $classSubjectId, 'Class subject not found.');
@@ -729,6 +783,7 @@ class AcademicsService
                 },
                 'classSubjects.class.level',
                 'classSubjects.class.arm',
+                'classSubjects.teacher',
             ])
             ->orderBy('name')
             ->get()
@@ -744,14 +799,19 @@ class AcademicsService
             'department',
             'classSubjects.class.level',
             'classSubjects.class.arm',
+            'classSubjects.teacher',
         ]);
 
         $offerings = $subject->classSubjects
             ->filter(fn (ClassSubject $cs) => $sessionId && $cs->class?->session_id === $sessionId)
             ->sortBy(fn (ClassSubject $cs) => (string) $cs->class?->display_name)
             ->map(fn (ClassSubject $cs) => [
+                'id' => $cs->getKey(),
+                'class_id' => $cs->class_id,
                 'class_name' => $cs->class?->display_name,
                 'kind' => $cs->kind,
+                'teacher_id' => $cs->teacher_id ?? '',
+                'teacher_name' => $cs->teacher ? trim($cs->teacher->first_name.' '.$cs->teacher->last_name) : null,
             ])
             ->values()
             ->all();
@@ -784,6 +844,20 @@ class AcademicsService
         return $subject;
     }
 
+    /** Remove a subject from every class, including its scores, lessons, and timetable. */
+    public function deleteSubject(string $subjectId): void
+    {
+        $subject = $this->findOrFail(Subject::query(), $subjectId, 'Subject not found.');
+        $name = $subject->name;
+
+        DB::transaction(function () use ($subject) {
+            ClassSubject::query()->where('subject_id', $subject->getKey())->delete();
+            $subject->delete();
+        });
+
+        AuditService::record('delete', 'Subject', $subjectId, ['name' => $name]);
+    }
+
     /** @param  array{name:string,department_id:?string}  $data */
     public function updateSubject(string $subjectId, array $data, ?string $sessionId = null): array
     {
@@ -809,6 +883,107 @@ class AcademicsService
 
         $sessionId ??= AcademicSession::query()->where('is_current', true)->value('id');
 
+        if (array_key_exists('offerings', $data)) {
+            $this->syncSubjectOfferings($subject, $sessionId, $data['offerings'] ?? []);
+        }
+
+        return $this->presentSubject($subject->fresh(), $sessionId);
+    }
+
+    /**
+     * Offer this subject to one or more classes in the session.
+     *
+     * @param  list<array{class_id:string,teacher_id:?string,kind:string}>  $rows
+     * @return array<string, mixed>
+     */
+    public function addClassesToSubject(string $subjectId, array $rows, ?string $sessionId): array
+    {
+        $subject = $this->findOrFail(Subject::query(), $subjectId, 'Subject not found.');
+        if ($rows === []) {
+            throw new DomainException('Choose a class.');
+        }
+
+        DB::transaction(function () use ($subject, $rows, $sessionId) {
+            $chosen = [];
+            foreach ($rows as $data) {
+                $class = $this->findOrFail(SchoolClass::query(), $data['class_id'] ?? null, 'Class not found.');
+                if ($sessionId && $class->session_id !== $sessionId) {
+                    throw new DomainException('Choose a class in this session.');
+                }
+                if (isset($chosen[$class->getKey()])) {
+                    throw new DomainException('Choose each class once.');
+                }
+                $chosen[$class->getKey()] = true;
+
+                $this->createClassSubject([
+                    'class_id' => $class->getKey(),
+                    'subject_id' => $subject->getKey(),
+                    'teacher_id' => $data['teacher_id'] ?? null,
+                    'kind' => $data['kind'] ?? self::KIND_COMPULSORY,
+                ]);
+            }
+        });
+
+        return $this->presentSubject($subject->fresh(), $sessionId);
+    }
+
+    /**
+     * Save kind and teacher for the classes already offering this subject.
+     *
+     * @param  list<array{id:string,kind:string,teacher_id:?string}>  $rows
+     */
+    private function syncSubjectOfferings(Subject $subject, ?string $sessionId, array $rows): void
+    {
+        DB::transaction(function () use ($subject, $sessionId, $rows) {
+            $ids = collect($rows)->pluck('id')->map(fn ($id) => (string) $id)->all();
+            $existing = ClassSubject::query()
+                ->where('subject_id', $subject->getKey())
+                ->whereIn('id', $ids)
+                ->with('class')
+                ->get()
+                ->keyBy(fn (ClassSubject $cs) => (string) $cs->getKey());
+
+            if ($existing->count() !== count($rows)) {
+                throw new DomainException('One of the classes does not offer this subject.');
+            }
+
+            foreach ($rows as $row) {
+                $classSubject = $existing->get((string) $row['id']);
+                if ($sessionId && $classSubject->class?->session_id !== $sessionId) {
+                    throw new DomainException('One of the classes is not in this session.');
+                }
+
+                $kind = $this->requireKind($row['kind']);
+                $teacherId = $this->requireTeacher($row['teacher_id'] ?? null);
+
+                if ($classSubject->kind !== $kind) {
+                    $classSubject->update(['kind' => $kind]);
+                    if ($kind === self::KIND_COMPULSORY) {
+                        $this->attachToActiveEnrolments($classSubject);
+                    }
+                    AuditService::record('update', 'ClassSubject', $classSubject->getKey(), ['kind' => $kind]);
+                }
+
+                if ($classSubject->teacher_id !== $teacherId) {
+                    $classSubject->update(['teacher_id' => $teacherId]);
+                    AuditService::record('update', 'ClassSubject', $classSubject->getKey(), ['teacher_id' => $teacherId]);
+                }
+            }
+        });
+    }
+
+    /** @return array<string, mixed> */
+    public function removeClassFromSubject(string $subjectId, string $classSubjectId, ?string $sessionId): array
+    {
+        $subject = $this->findOrFail(Subject::query(), $subjectId, 'Subject not found.');
+        $classSubject = $this->findOrFail(
+            ClassSubject::query()->where('subject_id', $subject->getKey()),
+            $classSubjectId,
+            'This subject is not offered in that class.',
+        );
+
+        $this->removeClassSubject($classSubject->getKey());
+
         return $this->presentSubject($subject->fresh(), $sessionId);
     }
 
@@ -831,6 +1006,36 @@ class AcademicsService
         AuditService::record('create', 'Department', $department->getKey());
 
         return $department;
+    }
+
+    /** @param  array{name:string,hod_id:?string}  $data */
+    public function updateDepartment(string $departmentId, array $data): Department
+    {
+        $department = $this->findOrFail(Department::query(), $departmentId, 'Department not found.');
+        $name = trim($data['name']);
+        $hodId = $this->requireTeacher($data['hod_id'] ?? null);
+
+        $duplicate = Department::query()->where('name', $name)->whereKeyNot($department->getKey())->exists();
+        if ($duplicate) {
+            throw new DomainException("A department named {$name} already exists.");
+        }
+
+        $department->update(['name' => $name, 'hod_id' => $hodId]);
+
+        AuditService::record('update', 'Department', $department->getKey(), ['name' => $name, 'hod_id' => $hodId]);
+
+        return $department;
+    }
+
+    /** Subjects stay. They simply no longer belong to this department. */
+    public function deleteDepartment(string $departmentId): void
+    {
+        $department = $this->findOrFail(Department::query(), $departmentId, 'Department not found.');
+        $name = $department->name;
+
+        $department->delete();
+
+        AuditService::record('delete', 'Department', $departmentId, ['name' => $name]);
     }
 
     public function rooms(): Collection

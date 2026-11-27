@@ -10,13 +10,14 @@ use App\Models\Enrolment;
 use App\Models\EnrolmentSubject;
 use App\Models\GradingBand;
 use App\Models\GradingScale;
+use App\Models\Invoice;
+use App\Models\Term;
 use App\Models\Level;
 use App\Models\School;
 use App\Models\SchoolClass;
 use App\Models\Staff;
 use App\Models\Student;
 use App\Models\Subject;
-use App\Models\Term;
 use App\Models\User;
 use App\Support\Tenant;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -521,6 +522,161 @@ class AcademicsTest extends TestCase
         $this->deleteJson(self::HOST.'/academics/class-subjects/'.$cs->id)
             ->assertOk()
             ->assertJsonPath('panel.subjects', []);
+
+        [$english, $civic] = $this->tenant(fn () => [Subject::create(['name' => 'English']), Subject::create(['name' => 'Civic'])]);
+        $this->postJson(self::HOST.'/academics/classes/'.$this->class->id.'/subjects', [
+            'subjects' => [
+                ['subject_id' => $english->id, 'teacher_id' => $this->teacher->id, 'kind' => 'COMPULSORY'],
+                ['subject_id' => $civic->id, 'kind' => 'ELECTIVE'],
+            ],
+        ])
+            ->assertOk()
+            ->assertJsonPath('message', 'Subjects added to class.')
+            ->assertJsonCount(2, 'panel.subjects')
+            ->assertJsonPath('panel.subjects.0.subject_name', 'Civic')
+            ->assertJsonPath('panel.subjects.0.kind', 'ELECTIVE')
+            ->assertJsonPath('panel.subjects.1.subject_name', 'English')
+            ->assertJsonPath('panel.subjects.1.kind', 'COMPULSORY')
+            ->assertJsonPath('panel.subjects.1.teacher_id', $this->teacher->id);
+
+        $this->assertSame(1, $this->tenant(fn () => EnrolmentSubject::where('enrolment_id', $this->enrolment->id)->count()));
+    }
+
+    public function test_a_class_and_a_subject_can_be_deleted(): void
+    {
+        $this->as(Role::ADMIN)
+            ->get(self::HOST.'/academics?class='.$this->class->id)
+            ->assertOk()
+            ->assertSee('Delete class')
+            ->assertSee('Type delete to confirm');
+        $this->get(self::HOST.'/academics?tab=subjects&subject='.$this->subject->id)
+            ->assertOk()
+            ->assertSee('Delete subject')
+            ->assertSee('Type delete to confirm');
+
+        $this->as(Role::TEACHER, ['staff_id' => $this->teacher->id])
+            ->deleteJson(self::HOST.'/academics/classes/'.$this->class->id)
+            ->assertForbidden();
+        $this->deleteJson(self::HOST.'/academics/subjects/'.$this->subject->id)
+            ->assertForbidden();
+
+        $this->tenant(function () {
+            $term = Term::create(['session_id' => $this->session->id, 'sequence' => 1, 'name' => 'First Term']);
+            $offering = ClassSubject::create([
+                'class_id' => $this->class->id,
+                'subject_id' => $this->subject->id,
+                'kind' => 'COMPULSORY',
+            ]);
+            EnrolmentSubject::create(['enrolment_id' => $this->enrolment->id, 'class_subject_id' => $offering->id]);
+            Invoice::create([
+                'student_id' => $this->enrolment->student_id,
+                'term_id' => $term->id,
+                'class_id' => $this->class->id,
+            ]);
+        });
+
+        $this->as(Role::ADMIN)
+            ->deleteJson(self::HOST.'/academics/subjects/'.$this->subject->id)
+            ->assertOk()
+            ->assertJsonPath('message', 'Subject deleted.');
+
+        $this->assertNull($this->tenant(fn () => Subject::find($this->subject->id)));
+        $this->assertNotNull($this->tenant(fn () => SchoolClass::find($this->class->id)));
+        $this->assertNotNull($this->tenant(fn () => Enrolment::find($this->enrolment->id)));
+        $this->assertSame(0, $this->tenant(fn () => ClassSubject::count() + EnrolmentSubject::count()));
+
+        $this->deleteJson(self::HOST.'/academics/classes/'.$this->class->id)
+            ->assertOk()
+            ->assertJsonPath('message', 'Class deleted.');
+
+        $this->assertNull($this->tenant(fn () => SchoolClass::find($this->class->id)));
+        $this->assertNull($this->tenant(fn () => Enrolment::find($this->enrolment->id)));
+        $this->assertSame(0, $this->tenant(fn () => Invoice::count()));
+        $this->assertNotNull($this->tenant(fn () => Student::find($this->enrolment->student_id)));
+    }
+
+    public function test_a_subject_can_be_offered_to_a_class_from_the_subject_page(): void
+    {
+        $this->as(Role::REGISTRAR);
+        $this->get(self::HOST.'/academics?tab=subjects&subject='.$this->subject->id)
+            ->assertOk()
+            ->assertSee('Add class')
+            ->assertSee('Add another class', false);
+
+        $classB = $this->tenant(fn () => SchoolClass::create([
+            'session_id' => $this->session->id,
+            'level_id' => $this->class->level_id,
+            'arm_id' => Arm::create(['name' => 'B'])->id,
+        ]));
+
+        $added = $this->postJson(self::HOST.'/academics/subjects/'.$this->subject->id.'/classes', [
+            'session_id' => $this->session->id,
+            'classes' => [
+                ['class_id' => $this->class->id, 'teacher_id' => $this->teacher->id, 'kind' => 'COMPULSORY'],
+                ['class_id' => $classB->id, 'kind' => 'ELECTIVE'],
+            ],
+        ])
+            ->assertOk()
+            ->assertJsonPath('message', 'Classes added to subject.')
+            ->assertJsonCount(2, 'subject.offerings')
+            ->assertJsonPath('subject.offerings.0.class_name', 'JSS1 A')
+            ->assertJsonPath('subject.offerings.0.kind', 'COMPULSORY')
+            ->assertJsonPath('subject.offerings.0.teacher_id', $this->teacher->id)
+            ->assertJsonPath('subject.offerings.1.class_name', 'JSS1 B')
+            ->assertJsonPath('subject.offerings.1.kind', 'ELECTIVE');
+
+        $this->assertSame(1, $this->tenant(fn () => EnrolmentSubject::where('enrolment_id', $this->enrolment->id)->count()));
+
+        $this->postJson(self::HOST.'/academics/subjects/'.$this->subject->id.'/classes', [
+            'class_id' => $this->class->id,
+            'kind' => 'ELECTIVE',
+            'session_id' => $this->session->id,
+        ])->assertStatus(422);
+
+        $offeringId = $added->json('subject.offerings.0.id');
+        $this->putJson(self::HOST.'/academics/subjects/'.$this->subject->id, [
+            'name' => 'Maths',
+            'department_id' => '',
+            'session_id' => $this->session->id,
+            'offerings' => [
+                ['id' => $offeringId, 'kind' => 'ELECTIVE', 'teacher_id' => $this->teacher->id],
+            ],
+        ])
+            ->assertOk()
+            ->assertJsonPath('subject.offerings.0.kind', 'ELECTIVE')
+            ->assertJsonPath('subject.offerings.0.teacher_id', $this->teacher->id);
+
+        $otherClass = $this->tenant(function () {
+            $old = AcademicSession::create(['name' => '2019/2020', 'start_year' => 2019, 'end_year' => 2020, 'is_current' => false]);
+
+            return SchoolClass::create([
+                'session_id' => $old->id,
+                'level_id' => Level::query()->first()->id,
+                'arm_id' => Arm::query()->first()->id,
+            ]);
+        });
+        $this->postJson(self::HOST.'/academics/subjects/'.$this->subject->id.'/classes', [
+            'class_id' => $otherClass->id,
+            'kind' => 'COMPULSORY',
+            'session_id' => $this->session->id,
+        ])->assertStatus(422);
+
+        $this->deleteJson(self::HOST.'/academics/subjects/'.$this->subject->id.'/classes/'.$offeringId, [
+            'session_id' => $this->session->id,
+        ])
+            ->assertOk()
+            ->assertJsonCount(1, 'subject.offerings')
+            ->assertJsonPath('subject.offerings.0.class_name', 'JSS1 B');
+
+        $this->assertSame(0, $this->tenant(fn () => EnrolmentSubject::where('enrolment_id', $this->enrolment->id)->count()));
+
+        $this->as(Role::TEACHER, ['staff_id' => $this->teacher->id])
+            ->postJson(self::HOST.'/academics/subjects/'.$this->subject->id.'/classes', [
+                'class_id' => $this->class->id,
+                'kind' => 'COMPULSORY',
+                'session_id' => $this->session->id,
+            ])
+            ->assertForbidden();
     }
 
     public function test_catalogues_and_grading(): void
